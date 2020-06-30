@@ -12,7 +12,7 @@
 
 ## Due Dates
 
-Milestone 1: 9AM Monday Week 7 (Demonstration: Week 7 Lab)
+Milestone 1: 9AM Tuesday Week 7 (Demonstration: Week 7 Lab)
 
 Milestone 2: 9AM Monday Week 8 (Demonstration: Week 8 Lab)
 
@@ -241,7 +241,7 @@ You may add additional Java files with new Java classes in the *src/unsw/dungeon
 
 While it is up to you how to divide the work between you and your partner, both of you are expected to contribute code. Just creating diagrams and documentation is not sufficient contribution.
 
-You are expected to contribute equally to your partner every week. At the end of every week, you are required to log the distribution of work during that week (by listing work completed, and percentages of work completed by each person) at the bottom of your README.md. Failure to do this by 9am Monday each week will result in a 1% penalty being applied automatically to your course grade for each occurrence.
+You are expected to contribute equally to your partner every week. At the end of every week, you are required to log the distribution of work during that week (by listing work completed, and percentages of work completed by each person) at the bottom of your README.md. If both partners in a team fail to submit a log, we will assume the contribution was equal and not engage in redistribution of marks for that week. If one partner fails to submit a log, we will automatically believe the partner who submitted a log and redistribute marks accordingly. No further consideration will be granted in this regard.
 
 If there is a disparity in the amount of work completed, you should email your tutor to discuss and resolve this.
 
