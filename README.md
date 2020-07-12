@@ -14,7 +14,7 @@
 
 Milestone 1: 9AM Tuesday Week 7 (Demonstration: Week 7 Lab)
 
-Milestone 2: 9AM Monday Week 8 (Demonstration: Week 8 Lab)
+Milestone 2: 9AM Tuesday Week 8 (Demonstration: Week 8 Lab)
 
 Final milestone: 9AM Monday Week 10 (Demonstration: Week 10 Lab)
 
