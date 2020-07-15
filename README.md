@@ -193,6 +193,8 @@ Your class diagram only needs to be conceptual (showing the general structure of
 
 Your JUnit tests should be rigorous to ensure your backend functions as expected. In addition to basic unit tests, you need to have tests based on your acceptance criteria.
 
+These JUnit tests should be placed into the "src/test" directory, using package "test". The dryrun will check your tests pass. It is important you follow this structure, since we will run automated coverage checking on your program.
+
 In the week 8 lab, your tutor will ask you questions, and assign marks based on your answers to these questions (and also through offline marking when appropriate).
 
 ## UI design and extensions (Milestone 3)
@@ -222,6 +224,8 @@ While it is up to you how to divide the work between you and your partner, both 
 * The starter code uses the observer pattern to ensure the frontend and backend are in a consistent state and that they are not tightly coupled. It would be advisable to do the same for the changes you will make.
 * The majority of marks available (see below) are for having a well designed application that meets the requirements. Avoid adding extra complexity and extensions till you have something that meets the most basic requirements.
 * You will need to engage in research to learn parts of JavaFX yourself. This is expected, and an important learning process mirroring real-world development. You may also have to research how to configure VSCode to work with JavaFX to make some functionality work - this is similarly an important learning process. You should not expect to be taught all of the necessary JavaFX functionality.
+* For JUnit in VSCode - it can be useful to run CTRL-SHIFT-P and run "clean the Java language server workspace" if you have having issues with packages/tests recognition.
+* For JUnit tests - for this to work in VSCode, it is important to make the test classes public and named after the file they are inside.
 
 ## Important Technical Notes
 
