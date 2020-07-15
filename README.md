@@ -226,6 +226,9 @@ While it is up to you how to divide the work between you and your partner, both 
 * You will need to engage in research to learn parts of JavaFX yourself. This is expected, and an important learning process mirroring real-world development. You may also have to research how to configure VSCode to work with JavaFX to make some functionality work - this is similarly an important learning process. You should not expect to be taught all of the necessary JavaFX functionality.
 * For JUnit in VSCode - it can be useful to run CTRL-SHIFT-P and run "clean the Java language server workspace" if you are having issues with packages/tests recognition.
 * For JUnit tests - for this to work in VSCode, it is important to make the test classes public and named after the file they are inside.
+* Useful JUnit5 documentation/tutorial:
+https://junit.org/junit5/docs/current/api/
+https://junit.org/junit5/docs/current/user-guide/
 
 ## Important Technical Notes
 
