@@ -60,10 +60,16 @@ public abstract class DungeonLoader {
             onLoad(wall);
             entity = wall;
             break;
+        case "sword":
+            Weapon weapon = new Weapon(x, y);
+            onLoad(weapon);
+            entity = weapon;
         // TODO Handle other possible entities
         }
         dungeon.addEntity(entity);
     }
+
+    public abstract void onLoad(Weapon weapon);
 
     public abstract void onLoad(Entity player);
 

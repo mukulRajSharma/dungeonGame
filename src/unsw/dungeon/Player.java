@@ -1,41 +1,41 @@
 package unsw.dungeon;
 
+import java.util.ArrayList;
+
 /**
  * The player entity
+ * 
  * @author Robert Clifton-Everest
  *
  */
-public class Player extends Entity {
+public class Player extends PlayerMovement {
 
-    private Dungeon dungeon;
-
+    Inventory items;
     /**
      * Create a player positioned in square (x,y)
      * @param x
      * @param y
      */
     public Player(Dungeon dungeon, int x, int y) {
-        super(x, y);
-        this.dungeon = dungeon;
+        super(dungeon, x, y);
+        items = new Inventory();
     }
 
-    public void moveUp() {
-        if (getY() > 0)
-            y().set(getY() - 1);
+    private Collection getTouching(Object entity){
+        System.out.println(entity.getClass().toString());
+        for(Entity e: this.getDungeon().getEntities()){
+            if(e == null) continue;
+            if((this.getX() == e.getX()) && (this.getY() == e.getY()) && e.getClass().equals(entity.getClass())) {
+                return (Collection)e;
+            }
+        }
+        return null;
     }
 
-    public void moveDown() {
-        if (getY() < dungeon.getHeight() - 1)
-            y().set(getY() + 1);
-    }
-
-    public void moveLeft() {
-        if (getX() > 0)
-            x().set(getX() - 1);
-    }
-
-    public void moveRight() {
-        if (getX() < dungeon.getWidth() - 1)
-            x().set(getX() + 1);
+    public void collectItem(){
+        Collection item = getTouching(Collection.class);
+        if(item != null){
+            items.addItem(item);
+        }
     }
 }

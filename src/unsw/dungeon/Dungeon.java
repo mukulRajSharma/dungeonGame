@@ -40,6 +40,10 @@ public class Dungeon {
         return player;
     }
 
+    public List<Entity> getEntities(){
+        return entities;
+    }
+
     public void setPlayer(Player player) {
         this.player = player;
     }
