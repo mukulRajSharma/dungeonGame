@@ -6,6 +6,7 @@ public class Exit extends Entity{
         super(x,y);
     }
 
+    //TODO
 	public String useItem() {
         return "YOU HAVE WON THE GAME";
         // TO WIN SCREEN
