@@ -10,12 +10,6 @@ public class Inventory implements Collection{
         items = new ArrayList<Collection>();
     }
 
-    @Override
-    public Collection pickUp() {
-        //Player automatically has an inventory therefore you cannot pick up another one (MILESTONE 3 bags??)
-        return null;
-    }
-
     //Displays all items in the inventory as a string
     @Override
     public String getItem() {
@@ -24,7 +18,6 @@ public class Inventory implements Collection{
             output = output + "\n" + c.getItem();
         }
         return output;
-
     }
 
     public void addItem(Collection c){

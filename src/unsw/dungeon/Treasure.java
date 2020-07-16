@@ -7,13 +7,6 @@ public class Treasure extends Entity implements Collection{
     }
 
     @Override
-    public Collection pickUp() {
-        //TODO
-        //also need to remove the icon and place it in the inventory
-        return this;
-    }
-
-    @Override
     public String getItem() {
         return "Treasure";
         // TODO Auto-generated method stub

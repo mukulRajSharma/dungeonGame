@@ -64,6 +64,27 @@ public abstract class DungeonLoader {
             Weapon weapon = new Weapon(x, y);
             onLoad(weapon);
             entity = weapon;
+            break;
+        case "key":
+            Key key = new Key(x, y);
+            onLoad(key);
+            entity = key;
+            break;
+        case "invincibility":
+            Potion potion = new Potion(x,y);
+            onLoad(potion);
+            entity = potion;
+            break;
+        case "treasure":
+            Treasure treasure = new Treasure(x, y);
+            onLoad(treasure);
+            entity = treasure;
+            break;
+        case "enemy":
+            Enemy enemy = new Enemy(dungeon, x, y);
+            onLoad(enemy);
+            entity = enemy;
+            break;
         // TODO Handle other possible entities
         }
         dungeon.addEntity(entity);
@@ -75,6 +96,13 @@ public abstract class DungeonLoader {
 
     public abstract void onLoad(Wall wall);
 
+    public abstract void onLoad(Key key);
+
+    public abstract void onLoad(Potion potion);
+
+    public abstract void onLoad(Treasure treasure);
+
+    public abstract void onLoad(Enemy enemy);
     // TODO Create additional abstract methods for the other entities
 
 }

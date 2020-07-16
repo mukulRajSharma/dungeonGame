@@ -6,13 +6,8 @@ public class Potion extends Entity implements Collection{
     }
 
     @Override
-    public Collection pickUp() {
-        //TODO
-        return this;
-    }
-
-    @Override
     public String getItem() {
+        //TODO
         return "Potion";
     }
 }

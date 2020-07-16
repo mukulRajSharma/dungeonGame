@@ -1,7 +1,5 @@
 package unsw.dungeon;
 
-import java.util.ArrayList;
-
 /**
  * The player entity
  * 
@@ -36,6 +34,7 @@ public class Player extends PlayerMovement {
         Collection item = getTouching(Collection.class);
         if(item != null){
             items.addItem(item);
+            
         }
     }
 }

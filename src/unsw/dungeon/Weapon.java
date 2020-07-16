@@ -7,13 +7,8 @@ public class Weapon extends Entity implements Collection{
     }
 
     @Override
-    public Collection pickUp() {
-        // TODO Auto-generated method stub
-        return this;
-    }
-
-    @Override
     public String getItem() {
+        //TODO
         return "Weapon";
     }
     
