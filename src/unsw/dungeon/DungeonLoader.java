@@ -85,12 +85,25 @@ public abstract class DungeonLoader {
             onLoad(enemy);
             entity = enemy;
             break;
-        case "Portal":
+        case "portal":
             Portal portal = new Portal(x,y);
             onLoad(portal);
             entity = portal;
-            break;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
-        // TODO Handle other possible entities
+            break;      
+        case "boulder":
+            Boulder boulder = new Boulder(x,y) ;
+            onLoad(boulder);
+            entity = boulder;
+            break;           
+        case "door":
+            Door door = new Door(x,y);
+            onLoad(door);
+            entity = door;  
+            break;   
+        case "floorSwitch":
+            FloorSwitch floorSwitch= new FloorSwitch(x,y);
+            onLoad(floorSwitch);
+            entity = floorSwitch;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
         }
         dungeon.addEntity(entity);
     }
@@ -110,6 +123,10 @@ public abstract class DungeonLoader {
     public abstract void onLoad(Enemy enemy);
 
     public abstract void onLoad(Portal portal);
-    // TODO Create additional abstract methods for the other entities
 
+    public abstract void onLoad(Boulder boulder);
+
+    public abstract void onLoad(Door door);
+
+    public abstract void onLoad(FloorSwitch floorSwitch);
 }

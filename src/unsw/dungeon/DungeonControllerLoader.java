@@ -32,6 +32,10 @@ public class DungeonControllerLoader extends DungeonLoader {
     private Image treasureImage;
     private Image enemyImage;
     private Image portalImage;
+    private Image boulderImage;
+    private Image doorOpenImage;
+    private Image doorCloseImage;
+    private Image floorSwitchImage;
 
     public DungeonControllerLoader(String filename)
             throws FileNotFoundException {
@@ -45,6 +49,10 @@ public class DungeonControllerLoader extends DungeonLoader {
         treasureImage = new Image((new File("images/gold_pile.png")).toURI().toString());
         enemyImage = new Image((new File("images/gnome.png")).toURI().toString());
         portalImage = new Image((new File("images/portal.png")).toURI().toString());
+        boulderImage = new Image((new File("images/boulder.png")).toURI().toString());
+        doorOpenImage = new Image((new File("images/open_door.png")).toURI().toString());
+        doorCloseImage = new Image((new File("images/closed_door.png")).toURI().toString());
+        floorSwitchImage = new Image((new File("images/pressure_plate.png")).toURI().toString());
     }
 
     @Override
@@ -93,6 +101,24 @@ public class DungeonControllerLoader extends DungeonLoader {
     public void onLoad(Portal portal){
         ImageView view = new ImageView(portalImage);
         addEntity(portal, view);
+    }
+
+    @Override
+    public void onLoad(Boulder boulder){
+        ImageView view = new ImageView(boulderImage);
+        addEntity(boulder, view);
+    }
+
+    @Override
+    public void onLoad(Door door){
+        ImageView view = new ImageView(doorCloseImage);
+        addEntity(door, view);
+    }
+
+    @Override
+    public void onLoad(FloorSwitch floorSwitch){
+        ImageView view = new ImageView(floorSwitchImage);
+        addEntity(floorSwitch, view);
     }
 
     private void addEntity(Entity entity, ImageView view) {
