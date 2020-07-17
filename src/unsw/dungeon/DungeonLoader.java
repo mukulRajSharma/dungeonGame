@@ -103,7 +103,11 @@ public abstract class DungeonLoader {
         case "floorSwitch":
             FloorSwitch floorSwitch= new FloorSwitch(x,y);
             onLoad(floorSwitch);
-            entity = floorSwitch;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+            entity = floorSwitch;   
+        case "exit":
+            Exit exit = new Exit(x,y);
+            onLoad(exit);
+            entity = exit;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
         }
         dungeon.addEntity(entity);
     }
@@ -129,4 +133,6 @@ public abstract class DungeonLoader {
     public abstract void onLoad(Door door);
 
     public abstract void onLoad(FloorSwitch floorSwitch);
+
+    public abstract void onLoad(Exit exit);
 }
