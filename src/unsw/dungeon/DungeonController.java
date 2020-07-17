@@ -3,7 +3,11 @@ package unsw.dungeon;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -20,6 +24,9 @@ public class DungeonController {
 
     @FXML
     private GridPane squares;
+
+    @FXML
+    private Label health;
 
     private List<ImageView> initialEntities;
 
@@ -46,6 +53,7 @@ public class DungeonController {
 
         for (ImageView entity : initialEntities)
             squares.getChildren().add(entity);
+
 
     }
 

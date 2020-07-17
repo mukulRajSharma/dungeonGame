@@ -1,12 +1,24 @@
 package unsw.dungeon;
 
+import java.util.ArrayList;
+
 public abstract class PlayerMovement extends Entity{
 
     private Dungeon dungeon;
+    private int health;
     
     public PlayerMovement(Dungeon dungeon,int x, int y) {
         super(x, y);
         this.dungeon = dungeon;
+        health = 1;
+    }
+
+    protected int getHealth(){
+        return health;
+    }
+
+    protected void setHealth(int number){
+        this.health = number;
     }
 
     protected Dungeon getDungeon(){

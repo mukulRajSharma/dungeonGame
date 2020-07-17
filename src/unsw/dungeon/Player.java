@@ -9,6 +9,7 @@ package unsw.dungeon;
 public class Player extends PlayerMovement {
 
     Inventory items;
+    
     /**
      * Create a player positioned in square (x,y)
      * @param x
@@ -34,7 +35,12 @@ public class Player extends PlayerMovement {
         Collection item = getTouching(Collection.class);
         if(item != null){
             items.addItem(item);
-            
+        }
+    }
+
+    public void isDead(){
+        if(this.isTouching(this.getX(), this.getY(), new Enemy(this.getDungeon(), 0, 0))){
+            this.setHealth(0);
         }
     }
 }
