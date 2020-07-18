@@ -51,7 +51,7 @@ public class Player extends PlayerMovement {
         for(Enemy e : this.getDungeon().getEnemies()){
             e.moveUp();
         }
-        if(touchingEnemy()) setHealth(0);
+        update();
         
     }
 
@@ -60,8 +60,7 @@ public class Player extends PlayerMovement {
         for(Enemy e : this.getDungeon().getEnemies()){
             e.moveDown();
         }
-        if(touchingEnemy()) setHealth(0);
-        
+        update();
     }
 
     public void moveLeft() {
@@ -69,8 +68,7 @@ public class Player extends PlayerMovement {
         for(Enemy e : this.getDungeon().getEnemies()){
             e.moveLeft();
         }
-        if(touchingEnemy()) setHealth(0);
-        
+        update();
     }
 
     public void moveRight() {
@@ -78,6 +76,10 @@ public class Player extends PlayerMovement {
         for(Enemy e : this.getDungeon().getEnemies()){
             e.moveRight();
         }
+        update();
+    }
+
+    private void update(){
         if(touchingEnemy()) setHealth(0);
     }
 }

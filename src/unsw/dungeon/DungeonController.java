@@ -32,6 +32,9 @@ public class DungeonController {
     @FXML
     private Label health;
 
+    @FXML
+    private Label goals;
+
     private List<ImageView> initialEntities;
 
     private Player player;
@@ -60,6 +63,7 @@ public class DungeonController {
         
         health.setText("Health: " + player.getHealth().intValue());
         trackHealth(dungeon.getPlayer());
+        trackGoals(dungeon.getGoals());
     }
 
     @FXML
@@ -95,19 +99,49 @@ public class DungeonController {
                     
                     try {
                         //Should take the user to the loosing screen
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("end_lose.fxml"));
-                        EndController end = new EndController("RESTART LEVEL");
-                        loader.setController(end);
-                        Parent root = loader.load();
-                        Scene scene = new Scene(root);
-                        Stage window = (Stage) squares.getScene().getWindow();
-                        window.setScene(scene);
+                        endLose();
                     } catch (Exception e) {
                         System.err.println("Error:" + e.toString());
                     }
                 }
             }
         });
+    }
+
+    private void trackGoals(Goals goal){
+        goal.complete().addListener(new ChangeListener<Boolean>(){
+            @Override
+			public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+				if(newValue){
+                    try {
+                        endWin();
+                    } catch (Exception e) {
+                        System.err.println("Error:" + e.toString());
+                    }
+                }
+			}
+        });
+			
+    }
+
+    private void endLose() throws Exception{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("end_lose.fxml"));
+        EndController end = new EndController("RESTART LEVEL");
+        loader.setController(end);
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage window = (Stage) squares.getScene().getWindow();
+        window.setScene(scene);
+    }
+
+    private void endWin() throws Exception{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("end_win.fxml"));
+        EndController end = new EndController("NEXT LEVEL");
+        loader.setController(end);
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage window = (Stage) squares.getScene().getWindow();
+        window.setScene(scene);
     }
     
     

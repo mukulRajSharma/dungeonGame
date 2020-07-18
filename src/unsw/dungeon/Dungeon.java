@@ -6,6 +6,8 @@ package unsw.dungeon;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONObject;
+
 /**
  * A dungeon in the interactive dungeon player.
  *
@@ -21,6 +23,7 @@ public class Dungeon {
     private List<Entity> entities;
     private List<Enemy> enemies;
     private Player player;
+    private Goals goals;
 
     public Dungeon(int width, int height) {
         this.width = width;
@@ -29,6 +32,15 @@ public class Dungeon {
         this.enemies = new ArrayList<>();
         this.player = null;
     }
+
+    public void setGoals(JSONObject o){
+        goals.addGoals(o);
+    }
+
+    public Goals getGoals(){
+        return goals;
+    }
+
 
     public int getWidth() {
         return width;
@@ -60,5 +72,25 @@ public class Dungeon {
 
     public void addEntity(Entity entity) {
         entities.add(entity);
+    }
+
+    public boolean boulderEndCondition(){
+        return false;
+    }
+
+    public boolean exitEndCondition(){
+        return false;
+    }
+
+    public boolean treasureEndCondition(){
+        return false;
+    }
+
+    public boolean enemyEndCondition(){
+        return false;
+    }
+
+    public boolean hasWon(){
+        return goals.winGame();
     }
 }

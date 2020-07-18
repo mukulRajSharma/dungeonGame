@@ -43,4 +43,5 @@ public class Entity {
     public boolean isTouching(Entity e){
         return (x().get() == e.getX()) && (y().get() == e.getY());
     }
+    
 }
