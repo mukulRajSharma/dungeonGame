@@ -105,6 +105,7 @@ public abstract class DungeonLoader {
             FloorSwitch floorSwitch= new FloorSwitch(x,y);
             onLoad(floorSwitch);
             entity = floorSwitch;
+            dungeon.addSwitch(floorSwitch);
             break;
         case "exit":
             Exit exit = new Exit(x,y);

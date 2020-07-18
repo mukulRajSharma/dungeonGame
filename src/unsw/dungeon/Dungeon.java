@@ -23,6 +23,7 @@ public class Dungeon {
     private List<Entity> entities;
     private List<Enemy> enemies;
     private List<Treasure> treasures;
+    private List<FloorSwitch> switchs;
     private Player player;
     private Goals goals;
     private List<Exit> exit;
@@ -34,6 +35,7 @@ public class Dungeon {
         this.enemies = new ArrayList<>();
         this.exit = new ArrayList<>();
         this.treasures = new ArrayList<>();
+        this.switchs = new ArrayList<>();
         this.player = null;
         goals = new Goals(this);
     }
@@ -46,7 +48,6 @@ public class Dungeon {
     public Goals getGoals(){
         return goals;
     }
-
 
     public int getWidth() {
         return width;
@@ -68,6 +69,10 @@ public class Dungeon {
         return enemies;
     }
 
+    public List<FloorSwitch> getFloorSwitchs(){
+        return switchs;
+    }
+
     public List<Exit> getExits(){
         return exit;
     }
@@ -84,6 +89,10 @@ public class Dungeon {
         entities.add(entity);
     }
 
+    public void addSwitch(FloorSwitch s){
+        switchs.add(s);
+    }
+
     public void addExit(Exit e){
         exit.add(e);
     }
@@ -93,7 +102,12 @@ public class Dungeon {
     }
 
     public boolean boulderEndCondition(){
-        return false;
+        for(FloorSwitch s: switchs) {
+            if(!s.boulderOnTop()){
+                return false;
+            }
+        }
+        return true;
     }
 
     public boolean exitEndCondition(){
