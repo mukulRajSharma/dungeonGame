@@ -20,12 +20,12 @@
 
          </children>
       </GridPane>
-      <Label fx:id="health" layoutX="20.0" layoutY="14.0" text="Health = " textFill="WHITE">
+      <Label fx:id="health" alignment="TOP_RIGHT" layoutY="14.0" text="Health = " textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label fx:id="goals" layoutX="101.0" layoutY="16.0" text="Label" textFill="WHITE">
+      <Label fx:id="goals" alignment="TOP_LEFT" layoutX="312.0" layoutY="14.0" text="Label" textAlignment="RIGHT" textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font>

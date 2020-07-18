@@ -81,10 +81,13 @@ public class Goals {
                 break;
         }
         return endCondition;
-
     }
 
 
+    @Override
+    public String toString(){
+        return winConditions.toString();
+    }
 
     
 }

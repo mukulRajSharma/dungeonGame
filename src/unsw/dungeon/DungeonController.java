@@ -63,7 +63,8 @@ public class DungeonController {
             trackPosition(dungeon.getEntities().get(i), initialEntities.get(i));
         }
         health.setText("Health: " + player.getHealth().intValue());
-        trackHealth(dungeon.getPlayer());
+        goals.setText("Goals: " + dungeon.getGoals().toString());
+        trackPlayer(dungeon.getPlayer());
         trackGoals(dungeon.getGoals());
     }
 
@@ -83,14 +84,14 @@ public class DungeonController {
             player.moveRight();
             break;
         case C:
-            //player.collectItem();
+            player.usePotion();
             break;
         default:
             break;
         }
     }
 
-    private void trackHealth(Player entity){
+    private void trackPlayer(Player entity){
         entity.getHealth().addListener(new ChangeListener<Number>(){
             @Override
             public void changed(ObservableValue<? extends Number> observable, 
@@ -107,6 +108,7 @@ public class DungeonController {
                 }
             }
         });
+
     }
 
     private void trackGoals(Goals goal){

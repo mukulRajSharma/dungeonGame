@@ -15,6 +15,7 @@ public class Player extends PlayerMovement {
 
     private Inventory items;
     private SimpleIntegerProperty health;
+    private SimpleIntegerProperty invicibilityTurns;
     
     /**
      * Create a player positioned in square (x,y)
@@ -24,8 +25,14 @@ public class Player extends PlayerMovement {
     public Player(Dungeon dungeon, int x, int y) {
         super(dungeon, x, y);
         items = new Inventory();
+        invicibilityTurns = new SimpleIntegerProperty();
         health = new SimpleIntegerProperty();
         health.set(1);
+        invicibilityTurns.set(0);
+    }
+
+    public IntegerProperty getInvincibility(){
+        return invicibilityTurns;
     }
 
     public IntegerProperty getHealth(){
@@ -43,6 +50,12 @@ public class Player extends PlayerMovement {
             }
         }
         return false;
+    }
+
+    public void usePotion(){
+        if(items.useItem(new Potion(0,0))){
+            invicibilityTurns.set(5);
+        }
     }
 
 
@@ -79,17 +92,23 @@ public class Player extends PlayerMovement {
         update();
     }
 
+    private void removeEnemy(){
+        int toremove = 0;
+        for(Enemy e: this.getDungeon().getEnemies()){
+            if(this.isTouching(e)){
+                toremove = this.getDungeon().getEnemies().indexOf(e);
+                break;
+            }
+        }
+        this.getDungeon().removeEntity(this.getDungeon().getEnemies().get(toremove));
+    }
+
     private void update(){
         if(touchingEnemy()){
-            if(items.useItem(new Weapon(0, 0))){
-                int toremove = 0;
-                for(Enemy e: this.getDungeon().getEnemies()){
-                    if(this.isTouching(e)){
-                        toremove = this.getDungeon().getEnemies().indexOf(e);
-                        break;
-                    }
-                }
-                this.getDungeon().removeEntity(this.getDungeon().getEnemies().get(toremove));
+            if(invicibilityTurns.intValue() > 0) {
+                removeEnemy();
+            } else if(items.useItem(new Weapon(0, 0))){
+                removeEnemy();
             } else {
                 this.setHealth(0);
             }
@@ -108,7 +127,7 @@ public class Player extends PlayerMovement {
             Entity e = (Entity) c;
             this.getDungeon().removeEntity(e);
         }
-        
+        invicibilityTurns.set(invicibilityTurns.intValue()-1);
         this.getDungeon().checkWin();
     }
 }
