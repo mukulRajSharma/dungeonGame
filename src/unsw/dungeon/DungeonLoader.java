@@ -102,7 +102,7 @@ public abstract class DungeonLoader {
             entity = door;  
             break;   
         case "switch":
-            FloorSwitch floorSwitch= new FloorSwitch(x,y);
+            FloorSwitch floorSwitch= new FloorSwitch(dungeon,x,y);
             onLoad(floorSwitch);
             entity = floorSwitch;
             dungeon.addSwitch(floorSwitch);
