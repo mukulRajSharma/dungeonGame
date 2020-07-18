@@ -13,12 +13,12 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.File;
-import java.io.IOException;
 
 /**
  * A JavaFX controller for the dungeon.
@@ -31,6 +31,9 @@ public class DungeonController {
 
     @FXML
     private Label health;
+
+    @FXML
+    private Label goals;
 
     private List<ImageView> initialEntities;
 
@@ -55,11 +58,14 @@ public class DungeonController {
             }
         }
 
-        for (ImageView entity : initialEntities)
-            squares.getChildren().add(entity);
-        
+        for (int i = 0; i < initialEntities.size(); i++){
+            squares.getChildren().add(initialEntities.get(i));
+            trackPosition(dungeon.getEntities().get(i), initialEntities.get(i));
+        }
         health.setText("Health: " + player.getHealth().intValue());
-        trackHealth(dungeon.getPlayer());
+        goals.setText("Goals: " + dungeon.getGoals().toString());
+        trackPlayer(dungeon.getPlayer());
+        trackGoals(dungeon.getGoals());
     }
 
     @FXML
@@ -78,14 +84,14 @@ public class DungeonController {
             player.moveRight();
             break;
         case C:
-            //player.collectItem();
+            player.usePotion();
             break;
         default:
             break;
         }
     }
 
-    private void trackHealth(Player entity){
+    private void trackPlayer(Player entity){
         entity.getHealth().addListener(new ChangeListener<Number>(){
             @Override
             public void changed(ObservableValue<? extends Number> observable, 
@@ -95,19 +101,87 @@ public class DungeonController {
                     
                     try {
                         //Should take the user to the loosing screen
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("end_lose.fxml"));
-                        EndController end = new EndController("RESTART LEVEL");
-                        loader.setController(end);
-                        Parent root = loader.load();
-                        Scene scene = new Scene(root);
-                        Stage window = (Stage) squares.getScene().getWindow();
-                        window.setScene(scene);
+                        endLose();
                     } catch (Exception e) {
                         System.err.println("Error:" + e.toString());
                     }
                 }
             }
         });
+
+    }
+
+    private void trackGoals(Goals goal){
+        goal.complete().addListener(new ChangeListener<Boolean>(){
+            @Override
+			public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+				if(newValue){
+                    try {
+                        endWin();
+                    } catch (Exception e) {
+                        System.err.println("Error:" + e.toString());
+                    }
+                }
+			}
+        });
+    }
+
+    /**
+     * Set a node in a GridPane to have its position track the position of an
+     * entity in the dungeon.
+     *
+     * By connecting the model with the view in this way, the model requires no
+     * knowledge of the view and changes to the position of entities in the
+     * model will automatically be reflected in the view.
+     * @param entity
+     * @param node
+     */
+    private void trackPosition(Entity entity, Node node) {
+        GridPane.setColumnIndex(node, entity.getX());
+        GridPane.setRowIndex(node, entity.getY());
+        entity.x().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable,
+                    Number oldValue, Number newValue) {
+                if(newValue.intValue() == -1){
+                    squares.getChildren().remove(node);
+                } else {
+                    GridPane.setColumnIndex(node, newValue.intValue());
+                }
+            }
+        });
+        entity.y().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable,
+                    Number oldValue, Number newValue) {
+                if(newValue.intValue() == -1){
+                    squares.getChildren().remove(node);
+                } else {
+                    GridPane.setRowIndex(node, newValue.intValue());
+                }
+                
+            }
+        });
+    }
+
+    private void endLose() throws Exception{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("end_lose.fxml"));
+        EndController end = new EndController("RESTART LEVEL");
+        loader.setController(end);
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage window = (Stage) squares.getScene().getWindow();
+        window.setScene(scene);
+    }
+
+    private void endWin() throws Exception{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("end_win.fxml"));
+        EndController end = new EndController("NEXT LEVEL");
+        loader.setController(end);
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage window = (Stage) squares.getScene().getWindow();
+        window.setScene(scene);
     }
     
     

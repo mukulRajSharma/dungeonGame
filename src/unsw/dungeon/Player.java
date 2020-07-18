@@ -15,6 +15,7 @@ public class Player extends PlayerMovement {
 
     private Inventory items;
     private SimpleIntegerProperty health;
+    private SimpleIntegerProperty invicibilityTurns;
     
     /**
      * Create a player positioned in square (x,y)
@@ -24,8 +25,14 @@ public class Player extends PlayerMovement {
     public Player(Dungeon dungeon, int x, int y) {
         super(dungeon, x, y);
         items = new Inventory();
+        invicibilityTurns = new SimpleIntegerProperty();
         health = new SimpleIntegerProperty();
         health.set(1);
+        invicibilityTurns.set(0);
+    }
+
+    public IntegerProperty getInvincibility(){
+        return invicibilityTurns;
     }
 
     public IntegerProperty getHealth(){
@@ -45,13 +52,19 @@ public class Player extends PlayerMovement {
         return false;
     }
 
+    public void usePotion(){
+        if(items.useItem(new Potion(0,0))){
+            invicibilityTurns.set(5);
+        }
+    }
+
 
     public void moveUp() {
         super.moveUp();
         for(Enemy e : this.getDungeon().getEnemies()){
             e.moveUp();
         }
-        if(touchingEnemy()) setHealth(0);
+        update();
         
     }
 
@@ -60,8 +73,7 @@ public class Player extends PlayerMovement {
         for(Enemy e : this.getDungeon().getEnemies()){
             e.moveDown();
         }
-        if(touchingEnemy()) setHealth(0);
-        
+        update();
     }
 
     public void moveLeft() {
@@ -69,8 +81,7 @@ public class Player extends PlayerMovement {
         for(Enemy e : this.getDungeon().getEnemies()){
             e.moveLeft();
         }
-        if(touchingEnemy()) setHealth(0);
-        
+        update();
     }
 
     public void moveRight() {
@@ -78,6 +89,45 @@ public class Player extends PlayerMovement {
         for(Enemy e : this.getDungeon().getEnemies()){
             e.moveRight();
         }
-        if(touchingEnemy()) setHealth(0);
+        update();
+    }
+
+    private void removeEnemy(){
+        int toremove = 0;
+        for(Enemy e: this.getDungeon().getEnemies()){
+            if(this.isTouching(e)){
+                toremove = this.getDungeon().getEnemies().indexOf(e);
+                break;
+            }
+        }
+        this.getDungeon().removeEntity(this.getDungeon().getEnemies().get(toremove));
+    }
+
+    private void update(){
+        if(touchingEnemy()){
+            if(invicibilityTurns.intValue() > 0) {
+                removeEnemy();
+            } else if(items.useItem(new Weapon(0, 0))){
+                removeEnemy();
+            } else {
+                this.setHealth(0);
+            }
+        }
+        Exit exit = (Exit)getTouching(new Exit(0, 0));
+        if(exit != null){
+            exit.setExit(true);
+        } else {
+            for(Exit e: this.getDungeon().getExits()){
+                e.setExit(false);
+            }
+        }
+        Collection c = (Collection)getTouching();
+        if(c != null){
+            items.addItem(c);
+            Entity e = (Entity) c;
+            this.getDungeon().removeEntity(e);
+        }
+        invicibilityTurns.set(invicibilityTurns.intValue()-1);
+        this.getDungeon().checkWin();
     }
 }

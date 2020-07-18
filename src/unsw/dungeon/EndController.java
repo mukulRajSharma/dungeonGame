@@ -48,7 +48,7 @@ public class EndController{
 
     @FXML
     public void handleButtonPressFirst(ActionEvent event){
-        if(first.getText() == "NEXTLEVEL"){
+        if(first.getText().equals("NEXTLEVEL")){
             //TODO send the user to the next level
         } else {
             //TODO send restart the user on the current level

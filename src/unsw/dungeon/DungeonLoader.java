@@ -33,9 +33,8 @@ public abstract class DungeonLoader {
         int height = json.getInt("height");
 
         Dungeon dungeon = new Dungeon(width, height);
-
+        dungeon.setGoals(json.getJSONObject("goal-condition"));
         JSONArray jsonEntities = json.getJSONArray("entities");
-
         for (int i = 0; i < jsonEntities.length(); i++) {
             loadEntity(dungeon, jsonEntities.getJSONObject(i));
         }
@@ -79,6 +78,7 @@ public abstract class DungeonLoader {
             Treasure treasure = new Treasure(x, y);
             onLoad(treasure);
             entity = treasure;
+            dungeon.addTreasure(treasure);
             break;
         case "enemy":
             Enemy enemy = new Enemy(dungeon, x, y);
@@ -102,14 +102,16 @@ public abstract class DungeonLoader {
             entity = door;  
             break;   
         case "switch":
-            FloorSwitch floorSwitch= new FloorSwitch(x,y);
+            FloorSwitch floorSwitch= new FloorSwitch(dungeon,x,y);
             onLoad(floorSwitch);
             entity = floorSwitch;
+            dungeon.addSwitch(floorSwitch);
             break;
         case "exit":
             Exit exit = new Exit(x,y);
             onLoad(exit);
             entity = exit;  
+            dungeon.addExit(exit);
             break;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
         }
         dungeon.addEntity(entity);
