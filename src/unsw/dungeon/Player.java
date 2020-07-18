@@ -35,4 +35,32 @@ public class Player extends PlayerMovement {
     public void setHealth(int number){
         health.set(number);
     }
+
+    private boolean touchingEnemy(){
+        if(isTouching(this.getX(), this.getY(), new Enemy(this.getDungeon(), 0, 0))){
+            return true;
+        }
+        return false;
+    }
+
+
+    public void moveUp() {
+        super.moveUp();
+        if(touchingEnemy()) setHealth(0);
+    }
+
+    public void moveDown() {
+        super.moveDown();
+        if(touchingEnemy()) setHealth(0);
+    }
+
+    public void moveLeft() {
+        super.moveLeft();
+        if(touchingEnemy()) setHealth(0);
+    }
+
+    public void moveRight() {
+        super.moveRight();
+        if(touchingEnemy()) setHealth(0);
+    }
 }
