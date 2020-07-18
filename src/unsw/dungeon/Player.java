@@ -81,5 +81,14 @@ public class Player extends PlayerMovement {
 
     private void update(){
         if(touchingEnemy()) setHealth(0);
+        Exit exit = (Exit)getTouching(new Exit(0, 0));
+        if(exit != null){
+            exit.setExit(true);
+        } else {
+            for(Exit e: this.getDungeon().getExits()){
+                e.setExit(false);
+            }
+        }
+        this.getDungeon().checkWin();
     }
 }

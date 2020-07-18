@@ -24,16 +24,20 @@ public class Dungeon {
     private List<Enemy> enemies;
     private Player player;
     private Goals goals;
+    private List<Exit> exit;
 
     public Dungeon(int width, int height) {
         this.width = width;
         this.height = height;
         this.entities = new ArrayList<>();
         this.enemies = new ArrayList<>();
+        this.exit = new ArrayList<>();
         this.player = null;
+        goals = new Goals(this);
     }
 
     public void setGoals(JSONObject o){
+        //if(o == null) System.out.println("yeet");
         goals.addGoals(o);
     }
 
@@ -62,6 +66,10 @@ public class Dungeon {
         return enemies;
     }
 
+    public List<Exit> getExits(){
+        return exit;
+    }
+
     public void setPlayer(Player player) {
         this.player = player;
     }
@@ -79,6 +87,11 @@ public class Dungeon {
     }
 
     public boolean exitEndCondition(){
+        for(Exit e: exit){
+            if(e.exitConditionMet()){
+                return true;
+            }
+        }
         return false;
     }
 
@@ -90,7 +103,11 @@ public class Dungeon {
         return false;
     }
 
-    public boolean hasWon(){
+    public boolean checkWin(){
         return goals.winGame();
+    }
+
+    public void addExit(Exit e){
+        exit.add(e);
     }
 }

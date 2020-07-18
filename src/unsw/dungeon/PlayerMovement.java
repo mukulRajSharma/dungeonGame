@@ -14,6 +14,7 @@ public abstract class PlayerMovement extends Entity{
         return this.dungeon;
     }
 
+    
     public boolean isTouching(int x, int y, Object entity){
         //System.out.println(entity.getClass().toString());
         for(Entity e: dungeon.getEntities()){
@@ -23,6 +24,17 @@ public abstract class PlayerMovement extends Entity{
             }
         }
         return false;
+    }
+
+        
+    public Entity getTouching(Entity entity){
+        for(Entity e: dungeon.getEntities()){
+            if(e == null) continue;
+            if((this.getX() == e.getX()) && (this.getY() == e.getY()) && e.getClass().equals(entity.getClass())){
+                return e;
+            }
+        }
+        return null;
     }
 
     public void moveUp() {

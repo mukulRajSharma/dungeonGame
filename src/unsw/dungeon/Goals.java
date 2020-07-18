@@ -17,6 +17,7 @@ public class Goals {
     private Dungeon dungeon;
 
     public Goals(Dungeon d){
+        goalsMet = new SimpleBooleanProperty();
         goalsMet.set(false);
         winConditions = new ArrayList<String>();
         this.dungeon = d;
@@ -38,9 +39,10 @@ public class Goals {
         if(goal.equals("AND") || goal.equals("OR")){
             JSONArray subgoals = goals.getJSONArray("subgoals");
             for(int i = 0; i < subgoals.length(); i++){
-                addGoals(subgoals.getJSONObject(i));
+                this.addGoals(subgoals.getJSONObject(i));
             }
         }
+        System.out.println(winConditions.toString());
     }
 
     public boolean winGame(){
@@ -51,13 +53,13 @@ public class Goals {
 
     private boolean hasWon(int curr){
         if(winConditions.get(curr).equals("AND")){
-            if(hasWon(curr+1) && hasWon(curr+2)){
+            if(this.hasWon(curr+1) && this.hasWon(curr+2)){
                 return true;
             } else {
                 return false;
             }
         } else if(winConditions.get(curr).equals("OR")){
-            if(hasWon(curr+1) || hasWon(curr+2)){
+            if(this.hasWon(curr+1) || this.hasWon(curr+2)){
                 return true;
             } else {
                 return false;

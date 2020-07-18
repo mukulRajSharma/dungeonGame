@@ -33,9 +33,8 @@ public abstract class DungeonLoader {
         int height = json.getInt("height");
 
         Dungeon dungeon = new Dungeon(width, height);
-
+        dungeon.setGoals(json.getJSONObject("goal-condition"));
         JSONArray jsonEntities = json.getJSONArray("entities");
-        dungeon.setGoals(json.getJSONObject("goal"));
         for (int i = 0; i < jsonEntities.length(); i++) {
             loadEntity(dungeon, jsonEntities.getJSONObject(i));
         }
@@ -110,6 +109,7 @@ public abstract class DungeonLoader {
             Exit exit = new Exit(x,y);
             onLoad(exit);
             entity = exit;  
+            dungeon.addExit(exit);
             break;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
         }
         dungeon.addEntity(entity);

@@ -121,7 +121,6 @@ public class DungeonController {
                 }
 			}
         });
-			
     }
 
     private void endLose() throws Exception{

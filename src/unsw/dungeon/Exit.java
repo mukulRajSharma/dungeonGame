@@ -2,8 +2,11 @@ package unsw.dungeon;
 
 public class Exit extends Entity{
 
+    private boolean exitcondition;
+
     public Exit(int x, int y){
         super(x,y);
+        exitcondition = false;
     }
 
     //TODO
@@ -14,6 +17,10 @@ public class Exit extends Entity{
     
     //TODO change this stub to a propper exit condition;
     public boolean exitConditionMet(){
-        return false;
+        return exitcondition;
+    }
+
+    public void setExit(boolean b){
+        this.exitcondition = b;
     }
 }
