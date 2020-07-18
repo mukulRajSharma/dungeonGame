@@ -1,5 +1,10 @@
 package unsw.dungeon;
 
+import java.util.ArrayList;
+
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+
 /**
  * The player entity
  * 
@@ -8,7 +13,8 @@ package unsw.dungeon;
  */
 public class Player extends PlayerMovement {
 
-    Inventory items;
+    private Inventory items;
+    private SimpleIntegerProperty health;
     
     /**
      * Create a player positioned in square (x,y)
@@ -18,29 +24,15 @@ public class Player extends PlayerMovement {
     public Player(Dungeon dungeon, int x, int y) {
         super(dungeon, x, y);
         items = new Inventory();
+        health = new SimpleIntegerProperty();
+        health.set(1);
     }
 
-    private Collection getTouching(Object entity){
-        System.out.println(entity.getClass().toString());
-        for(Entity e: this.getDungeon().getEntities()){
-            if(e == null) continue;
-            if((this.getX() == e.getX()) && (this.getY() == e.getY()) && e.getClass().equals(entity.getClass())) {
-                return (Collection)e;
-            }
-        }
-        return null;
+    public IntegerProperty getHealth(){
+        return health;
     }
 
-    public void collectItem(){
-        Collection item = getTouching(Collection.class);
-        if(item != null){
-            items.addItem(item);
-        }
-    }
-
-    public void isDead(){
-        if(this.isTouching(this.getX(), this.getY(), new Enemy(this.getDungeon(), 0, 0))){
-            this.setHealth(0);
-        }
+    public void setHealth(int number){
+        health.set(number);
     }
 }

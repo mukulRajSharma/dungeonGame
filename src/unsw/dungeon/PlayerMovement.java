@@ -1,24 +1,13 @@
 package unsw.dungeon;
 
-import java.util.ArrayList;
-
 public abstract class PlayerMovement extends Entity{
 
     private Dungeon dungeon;
-    private int health;
+    
     
     public PlayerMovement(Dungeon dungeon,int x, int y) {
         super(x, y);
         this.dungeon = dungeon;
-        health = 1;
-    }
-
-    protected int getHealth(){
-        return health;
-    }
-
-    protected void setHealth(int number){
-        this.health = number;
     }
 
     protected Dungeon getDungeon(){
@@ -26,7 +15,7 @@ public abstract class PlayerMovement extends Entity{
     }
 
     public boolean isTouching(int x, int y, Object entity){
-        System.out.println(entity.getClass().toString());
+        //System.out.println(entity.getClass().toString());
         for(Entity e: dungeon.getEntities()){
             if(e == null) continue;
             if((x == e.getX()) && (y == e.getY()) && e.getClass().equals(entity.getClass())) {

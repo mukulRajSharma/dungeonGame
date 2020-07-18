@@ -3,22 +3,26 @@ package unsw.dungeon;
 import java.util.ArrayList;
 import java.util.List;
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.IOException;
 
 /**
  * A JavaFX controller for the dungeon.
  * @author Robert Clifton-Everest
- *
  */
 public class DungeonController {
 
@@ -53,8 +57,9 @@ public class DungeonController {
 
         for (ImageView entity : initialEntities)
             squares.getChildren().add(entity);
-
-
+        
+        health.setText("Health: " + player.getHealth().intValue());
+        trackHealth(dungeon.getPlayer());
     }
 
     @FXML
@@ -73,12 +78,51 @@ public class DungeonController {
             player.moveRight();
             break;
         case C:
-            player.collectItem();
+            //player.collectItem();
             break;
         default:
             break;
         }
     }
+
+    private void trackHealth(Player entity){
+        entity.getHealth().addListener(new ChangeListener<Number>(){
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, 
+                    Number oldValue, Number newValue){
+                health.setText("Health: " + newValue.intValue());
+                if(newValue.intValue() == 0){
+                    Stage window = (Stage) health.getScene().getWindow();
+                    try {
+                        //Should take the user to the loosing screen
+                        changeScene(window, "maze.json");
+                    } catch (Exception e) {
+                        System.err.println("Error:" + e.getLocalizedMessage());
+                    }
+                    
+                }
+            }
+        });
+    }
+
+    private void changeScene(Stage window, String nextScene) throws IOException {
+        FXMLLoader loader = levelLoader(nextScene);
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        root.requestFocus();
+        window.setScene(scene);
+        window.show();
+    }
+
+    private FXMLLoader levelLoader(String dungeonName) throws IOException {
+        DungeonControllerLoader dungeonLoader = new DungeonControllerLoader(dungeonName);
+        DungeonController controller = dungeonLoader.loadController();
+        FXMLLoader load = new FXMLLoader(getClass().getResource("DungeonView.fxml"));
+        load.setController(controller);
+        return load;
+    }
+
+    
 
 }
 

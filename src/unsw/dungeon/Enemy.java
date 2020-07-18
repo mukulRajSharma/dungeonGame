@@ -7,4 +7,7 @@ public class Enemy extends PlayerMovement{
     }
 
     //implement Enemy movement AI here!
+
+    
+
 }

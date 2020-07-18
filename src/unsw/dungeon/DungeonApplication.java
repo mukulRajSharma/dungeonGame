@@ -1,10 +1,8 @@
 package unsw.dungeon;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import javafx.application.Application;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -25,7 +23,6 @@ public class DungeonApplication extends Application {
         root.requestFocus();
         window.setScene(scene);
         window.show();
-
     }
 
     private FXMLLoader levelLoader(String dungeonName) throws IOException {
