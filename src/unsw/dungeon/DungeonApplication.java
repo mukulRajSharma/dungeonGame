@@ -10,22 +10,27 @@ import javafx.stage.Stage;
 
 public class DungeonApplication extends Application {
 
+    Stage window;
+
     @Override
     public void start(Stage primaryStage) throws IOException {
-        primaryStage.setTitle("Dungeon");
+        window = primaryStage;
 
-        DungeonControllerLoader dungeonLoader = new DungeonControllerLoader("maze.json");
-
-        DungeonController controller = dungeonLoader.loadController();
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("DungeonView.fxml"));
-        loader.setController(controller);
+        window.setTitle("Dungeon");
+        FXMLLoader loader = levelLoader("boulders.json");
         Parent root = loader.load();
         Scene scene = new Scene(root);
         root.requestFocus();
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        window.setScene(scene);
+        window.show();
+    }
 
+    private FXMLLoader levelLoader(String dungeonName) throws IOException {
+        DungeonControllerLoader dungeonLoader = new DungeonControllerLoader(dungeonName);
+        DungeonController controller = dungeonLoader.loadController();
+        FXMLLoader load = new FXMLLoader(getClass().getResource("DungeonView.fxml"));
+        load.setController(controller);
+        return load;
     }
 
     public static void main(String[] args) {

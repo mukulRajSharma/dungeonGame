@@ -19,12 +19,14 @@ public class Dungeon {
 
     private int width, height;
     private List<Entity> entities;
+    private List<Enemy> enemies;
     private Player player;
 
     public Dungeon(int width, int height) {
         this.width = width;
         this.height = height;
         this.entities = new ArrayList<>();
+        this.enemies = new ArrayList<>();
         this.player = null;
     }
 
@@ -40,8 +42,20 @@ public class Dungeon {
         return player;
     }
 
+    public List<Entity> getEntities(){
+        return entities;
+    }
+
+    public List<Enemy> getEnemies(){
+        return enemies;
+    }
+
     public void setPlayer(Player player) {
         this.player = player;
+    }
+
+    public void addEnemy(Enemy enemy){
+        enemies.add(enemy);
     }
 
     public void addEntity(Entity entity) {

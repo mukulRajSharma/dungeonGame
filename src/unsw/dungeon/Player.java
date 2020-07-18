@@ -1,41 +1,83 @@
 package unsw.dungeon;
 
+import java.util.ArrayList;
+
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+
 /**
  * The player entity
+ * 
  * @author Robert Clifton-Everest
  *
  */
-public class Player extends Entity {
+public class Player extends PlayerMovement {
 
-    private Dungeon dungeon;
-
+    private Inventory items;
+    private SimpleIntegerProperty health;
+    
     /**
      * Create a player positioned in square (x,y)
      * @param x
      * @param y
      */
     public Player(Dungeon dungeon, int x, int y) {
-        super(x, y);
-        this.dungeon = dungeon;
+        super(dungeon, x, y);
+        items = new Inventory();
+        health = new SimpleIntegerProperty();
+        health.set(1);
     }
 
+    public IntegerProperty getHealth(){
+        return health;
+    }
+
+    public void setHealth(int number){
+        health.set(number);
+    }
+
+    private boolean touchingEnemy(){
+        for(Enemy e: this.getDungeon().getEnemies()){
+            if(this.isTouching(e)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+
     public void moveUp() {
-        if (getY() > 0)
-            y().set(getY() - 1);
+        super.moveUp();
+        for(Enemy e : this.getDungeon().getEnemies()){
+            e.moveUp();
+        }
+        if(touchingEnemy()) setHealth(0);
+        
     }
 
     public void moveDown() {
-        if (getY() < dungeon.getHeight() - 1)
-            y().set(getY() + 1);
+        super.moveDown();
+        for(Enemy e : this.getDungeon().getEnemies()){
+            e.moveDown();
+        }
+        if(touchingEnemy()) setHealth(0);
+        
     }
 
     public void moveLeft() {
-        if (getX() > 0)
-            x().set(getX() - 1);
+        super.moveLeft();
+        for(Enemy e : this.getDungeon().getEnemies()){
+            e.moveLeft();
+        }
+        if(touchingEnemy()) setHealth(0);
+        
     }
 
     public void moveRight() {
-        if (getX() < dungeon.getWidth() - 1)
-            x().set(getX() + 1);
+        super.moveRight();
+        for(Enemy e : this.getDungeon().getEnemies()){
+            e.moveRight();
+        }
+        if(touchingEnemy()) setHealth(0);
     }
 }
