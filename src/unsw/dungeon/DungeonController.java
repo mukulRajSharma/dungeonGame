@@ -109,25 +109,7 @@ public class DungeonController {
             }
         });
     }
-
-
-    private void changeScene(Stage window, String nextScene) throws IOException {
-        FXMLLoader loader = levelLoader(nextScene);
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        root.requestFocus();
-        window.setScene(scene);
-        window.show();
-    }
-
-    private FXMLLoader levelLoader(String dungeonName) throws IOException {
-        DungeonControllerLoader dungeonLoader = new DungeonControllerLoader(dungeonName);
-        DungeonController controller = dungeonLoader.loadController();
-        FXMLLoader load = new FXMLLoader(getClass().getResource("DungeonView.fxml"));
-        load.setController(controller);
-        return load;
-    }
-
+    
     
 
 }

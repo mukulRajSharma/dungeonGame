@@ -101,14 +101,16 @@ public abstract class DungeonLoader {
             onLoad(door);
             entity = door;  
             break;   
-        case "floorSwitch":
+        case "switch":
             FloorSwitch floorSwitch= new FloorSwitch(x,y);
             onLoad(floorSwitch);
-            entity = floorSwitch;   
+            entity = floorSwitch;
+            break;
         case "exit":
             Exit exit = new Exit(x,y);
             onLoad(exit);
-            entity = exit;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+            entity = exit;  
+            break;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
         }
         dungeon.addEntity(entity);
     }
