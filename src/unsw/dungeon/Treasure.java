@@ -15,8 +15,8 @@ public class Treasure extends Entity implements Collection{
 
     }
 
-    //TODO finish all exit conditions for treasure (if all the treasures on the map are collected then return true)
-    public boolean exitConditionMet(){
+    @Override
+    public boolean useItem() {
         return false;
     }
 }

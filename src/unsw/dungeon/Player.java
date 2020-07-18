@@ -80,7 +80,20 @@ public class Player extends PlayerMovement {
     }
 
     private void update(){
-        if(touchingEnemy()) setHealth(0);
+        if(touchingEnemy()){
+            if(items.useItem(new Weapon(0, 0))){
+                int toremove = 0;
+                for(Enemy e: this.getDungeon().getEnemies()){
+                    if(this.isTouching(e)){
+                        toremove = this.getDungeon().getEnemies().indexOf(e);
+                        break;
+                    }
+                }
+                this.getDungeon().removeEntity(this.getDungeon().getEnemies().get(toremove));
+            } else {
+                this.setHealth(0);
+            }
+        }
         Exit exit = (Exit)getTouching(new Exit(0, 0));
         if(exit != null){
             exit.setExit(true);
@@ -89,6 +102,13 @@ public class Player extends PlayerMovement {
                 e.setExit(false);
             }
         }
+        Collection c = (Collection)getTouching();
+        if(c != null){
+            items.addItem(c);
+            Entity e = (Entity) c;
+            this.getDungeon().removeEntity(e);
+        }
+        
         this.getDungeon().checkWin();
     }
 }

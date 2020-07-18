@@ -130,37 +130,7 @@ public class DungeonControllerLoader extends DungeonLoader {
     }
 
     private void addEntity(Entity entity, ImageView view) {
-        trackPosition(entity, view);
         entities.add(view);
-    }
-
-    /**
-     * Set a node in a GridPane to have its position track the position of an
-     * entity in the dungeon.
-     *
-     * By connecting the model with the view in this way, the model requires no
-     * knowledge of the view and changes to the position of entities in the
-     * model will automatically be reflected in the view.
-     * @param entity
-     * @param node
-     */
-    private void trackPosition(Entity entity, Node node) {
-        GridPane.setColumnIndex(node, entity.getX());
-        GridPane.setRowIndex(node, entity.getY());
-        entity.x().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observable,
-                    Number oldValue, Number newValue) {
-                GridPane.setColumnIndex(node, newValue.intValue());
-            }
-        });
-        entity.y().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observable,
-                    Number oldValue, Number newValue) {
-                GridPane.setRowIndex(node, newValue.intValue());
-            }
-        });
     }
 
     /**

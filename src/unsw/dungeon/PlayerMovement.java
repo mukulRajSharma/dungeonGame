@@ -37,6 +37,16 @@ public abstract class PlayerMovement extends Entity{
         return null;
     }
 
+    public Entity getTouching(){
+        for(Entity e: dungeon.getEntities()){
+            if(e == null) continue;
+            if((this.getX() == e.getX()) && (this.getY() == e.getY()) && (e instanceof Collection)){
+                return e;
+            }
+        }
+        return null;
+    }
+
     public void moveUp() {
         if (getY() > 0 && (!isTouching(this.getX(), this.getY()-1, new Wall(0,0))))
             y().set(getY() - 1);

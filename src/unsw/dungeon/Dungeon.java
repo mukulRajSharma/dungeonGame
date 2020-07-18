@@ -22,6 +22,7 @@ public class Dungeon {
     private int width, height;
     private List<Entity> entities;
     private List<Enemy> enemies;
+    private List<Treasure> treasures;
     private Player player;
     private Goals goals;
     private List<Exit> exit;
@@ -32,6 +33,7 @@ public class Dungeon {
         this.entities = new ArrayList<>();
         this.enemies = new ArrayList<>();
         this.exit = new ArrayList<>();
+        this.treasures = new ArrayList<>();
         this.player = null;
         goals = new Goals(this);
     }
@@ -82,6 +84,14 @@ public class Dungeon {
         entities.add(entity);
     }
 
+    public void addExit(Exit e){
+        exit.add(e);
+    }
+
+    public void addTreasure(Treasure t){
+        treasures.add(t);
+    }
+
     public boolean boulderEndCondition(){
         return false;
     }
@@ -96,10 +106,16 @@ public class Dungeon {
     }
 
     public boolean treasureEndCondition(){
+        if(treasures.size() == 0){
+            return true;
+        }
         return false;
     }
 
     public boolean enemyEndCondition(){
+        if(enemies.size() == 0){
+            return true;
+        }
         return false;
     }
 
@@ -107,7 +123,21 @@ public class Dungeon {
         return goals.winGame();
     }
 
-    public void addExit(Exit e){
-        exit.add(e);
+    
+
+    public void removeEntity(Entity e){
+        if(!entities.contains(e)) return;
+        e.remove();
+        if(e.getClass().equals(new Enemy(this, 0, 0).getClass())){
+            enemies.remove(e);
+            entities.remove(e);
+            return;
+        }
+        if(e.getClass().equals(new Treasure(0, 0).getClass())){
+            treasures.remove(e);
+            entities.remove(e);
+            return;
+        }
+        entities.remove(e);
     }
 }

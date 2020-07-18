@@ -78,6 +78,7 @@ public abstract class DungeonLoader {
             Treasure treasure = new Treasure(x, y);
             onLoad(treasure);
             entity = treasure;
+            dungeon.addTreasure(treasure);
             break;
         case "enemy":
             Enemy enemy = new Enemy(dungeon, x, y);

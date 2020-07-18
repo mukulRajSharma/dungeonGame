@@ -10,4 +10,9 @@ public class Potion extends Entity implements Collection{
         //TODO
         return "Potion";
     }
+
+    @Override
+    public boolean useItem() {
+        return false;
+    }
 }
