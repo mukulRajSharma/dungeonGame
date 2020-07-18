@@ -197,6 +197,22 @@ These JUnit tests should be placed into the "src/test" directory, using package 
 
 In the week 8 lab, your tutor will ask you questions, and assign marks based on your answers to these questions (and also through offline marking when appropriate).
 
+### Running coverage checking
+
+To run coverage checking, on a CSE machine in the root directory of your repository:
+
+```bash
+$ gradle test
+```
+
+The coverage checking report is in: *build/reports/jacoco/test/html/index.html*
+
+The test report is in: *build/reports/tests/test/index.html*
+
+Your tutor will receive a report generated using this command, generated from the master branch, from your latest submission as of the deadline.
+
+Please do not push the *build* directory to your Gitlab repository. The gitignore has been configured to ensure this in the most recent version of the *final_project* repository.
+
 ## UI design and extensions (Milestone 3)
 
 For this milestone you are to design and implement the user interface component of the application. A very basic UI can be built with minimal changes to the starter code, so that is where you should start. Fancier UI features can be added once you have something that is at least usable. You should apply the ideas from user-centric design and consider the usability heuristics covered in the lectures.
