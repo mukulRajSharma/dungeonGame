@@ -92,23 +92,24 @@ public class DungeonController {
                     Number oldValue, Number newValue){
                 health.setText("Health: " + newValue.intValue());
                 if(newValue.intValue() == 0){
-                    Stage window = (Stage) health.getScene().getWindow();
+                    
                     try {
                         //Should take the user to the loosing screen
-                        changeScene(window, "maze.json");
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("end_lose.fxml"));
+                        EndController end = new EndController("RESTART LEVEL");
+                        loader.setController(end);
+                        Parent root = loader.load();
+                        Scene scene = new Scene(root);
+                        Stage window = (Stage) squares.getScene().getWindow();
+                        window.setScene(scene);
                     } catch (Exception e) {
-                        System.err.println("Error:" + e.getLocalizedMessage());
+                        System.err.println("Error:" + e.toString());
                     }
-                    
                 }
             }
         });
     }
 
-    private void changeScene(Stage window,Scene s) throws IOException{
-        window.setScene(s);
-        window.show();
-    }
 
     private void changeScene(Stage window, String nextScene) throws IOException {
         FXMLLoader loader = levelLoader(nextScene);
