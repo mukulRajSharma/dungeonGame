@@ -84,6 +84,7 @@ public abstract class DungeonLoader {
             Enemy enemy = new Enemy(dungeon, x, y);
             onLoad(enemy);
             entity = enemy;
+            dungeon.addEnemy(enemy);
             break;
         case "portal":
             Portal portal = new Portal(x,y);

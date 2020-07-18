@@ -37,8 +37,10 @@ public class Player extends PlayerMovement {
     }
 
     private boolean touchingEnemy(){
-        if(isTouching(this.getX(), this.getY(), new Enemy(this.getDungeon(), 0, 0))){
-            return true;
+        for(Enemy e: this.getDungeon().getEnemies()){
+            if(this.isTouching(e)){
+                return true;
+            }
         }
         return false;
     }
@@ -46,21 +48,36 @@ public class Player extends PlayerMovement {
 
     public void moveUp() {
         super.moveUp();
+        for(Enemy e : this.getDungeon().getEnemies()){
+            e.moveUp();
+        }
         if(touchingEnemy()) setHealth(0);
+        
     }
 
     public void moveDown() {
         super.moveDown();
+        for(Enemy e : this.getDungeon().getEnemies()){
+            e.moveDown();
+        }
         if(touchingEnemy()) setHealth(0);
+        
     }
 
     public void moveLeft() {
         super.moveLeft();
+        for(Enemy e : this.getDungeon().getEnemies()){
+            e.moveLeft();
+        }
         if(touchingEnemy()) setHealth(0);
+        
     }
 
     public void moveRight() {
         super.moveRight();
+        for(Enemy e : this.getDungeon().getEnemies()){
+            e.moveRight();
+        }
         if(touchingEnemy()) setHealth(0);
     }
 }
