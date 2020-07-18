@@ -205,9 +205,9 @@ To run coverage checking, on a CSE machine in the root directory of your reposit
 $ gradle test
 ```
 
-The coverage checking report is in: *build/reports/jacoco/test/html/index.html*
+The coverage checking report will be in: *build/reports/jacoco/test/html/index.html*
 
-The test report is in: *build/reports/tests/test/index.html*
+The test report will be in: *build/reports/tests/test/index.html*
 
 Your tutor will receive a report generated using this command, generated from the master branch, from your latest submission as of the deadline.
 
