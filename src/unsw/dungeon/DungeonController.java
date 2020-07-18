@@ -105,6 +105,11 @@ public class DungeonController {
         });
     }
 
+    private void changeScene(Stage window,Scene s) throws IOException{
+        window.setScene(s);
+        window.show();
+    }
+
     private void changeScene(Stage window, String nextScene) throws IOException {
         FXMLLoader loader = levelLoader(nextScene);
         Parent root = loader.load();
