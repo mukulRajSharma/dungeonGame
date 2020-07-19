@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import unsw.dungeon.Door;
 import unsw.dungeon.Dungeon;
 import unsw.dungeon.Enemy;
 import unsw.dungeon.Exit;
@@ -167,5 +168,34 @@ public class PlayerTest {
         p.moveDown();
         assertEquals(d.getEnemies().size(), 1);
         assertEquals(p.getHealth().get(), 0);    
+    }
+
+    @Test
+    public void testDoors(){
+        Dungeon d = new Dungeon(12,34);
+        JSONObject goal = new JSONObject().put("goal", "exit");
+        d.setGoals(goal);
+
+        Door door = new Door(0, 1);
+        Key key = new Key(1, 0);
+        Player p = new Player(d, 0, 0);
+        d.setPlayer(p);
+        d.addEntity(door);
+        d.addEntity(key);
+        d.addEntity(p);
+
+        p.moveDown();
+        assertEquals(p.getX(), 0);
+        assertEquals(p.getY(), 0);
+
+        p.moveRight();
+        assertEquals(p.getInventory().contains(key), true);
+        p.moveLeft();
+        p.moveDown();
+        assertEquals(p.getX(),0);
+        assertEquals(p.getY(), 1);
+        assertEquals(p.getInventory().contains(key), false);
+
+        
     }
 }
