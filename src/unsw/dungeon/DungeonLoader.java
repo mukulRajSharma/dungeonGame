@@ -92,9 +92,10 @@ public abstract class DungeonLoader {
             entity = portal;
             break;      
         case "boulder":
-            Boulder boulder = new Boulder(x,y) ;
+            Boulder boulder = new Boulder(dungeon, x,y) ;
             onLoad(boulder);
             entity = boulder;
+            dungeon.addBoulder(boulder);
             break;           
         case "door":
             Door door = new Door(x,y);
