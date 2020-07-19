@@ -13,6 +13,7 @@ import unsw.dungeon.Entity;
 import unsw.dungeon.Exit;
 import unsw.dungeon.Key;
 import unsw.dungeon.Player;
+import unsw.dungeon.Wall;
 import unsw.dungeon.Weapon;
 
 public class PlayerMovementTest {
@@ -133,6 +134,13 @@ public class PlayerMovementTest {
         p.moveUp();
         assertEquals(p.getX(), 0);
         assertEquals(p.getY(), 1);
+
+        Wall w1 = new Wall(0, 0);
+        d.addEntity(w1);
+        p.moveUp();
+        assertEquals(p.getX(), 0);
+        assertEquals(p.getY(), 1);
+
 
     }
 }

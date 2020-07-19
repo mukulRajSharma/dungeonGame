@@ -69,6 +69,10 @@ public class Dungeon {
         return enemies;
     }
 
+    public List<Treasure> getTreasure(){
+        return treasures;
+    }
+
     public List<FloorSwitch> getFloorSwitchs(){
         return floorSwitchs;
     }
