@@ -1,10 +1,16 @@
 package unsw.dungeon;
 
 public class Portal extends Entity{
-    
-    public Portal(int x, int y){
+    private int id;
+    public Portal(int id, int x, int y){
         super(x, y);
+        this.id = id;
     }
 
-    //TODO
+    public int getId(){
+        return id;
+    }
+    public void setId(int id){
+        this.id = id;
+    }
 }
