@@ -24,6 +24,10 @@ public class Dungeon {
     private List<Enemy> enemies;
     private List<Treasure> treasures;
     private List<FloorSwitch> switchs;
+<<<<<<< HEAD
+=======
+    private List<Boulder> boulders;
+>>>>>>> add boulder list to dungeon and functionality to boulder
     private Player player;
     private Goals goals;
     private List<Exit> exit;
@@ -36,7 +40,13 @@ public class Dungeon {
         this.exit = new ArrayList<>();
         this.treasures = new ArrayList<>();
         this.switchs = new ArrayList<>();
+<<<<<<< HEAD
         this.player = null;
+=======
+        this.boulders = new ArrayList<>();
+        this.player = null;
+
+>>>>>>> add boulder list to dungeon and functionality to boulder
         goals = new Goals(this);
     }
 
@@ -77,6 +87,13 @@ public class Dungeon {
         return exit;
     }
 
+<<<<<<< HEAD
+=======
+    public List<Boulder> getBoulders(){
+        return boulders;
+    }
+
+>>>>>>> add boulder list to dungeon and functionality to boulder
     public void setPlayer(Player player) {
         this.player = player;
     }
@@ -100,6 +117,13 @@ public class Dungeon {
     public void addTreasure(Treasure t){
         treasures.add(t);
     }
+<<<<<<< HEAD
+=======
+    
+    public void addBoulder(Boulder b){
+        boulders.add(b);
+    }
+>>>>>>> add boulder list to dungeon and functionality to boulder
 
     public boolean boulderEndCondition(){
         for(FloorSwitch s: switchs) {
