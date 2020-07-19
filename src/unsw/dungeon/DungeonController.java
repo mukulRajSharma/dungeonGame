@@ -41,10 +41,13 @@ public class DungeonController {
 
     private Dungeon dungeon;
 
+    private Image doorOpenImage;
+
     public DungeonController(Dungeon dungeon, List<ImageView> initialEntities) {
         this.dungeon = dungeon;
         this.player = dungeon.getPlayer();
         this.initialEntities = new ArrayList<>(initialEntities);
+        doorOpenImage = new Image((new File("images/open_door.png")).toURI().toString());
     }
 
     @FXML
@@ -162,6 +165,18 @@ public class DungeonController {
                 
             }
         });
+        if(entity.getClass().equals(new Door(0, 0).getClass())){
+            Door d = (Door) entity;
+            d.getOpen().addListener(new ChangeListener<Boolean>(){
+                @Override
+                public void changed(ObservableValue<? extends Boolean> arg0, 
+                        Boolean oldValue, Boolean newValue) {
+                    if(newValue){
+                        GridPane.setRowIndex(new ImageView(doorOpenImage), d.getX());
+                    }
+                }
+            });
+        }
     }
 
     private void endLose() throws Exception{
