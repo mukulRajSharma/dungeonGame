@@ -21,9 +21,9 @@ public class DungeonTest {
     public void testBoulderEndCondition(){
         Dungeon dungeon = new Dungeon(10, 10);
 
-        Boulder b1 = new Boulder(0,0);
-        Boulder b2 = new Boulder(1,1);
-        Boulder b3 = new Boulder(2,2);
+        Boulder b1 = new Boulder(dungeon,0,0);
+        Boulder b2 = new Boulder(dungeon,1,1);
+        Boulder b3 = new Boulder(dungeon,2,2);
 
         dungeon.addEntity(b1);
         dungeon.addEntity(b2);
@@ -54,7 +54,7 @@ public class DungeonTest {
         assertEquals(dungeon.boulderEndCondition(), false);
 
         
-        Boulder b4 = new Boulder(1,2);
+        Boulder b4 = new Boulder(dungeon,1,2);
         dungeon.addEntity(b4);
         assertEquals(dungeon.getFloorSwitchs().size(), 1);
         assertEquals(dungeon.boulderEndCondition(), true);
