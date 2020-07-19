@@ -167,7 +167,6 @@ public class Player extends PlayerMovement {
                 }
             }
         }
-        invicibilityTurns.set(invicibilityTurns.intValue()-1);
         this.getDungeon().checkWin();
     }
 }
