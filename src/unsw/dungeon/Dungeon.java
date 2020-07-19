@@ -23,7 +23,7 @@ public class Dungeon {
     private List<Entity> entities;
     private List<Enemy> enemies;
     private List<Treasure> treasures;
-    private List<FloorSwitch> switchs;
+    private List<FloorSwitch> floorSwitchs;
     private List<Boulder> boulders;
     private List<Portal> portals;
     private Player player;
@@ -37,7 +37,7 @@ public class Dungeon {
         this.enemies = new ArrayList<>();
         this.exit = new ArrayList<>();
         this.treasures = new ArrayList<>();
-        this.switchs = new ArrayList<>();
+        this.floorSwitchs = new ArrayList<>();
         this.boulders = new ArrayList<>();
         this.portals = new ArrayList<>();
         this.player = null;
@@ -73,8 +73,12 @@ public class Dungeon {
         return enemies;
     }
 
+    public List<Treasure> getTreasure(){
+        return treasures;
+    }
+
     public List<FloorSwitch> getFloorSwitchs(){
-        return switchs;
+        return floorSwitchs;
     }
 
     public List<Exit> getExits(){
@@ -102,7 +106,7 @@ public class Dungeon {
     }
 
     public void addSwitch(FloorSwitch s){
-        switchs.add(s);
+        floorSwitchs.add(s);
     }
 
     public void addExit(Exit e){
@@ -122,7 +126,7 @@ public class Dungeon {
     }
     
     public boolean boulderEndCondition(){
-        for(FloorSwitch s: switchs) {
+        for(FloorSwitch s: floorSwitchs) {
             if(!s.boulderOnTop()){
                 return false;
             }
@@ -164,13 +168,15 @@ public class Dungeon {
         e.remove();
         if(e.getClass().equals(new Enemy(this, 0, 0).getClass())){
             enemies.remove(e);
-            entities.remove(e);
-            return;
         }
         if(e.getClass().equals(new Treasure(0, 0).getClass())){
             treasures.remove(e);
-            entities.remove(e);
-            return;
+        }
+        if(e.getClass().equals(new FloorSwitch(this, 0, 0).getClass())){
+            floorSwitchs.remove(e);
+        }
+        if(e.getClass().equals(new Exit(0,0).getClass())){
+            exit.remove(e);
         }
         entities.remove(e);
     }

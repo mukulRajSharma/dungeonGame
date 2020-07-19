@@ -1,7 +1,5 @@
 package unsw.dungeon;
 
-import javafx.beans.property.SimpleBooleanProperty;
-
 public class Treasure extends Entity implements Collection{
 
     public Treasure(int x, int y){

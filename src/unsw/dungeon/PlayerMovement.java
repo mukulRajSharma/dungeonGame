@@ -15,7 +15,7 @@ public abstract class PlayerMovement extends Entity{
     }
 
     
-    public boolean isTouching(int x, int y, Object entity){
+    public boolean isTouching(int x, int y, Entity entity){
         //System.out.println(entity.getClass().toString());
         for(Entity e: dungeon.getEntities()){
             if(e == null) continue;

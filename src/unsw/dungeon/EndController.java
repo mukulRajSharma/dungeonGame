@@ -1,7 +1,6 @@
 package unsw.dungeon;
 
 import javafx.animation.FadeTransition;
-import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -23,10 +22,8 @@ public class EndController{
     @FXML
     private Label output;
 
-    private String text;
 
-    public EndController(String text){
-        this.text = text;
+    public EndController(){
     }
 
     @FXML

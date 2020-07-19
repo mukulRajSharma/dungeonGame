@@ -42,7 +42,6 @@ public class Goals {
                 this.addGoals(subgoals.getJSONObject(i));
             }
         }
-        System.out.println(winConditions.toString());
     }
 
     public boolean winGame(){
@@ -53,16 +52,33 @@ public class Goals {
 
     private boolean hasWon(int curr){
         if(winConditions.get(curr).equals("AND")){
-            if(this.hasWon(curr+1) && this.hasWon(curr+2)){
-                return true;
+            if(winConditions.get(curr+1).equals("AND") || winConditions.get(curr+1).equals("OR")){
+                if(this.hasWon(curr+1) && this.hasWon(curr+4)){
+                    return true;
+                } else {
+                    return false;
+                }
             } else {
-                return false;
+                if(this.hasWon(curr+1) && this.hasWon(curr+2)){
+                    return true;
+                } else {
+                    return false;
+                }
             }
+            
         } else if(winConditions.get(curr).equals("OR")){
-            if(this.hasWon(curr+1) || this.hasWon(curr+2)){
-                return true;
+            if(winConditions.get(curr+1).equals("AND") || winConditions.get(curr+1).equals("OR")){
+                if(this.hasWon(curr+1) || this.hasWon(curr+4)){
+                    return true;
+                } else {
+                    return false;
+                }
             } else {
-                return false;
+                if(this.hasWon(curr+1) || this.hasWon(curr+2)){
+                    return true;
+                } else {
+                    return false;
+                }
             }
         }
         boolean endCondition = false;
