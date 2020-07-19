@@ -2,6 +2,8 @@ package unsw.dungeon;
 
 import java.util.ArrayList;
 
+import javax.sound.sampled.Port;
+
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
@@ -156,11 +158,20 @@ public class Player extends PlayerMovement {
             Entity e = (Entity) c;
             this.getDungeon().removeEntity(e);
         }
-        
         if(invicibilityTurns.get() > 0){
             invicibilityTurns.set(invicibilityTurns.intValue()-1);
         }
-        
+        Portal p = (Portal)getTouching(new Portal(0,0,0));
+        if (p != null){
+            for (Portal other: getDungeon().getPortals()){
+                    if (other.getId()==p.getId() && (other.getX() != p.getX() || other.getY() != p.getY())){
+                    x().set(other.getX());
+                    y().set(other.getY());
+                    break;
+                }
+            }
+        }
+        invicibilityTurns.set(invicibilityTurns.intValue()-1);
         this.getDungeon().checkWin();
     }
 }

@@ -11,7 +11,7 @@ public class FloorSwitch extends Entity{
 
 	public boolean boulderOnTop(){
 		for(Entity e: dungeon.getEntities()){
-			if(this.isTouching(e) && e.getClass().equals(new Boulder(0, 0).getClass())){
+			if(this.isTouching(e) && e.getClass().equals(new Boulder(this.dungeon,0, 0).getClass())){
 				return true;
 			}
 		}

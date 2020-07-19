@@ -87,14 +87,17 @@ public abstract class DungeonLoader {
             dungeon.addEnemy(enemy);
             break;
         case "portal":
-            Portal portal = new Portal(x,y);
+            int id = json.getInt("id");
+            Portal portal = new Portal(id,x,y);
             onLoad(portal);
             entity = portal;
+            dungeon.addPortal(portal);
             break;      
         case "boulder":
-            Boulder boulder = new Boulder(x,y) ;
+            Boulder boulder = new Boulder(dungeon, x,y) ;
             onLoad(boulder);
             entity = boulder;
+            dungeon.addBoulder(boulder);
             break;           
         case "door":
             Door door = new Door(x,y);
