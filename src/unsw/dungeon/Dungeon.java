@@ -25,6 +25,7 @@ public class Dungeon {
     private List<Treasure> treasures;
     private List<FloorSwitch> floorSwitchs;
     private List<Boulder> boulders;
+    private List<Portal> portals;
     private Player player;
     private Goals goals;
     private List<Exit> exit;
@@ -38,6 +39,7 @@ public class Dungeon {
         this.treasures = new ArrayList<>();
         this.boulders = new ArrayList<>();
         this.floorSwitchs = new ArrayList<>();
+        this.portals = new ArrayList<>();
         this.player = null;
 
         goals = new Goals(this);
@@ -84,6 +86,10 @@ public class Dungeon {
         return boulders;
     }
 
+    public List<Portal> getPortals(){
+        return portals;
+    }
+
     public void setPlayer(Player player) {
         this.player = player;
     }
@@ -112,6 +118,10 @@ public class Dungeon {
         boulders.add(b);
     }
 
+    public void addPortal(Portal p){
+        portals.add(p);
+    }
+    
     public boolean boulderEndCondition(){
         for(FloorSwitch s: floorSwitchs) {
             if(!s.boulderOnTop()){
