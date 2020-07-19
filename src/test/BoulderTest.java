@@ -17,6 +17,7 @@ import unsw.dungeon.Treasure;
 import unsw.dungeon.Wall;
 import unsw.dungeon.Weapon;
 import unsw.dungeon.Boulder;
+import unsw.dungeon.*;
 
 public class BoulderTest {
     @Test
@@ -26,14 +27,20 @@ public class BoulderTest {
         Boulder b1 = new Boulder(dungeon,1,0);
         Boulder b2 = new Boulder(dungeon,1,1);
 
+        JSONObject goals = new JSONObject().put("goal", "exit");
+        dungeon.setGoals(goals);
+        //Player p = new Player(d,0,0);
+        Exit e1 = new Exit(0,0);
+
         dungeon.setPlayer(p);
+        dungeon.addEntity(p);
         dungeon.addEntity(b1);
         dungeon.addEntity(b2);
         dungeon.addBoulder(b1);
         dungeon.addBoulder(b2);
         
         // check entities added
-        assertEquals(dungeon.getBoulders().size(), 2);
+        //assertEquals(dungeon.getBoulders().size(), 2);
         // push boulder right
         p.moveRight();
         assertEquals(b1.getX(), 2);
@@ -70,8 +77,15 @@ public class BoulderTest {
         Boulder b1 = new Boulder(dungeon, 1, 0);
         Wall w1 = new Wall(3, 0);
 
+        JSONObject goals = new JSONObject().put("goal", "exit");
+        dungeon.setGoals(goals);
+        //Player p = new Player(d,0,0);
+        Exit e1 = new Exit(9,0);
+
         dungeon.setPlayer(p);
+        dungeon.addEntity(p);
         dungeon.addEntity(b1);
+        dungeon.addBoulder(b1);
         dungeon.addEntity(w1);
 
         // push boulder against wall
@@ -101,6 +115,19 @@ public class BoulderTest {
         Player p = new Player(d, 1, 0);
         Boulder b1 = new Boulder(d, 1, 1);
         Boulder b2 = new Boulder(d, 1, 3);
+
+        JSONObject goals = new JSONObject().put("goal", "exit");
+        d.setGoals(goals);
+        //Player p = new Player(d,0,0);
+        Exit e1 = new Exit(9,0);
+
+        d.setPlayer(p);
+        d.addEntity(p);
+        d.addEntity(b1);
+        d.addEntity(b2);
+        d.addBoulder(b1);
+        d.addBoulder(b2);
+
 
         p.moveDown();
         assertEquals(b1.getY(), 2);
