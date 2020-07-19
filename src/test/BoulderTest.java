@@ -20,7 +20,7 @@ import unsw.dungeon.Boulder;
 
 public class BoulderTest {
     @Test
-    public void testBoulderEndCondition(){
+    public void testBoulderMovement(){
         Dungeon dungeon = new Dungeon(10, 10);
         Player p = new Player(dungeon, 0, 0);
         Boulder b1 = new Boulder(dungeon,1,0);
@@ -29,22 +29,23 @@ public class BoulderTest {
         dungeon.setPlayer(p);
         dungeon.addEntity(b1);
         dungeon.addEntity(b2);
-
+        dungeon.addBoulder(b1);
+        dungeon.addBoulder(b2);
+        
         // check entities added
         assertEquals(dungeon.getBoulders().size(), 2);
-
         // push boulder right
         p.moveRight();
-        assertEquals(b1.getX(), 0);
-        assertEquals(b1.getY(), 2);
+        assertEquals(b1.getX(), 2);
+        assertEquals(b1.getY(), 0);
 
-        assertEquals(p.getX(), 0);
-        assertEquals(p.getY(), 1);
+        assertEquals(p.getX(), 1);
+        assertEquals(p.getY(), 0);
         
         // push boulder down
         p.moveDown();
-        assertEquals(b2.getX(), 2);
-        assertEquals(b2.getY(), 1);
+        assertEquals(b2.getX(), 1);
+        assertEquals(b2.getY(), 2);
 
         assertEquals(p.getX(), 1);
         assertEquals(p.getY(), 1);
@@ -54,11 +55,11 @@ public class BoulderTest {
         p.moveRight();
         p.moveUp();
         p.moveLeft();
-        assertEquals(b1.getX(), 0);
-        assertEquals(b1.getY(), 1);
+        assertEquals(b1.getX(), 1);
+        assertEquals(b1.getY(), 0);
 
-        assertEquals(p.getX(), 0);
-        assertEquals(p.getY(), 2);
+        assertEquals(p.getX(), 2);
+        assertEquals(p.getY(), 0);
     }
 
     @Test
@@ -66,27 +67,31 @@ public class BoulderTest {
         Dungeon dungeon = new Dungeon(10,10);
 
         Player p = new Player(dungeon,0,0);
-        Boulder b1 = new Boulder(dungeon, 0, 1);
-        Wall w1 = new Wall(0, 3);
+        Boulder b1 = new Boulder(dungeon, 1, 0);
+        Wall w1 = new Wall(3, 0);
 
         dungeon.setPlayer(p);
         dungeon.addEntity(b1);
         dungeon.addEntity(w1);
 
         // push boulder against wall
-        assertEquals(b1.canMove(0, 1), true);
+        assertEquals(b1.canMove(1, 0), true);
         p.moveRight();
-        assertEquals(b1.getY(), 2);
-        assertEquals(b1.getX(), 0);
-        assertEquals(p.getY(), 1);
-        assertEquals(p.getX(), 0);
+        assertEquals(b1.getY(), 0);
+        assertEquals(b1.getX(), 2);
+        assertEquals(p.getY(), 0);
+        assertEquals(p.getX(), 1);
 
-        assertEquals(b1.canMove(0, 1), false);
+        assertEquals(b1.canMove(1, 0), false);
         p.moveRight();
-        assertEquals(b1.getY(), 2);
-        assertEquals(b1.getX(), 0);
-        assertEquals(p.getY(), 1);
-        assertEquals(p.getX(), 0);
+        assertEquals(b1.getY(), 0);
+        assertEquals(b1.getX(), 2);
+        assertEquals(p.getY(), 0);
+        assertEquals(p.getX(), 1);
+        assertEquals(w1.getY(), 0);
+        assertEquals(w1.getX(), 3);
+
+
     }
 
     @Test
