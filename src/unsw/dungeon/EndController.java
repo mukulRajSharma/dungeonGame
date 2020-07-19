@@ -1,7 +1,6 @@
 package unsw.dungeon;
 
 import javafx.animation.FadeTransition;
-import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

@@ -9,13 +9,6 @@ public class Exit extends Entity{
         exitcondition = false;
     }
 
-    //TODO
-	public String useItem() {
-        return "YOU HAVE WON THE GAME";
-        // TO WIN SCREEN
-    }
-    
-    //TODO change this stub to a propper exit condition;
     public boolean exitConditionMet(){
         return exitcondition;
     }
