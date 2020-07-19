@@ -10,7 +10,6 @@ public class Door extends Entity{
     public Door(int x, int y) {
         super(x, y);
         isOpen = new SimpleBooleanProperty(false);
-        // TODO Auto-generated constructor stub
     }
 
     public BooleanProperty getOpen(){
