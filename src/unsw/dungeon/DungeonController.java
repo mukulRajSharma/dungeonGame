@@ -181,7 +181,7 @@ public class DungeonController {
 
     private void endLose() throws Exception{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("end_lose.fxml"));
-        EndController end = new EndController("RESTART LEVEL");
+        EndController end = new EndController();
         loader.setController(end);
         Parent root = loader.load();
         Scene scene = new Scene(root);
@@ -191,7 +191,7 @@ public class DungeonController {
 
     private void endWin() throws Exception{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("end_win.fxml"));
-        EndController end = new EndController("NEXT LEVEL");
+        EndController end = new EndController();
         loader.setController(end);
         Parent root = loader.load();
         Scene scene = new Scene(root);

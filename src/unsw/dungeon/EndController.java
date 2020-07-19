@@ -22,10 +22,8 @@ public class EndController{
     @FXML
     private Label output;
 
-    private String text;
 
-    public EndController(String text){
-        this.text = text;
+    public EndController(){
     }
 
     @FXML

@@ -1,9 +1,5 @@
 package unsw.dungeon;
 
-import java.util.ArrayList;
-
-import javax.sound.sampled.Port;
-
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 

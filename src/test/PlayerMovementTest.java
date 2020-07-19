@@ -4,12 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
-//import jdk.nashorn.internal.scripts.JS;
 import unsw.dungeon.Dungeon;
-import unsw.dungeon.Entity;
 import unsw.dungeon.Exit;
 import unsw.dungeon.Key;
 import unsw.dungeon.Player;
