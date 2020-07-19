@@ -39,7 +39,6 @@ public class Dungeon {
         this.switchs = new ArrayList<>();
         this.boulders = new ArrayList<>();
         this.player = null;
-
         goals = new Goals(this);
     }
 

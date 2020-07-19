@@ -11,5 +11,10 @@ public class Key extends Entity implements Collection{
         // TODO Auto-generated method stub
         return "Key";
     }
+
+    @Override
+    public boolean useItem(){
+        return false;
+    }
     
 }

@@ -20,6 +20,40 @@ public class Inventory implements Collection{
         return output;
     }
 
+    @Override
+    public boolean useItem(){
+        return false;
+    }
+
+    public boolean contains(Entity e){
+        for(Collection c: items){
+            if(e.getClass().equals(c.getClass())){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean useItem(Object o){
+        boolean flag = false;
+        boolean contains = false;
+        int indexRemove = 0;
+        for(Collection c: items){
+            if(c.getClass().equals(o.getClass())){
+                contains = true;
+                if(!c.useItem()){
+                    indexRemove = items.indexOf(c);
+                    flag = true;
+                }
+                break;
+            }
+        }
+        if(flag){
+            items.remove(indexRemove);
+        }
+        return contains;
+    }
+
     public void addItem(Collection c){
         if(c == null) return;
         items.add(c);
