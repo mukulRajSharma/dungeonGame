@@ -14,6 +14,7 @@ public class Weapon extends Entity implements Collection{
         return "Weapon";
     }
 
+    @Override
     public boolean useItem(){
         if(weaponUse == 0){
             return false;
@@ -22,7 +23,4 @@ public class Weapon extends Entity implements Collection{
         }
         return true;
     }
-
-
-    
 }
