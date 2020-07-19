@@ -17,7 +17,7 @@ public class DungeonApplication extends Application {
         window = primaryStage;
 
         window.setTitle("Dungeon");
-        FXMLLoader loader = levelLoader("boulders.json");
+        FXMLLoader loader = levelLoader("portals.json");
         Parent root = loader.load();
         Scene scene = new Scene(root);
         root.requestFocus();
