@@ -31,6 +31,10 @@ public class Player extends PlayerMovement {
         invicibilityTurns.set(0);
     }
 
+    public Inventory getInventory(){
+        return items;
+    }
+
     public IntegerProperty getInvincibility(){
         return invicibilityTurns;
     }
@@ -127,7 +131,10 @@ public class Player extends PlayerMovement {
             Entity e = (Entity) c;
             this.getDungeon().removeEntity(e);
         }
-        invicibilityTurns.set(invicibilityTurns.intValue()-1);
+        if(invicibilityTurns.get() > 0){
+            invicibilityTurns.set(invicibilityTurns.intValue()-1);
+        }
+        
         this.getDungeon().checkWin();
     }
 }
