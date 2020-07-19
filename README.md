@@ -202,7 +202,7 @@ In the week 8 lab, your tutor will ask you questions, and assign marks based on 
 To run coverage checking, on a CSE machine in the root directory of your repository:
 
 ```bash
-$ gradle test
+$ gradle test -b test.gradle
 ```
 
 The coverage checking report will be in: *build/reports/jacoco/test/html/index.html*
