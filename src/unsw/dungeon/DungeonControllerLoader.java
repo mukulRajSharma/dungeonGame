@@ -4,6 +4,8 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONObject;
+
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -49,6 +51,24 @@ public class DungeonControllerLoader extends DungeonLoader {
         doorCloseImage = new Image((new File("images/closed_door.png")).toURI().toString());
         floorSwitchImage = new Image((new File("images/pressure_plate.png")).toURI().toString());
         exitImage = new Image((new File("images/exit.png")).toURI().toString());
+    }
+
+    
+    public DungeonControllerLoader(JSONObject obj){
+        super(obj);
+        entities = new ArrayList<>();
+        playerImage = null;
+        wallImage = null;
+        weaponImage = null;
+        keyImage = null;
+        potionImage = null;
+        treasureImage = null;
+        enemyImage = null;
+        portalImage = null;
+        boulderImage = null;
+        doorCloseImage = null;
+        floorSwitchImage = null;
+        exitImage = null;
     }
 
     /**
