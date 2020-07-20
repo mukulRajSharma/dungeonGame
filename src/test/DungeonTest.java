@@ -19,7 +19,7 @@ public class DungeonTest {
     public void testBoulderEndCondition(){
         Dungeon dungeon = new Dungeon(10, 10);
 
-        Boulder b1 = new Boulder(dungeon, 0,0);
+        Boulder b1 = new Boulder(dungeon,0,0);
         Boulder b2 = new Boulder(dungeon,1,1);
         Boulder b3 = new Boulder(dungeon,2,2);
 

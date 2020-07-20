@@ -9,8 +9,16 @@ public class Boulder extends PlayerMovement{
     // check for walls and boulders
     public boolean canMove(int x, int y)
     {
-        if (isTouching(this.getX()+x, this.getY()+y, new Wall(0, 0)) || isTouching(this.getX()+x, this.getY()+y, new Boulder(getDungeon(),0, 0)))
+        if (this.getX()+x < 0 || this.getY()-y < 0)
             return false;
+        if(this.getX()+x <= getDungeon().getWidth() && this.getY()+y <= getDungeon().getHeight())
+        {
+            if (isTouching(this.getX()+x, this.getY()+y, new Wall(0, 0)) || isTouching(this.getX()+x, this.getY()+y, new Boulder(getDungeon(),0, 0)))
+                return false;
+        }
+        else{
+            return false;
+        }
         return true;
     }
     public void moveUp(){

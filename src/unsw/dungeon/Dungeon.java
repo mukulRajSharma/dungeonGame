@@ -30,6 +30,7 @@ public class Dungeon {
     private Goals goals;
     private List<Exit> exit;
 
+
     public Dungeon(int width, int height) {
         this.width = width;
         this.height = height;
@@ -42,6 +43,7 @@ public class Dungeon {
         this.portals = new ArrayList<>();
         this.player = null;
         goals = new Goals(this);
+
     }
 
     public void setGoals(JSONObject o){
