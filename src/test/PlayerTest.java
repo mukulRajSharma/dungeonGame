@@ -9,6 +9,7 @@ import unsw.dungeon.Door;
 import unsw.dungeon.Dungeon;
 import unsw.dungeon.Enemy;
 import unsw.dungeon.Exit;
+import unsw.dungeon.Inventory;
 import unsw.dungeon.Key;
 import unsw.dungeon.Player;
 import unsw.dungeon.Potion;
@@ -195,5 +196,25 @@ public class PlayerTest {
         assertEquals(p.getInventory().contains(key), false);
 
         
+    }
+
+    @Test
+    public void testRemoveItem(){
+        Inventory inventory = new Inventory();
+        Key k1 = new Key(0, 0);
+        Weapon w1 = new Weapon(0,0);
+        inventory.addItem(k1);
+        inventory.addItem(w1);
+        assertEquals(inventory.contains(k1), true);
+        assertEquals(inventory.contains(w1), true);
+        assertEquals(inventory.getItem(), "\n" + k1.getItem() + "\n" + w1.getItem());
+
+
+        inventory.removeItem(k1);
+        assertEquals(inventory.contains(k1), false);
+        inventory.removeItem(w1);
+        assertEquals(inventory.contains(w1), false);
+
+        inventory.removeItem(w1);
     }
 }
