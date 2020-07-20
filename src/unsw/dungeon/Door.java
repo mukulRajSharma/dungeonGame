@@ -30,6 +30,10 @@ public class Door extends Entity{
         this.isOpen.set(true);
     }
 
+    /**
+     * 
+     * @return the particular id of the door given
+     */
     public int getId(){
         return this.id;
     }

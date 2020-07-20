@@ -21,10 +21,19 @@ public class Key extends Entity implements Collection{
         return false;
     }
 
+    /**
+     * 
+     * @param id 
+     * @return true if the id given is the same as this key's,false if not
+     */
     public boolean checkId(int id){
         return this.id == id;
     }
 
+    /**
+     * 
+     * @return the id of the key
+     */
     public int getId(){
         return this.id;
     }
