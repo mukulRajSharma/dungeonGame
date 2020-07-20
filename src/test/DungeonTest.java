@@ -117,7 +117,7 @@ public class DungeonTest {
         assertEquals(d.enemyEndCondition(), false);
         e1.moveRight();
 
-        Weapon w1 = new Weapon(0, 1);
+        Weapon w1 = new Weapon(0, 1, 5);
         d.addEntity(w1);
         p.moveDown();
         p.moveUp();

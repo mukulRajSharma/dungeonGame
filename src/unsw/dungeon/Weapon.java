@@ -7,9 +7,9 @@ public class Weapon extends Entity implements Collection{
 
     private int weaponUse;
 
-    public Weapon(int x, int y) {
+    public Weapon(int x, int y, int uses) {
         super(x, y);
-        weaponUse = 5;
+        weaponUse = uses;
     }
 
     @Override

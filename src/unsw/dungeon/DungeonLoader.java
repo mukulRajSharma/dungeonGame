@@ -60,7 +60,7 @@ public abstract class DungeonLoader {
             entity = wall;
             break;
         case "sword":
-            Weapon weapon = new Weapon(x, y);
+            Weapon weapon = new Weapon(x, y , 5);
             onLoad(weapon);
             entity = weapon;
             break;

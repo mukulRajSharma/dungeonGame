@@ -45,7 +45,7 @@ public class PlayerTest {
         d1.setPlayer(p1);
         d1.addEntity(p1);
 
-        Weapon w1 = new Weapon(1,0);
+        Weapon w1 = new Weapon(1,0 ,5);
         d1.addEntity(w1);
 
         p1.moveRight();
@@ -106,7 +106,7 @@ public class PlayerTest {
         assertEquals(p.getInventory().contains(key), true);
 
 
-        Weapon w1 = new Weapon(0,1);
+        Weapon w1 = new Weapon(0,1 ,5);
         d.addEntity(w1);
         p.moveDown();
         assertEquals(w1.getX(), -1);

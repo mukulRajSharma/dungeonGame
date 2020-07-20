@@ -55,12 +55,12 @@ public class PlayerMovementTest {
         assertEquals(p.getTouching(new Key(0,0)), null);
 
         Exit e1 = new Exit(0,0);
-        Weapon w1 = new Weapon(3,4);
+        Weapon w1 = new Weapon(3, 4 ,5);
         d.addEntity(w1);
         d.addExit(e1);
         d.addEntity(e1);
 
-        assertEquals(p.getTouching(new Weapon(0, 0)), null);
+        assertEquals(p.getTouching(new Weapon(0, 0 ,5)), null);
         assertEquals(p.getTouching(new Exit(0,0)), e1);
     }
 
@@ -85,7 +85,7 @@ public class PlayerMovementTest {
         d.addExit(e1);
         assertEquals(p.getTouching(), null);
 
-        Weapon w1 = new Weapon(0, 0);
+        Weapon w1 = new Weapon(0, 0 ,5);
         d.addEntity(w1);
 
         assertEquals(p.getTouching(), w1);

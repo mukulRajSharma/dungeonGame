@@ -165,7 +165,7 @@ public class Player extends PlayerMovement {
         if(touchingEnemy()){
             if(invicibilityTurns.intValue() > 0) {
                 removeEnemy();
-            } else if(items.useItem(new Weapon(0, 0))){
+            } else if(items.useItem(new Weapon(0, 0, 5))){
                 removeEnemy();
             } else {
                 this.setHealth(0);

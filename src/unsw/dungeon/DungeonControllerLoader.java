@@ -51,72 +51,108 @@ public class DungeonControllerLoader extends DungeonLoader {
         exitImage = new Image((new File("images/exit.png")).toURI().toString());
     }
 
+    /**
+     * associates a player with the player image
+     */
     @Override
     public void onLoad(Entity player) {
         ImageView view = new ImageView(playerImage);
         addEntity(player, view);
     }
 
+    /**
+     * associates a wall with the wall image
+     */
     @Override
     public void onLoad(Wall wall) {
         ImageView view = new ImageView(wallImage);
         addEntity(wall, view);
     }
 
+    /**
+     * associates a weapon with the weapon image
+     */
     @Override
     public void onLoad(Weapon weapon){
         ImageView view = new ImageView(weaponImage);
         addEntity(weapon, view);
     }
 
+    /**
+     * associates a key with the key image
+     */
     @Override
     public void onLoad(Key key){
         ImageView view = new ImageView(keyImage);
         addEntity(key, view);
     }
 
+    /**
+     * associates a potion with the potion image
+     */
     @Override
     public void onLoad(Potion potion){
         ImageView view = new ImageView(potionImage);
         addEntity(potion, view);
     }
 
+    /**
+     * associates a treasure with the treasure image
+     */
     @Override
     public void onLoad(Treasure treasure){
         ImageView view = new ImageView(treasureImage);
         addEntity(treasure, view);
     }
 
+    /**
+     * associates a enemy with the enemy image
+     */
     @Override
     public void onLoad(Enemy enemy){
         ImageView view = new ImageView(enemyImage);
         addEntity(enemy, view);
     }
 
+    /**
+     * associates a portal with the portal image
+     */
     @Override
     public void onLoad(Portal portal){
         ImageView view = new ImageView(portalImage);
         addEntity(portal, view);
     }
 
+    /**
+     * associates a boulder with the boulder image
+     */
     @Override
     public void onLoad(Boulder boulder){
         ImageView view = new ImageView(boulderImage);
         addEntity(boulder, view);
     }
 
+    /**
+     * associates a door with the door closed image
+     */
     @Override
     public void onLoad(Door door){
         ImageView view = new ImageView(doorCloseImage);
         addEntity(door, view);
     }
 
+    /**
+     * associates a switch with the switch image
+     */
     @Override
     public void onLoad(FloorSwitch floorSwitch){
         ImageView view = new ImageView(floorSwitchImage);
         addEntity(floorSwitch, view);
     }
 
+    /**
+     * associates an exit with the exit image
+     */
     @Override
     public void onLoad(Exit exit){
         ImageView view = new ImageView(exitImage);
