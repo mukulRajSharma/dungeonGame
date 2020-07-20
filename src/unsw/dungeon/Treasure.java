@@ -1,5 +1,8 @@
 package unsw.dungeon;
 
+/**
+ * Treasure class of Entity, also a collectible
+ */
 public class Treasure extends Entity implements Collection{
 
     public Treasure(int x, int y){
@@ -9,7 +12,6 @@ public class Treasure extends Entity implements Collection{
     @Override
     public String getItem() {
         return "Treasure";
-        // TODO Auto-generated method stub
 
     }
 

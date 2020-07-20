@@ -17,8 +17,8 @@ public class Player extends PlayerMovement {
     
     /**
      * Create a player positioned in square (x,y)
-     * @param x
-     * @param y
+     * @param x x coordinate of the player
+     * @param y y coordinate of the player
      */
     public Player(Dungeon dungeon, int x, int y) {
         super(dungeon, x, y);
@@ -28,23 +28,37 @@ public class Player extends PlayerMovement {
         health.set(1);
         invicibilityTurns.set(0);
     }
-
+    /**
+     * @return items in the player's inventory
+     */
     public Inventory getInventory(){
         return items;
     }
-
+    /**
+     * 
+     * @return the number of invinvibility turns left
+     */
     public IntegerProperty getInvincibility(){
         return invicibilityTurns;
     }
-
+    /**
+     * 
+     * @return health of the player (numerical)
+     */
     public IntegerProperty getHealth(){
         return health;
     }
-
+    /**
+     * 
+     * @param number sets health of the player
+     */
     public void setHealth(int number){
         health.set(number);
     }
-
+    /**
+     * 
+     * @return true if player touching enemy, false otherwise
+     */
     private boolean touchingEnemy(){
         for(Enemy e: this.getDungeon().getEnemies()){
             if(this.isTouching(e)){
@@ -53,13 +67,18 @@ public class Player extends PlayerMovement {
         }
         return false;
     }
-
+    /**
+     * consumes potion from inventory, increments invincibility counter
+     */
     public void usePotion(){
         if(items.useItem(new Potion(0,0))){
             invicibilityTurns.set(5);
         }
     }
-
+    /**
+     * 
+     * @return returns true is player has met a door in its path, false otherwise
+     */
     private boolean checkDoor(){
         Door door = (Door)getTouching(new Door(0,0));
         if(door != null){
@@ -73,7 +92,9 @@ public class Player extends PlayerMovement {
         return true;
     }
 
-
+    /**
+     * moves the player one step up, -1 in y direction
+     */
     public void moveUp() {
         super.moveUp();
         if(!checkDoor()){
@@ -85,7 +106,9 @@ public class Player extends PlayerMovement {
         update();
         
     }
-
+    /**
+     * move the player one step down, +1 in y direction
+     */
     public void moveDown() {
         super.moveDown();
         if(!checkDoor()){
@@ -96,7 +119,9 @@ public class Player extends PlayerMovement {
         }
         update();
     }
-
+    /**
+     * moves the player one step left, -1 in x direction
+     */
     public void moveLeft() {
         super.moveLeft();
         if(!checkDoor()){
@@ -107,7 +132,9 @@ public class Player extends PlayerMovement {
         }
         update();
     }
-
+    /**
+     * moves the player one step right, +1 in x direction
+     */
     public void moveRight() {
         super.moveRight();
         if(!checkDoor()){
@@ -118,7 +145,9 @@ public class Player extends PlayerMovement {
         }
         update();
     }
-
+    /**
+     * removes the enemy touching the player(if pre-conditions met)
+     */
     private void removeEnemy(){
         int toremove = 0;
         for(Enemy e: this.getDungeon().getEnemies()){
@@ -129,7 +158,9 @@ public class Player extends PlayerMovement {
         }
         this.getDungeon().removeEntity(this.getDungeon().getEnemies().get(toremove));
     }
-
+    /**
+     * updated the players state after every move
+     */
     private void update(){
         if(touchingEnemy()){
             if(invicibilityTurns.intValue() > 0) {

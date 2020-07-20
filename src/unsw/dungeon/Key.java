@@ -1,5 +1,7 @@
 package unsw.dungeon;
-
+/**
+ * Key class of Entity, also a collectible
+ */
 public class Key extends Entity implements Collection{
 
     public Key(int x, int y) {
@@ -8,7 +10,6 @@ public class Key extends Entity implements Collection{
 
     @Override
     public String getItem() {
-        // TODO Auto-generated method stub
         return "Key";
     }
 

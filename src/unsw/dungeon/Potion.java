@@ -1,5 +1,8 @@
 package unsw.dungeon;
 
+/**
+ * Potion class of Entity, also a collectible
+ */
 public class Potion extends Entity implements Collection{
     public Potion(int x, int y){
         super(x, y);
@@ -7,7 +10,6 @@ public class Potion extends Entity implements Collection{
 
     @Override
     public String getItem() {
-        //TODO
         return "Potion";
     }
 

@@ -1,12 +1,18 @@
 package unsw.dungeon;
-
+/**    
+ * Class for Boulder Entity
+ */
 public class Boulder extends PlayerMovement{
 
     public Boulder(Dungeon dungeon, int x, int y) {
         super(dungeon, x, y);
-        // TODO Auto-generated constructor stub
     }
-    // check for walls and boulders
+    /**
+     * 
+     * @param x # of steps to move on x axis
+     * @param y # of steps to move on y axis
+     * @return
+     */
     public boolean canMove(int x, int y)
     {
         if (this.getX()+x < 0 || this.getY()-y < 0)

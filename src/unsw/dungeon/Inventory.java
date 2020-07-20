@@ -9,8 +9,9 @@ public class Inventory implements Collection{
     public Inventory(){
         items = new ArrayList<Collection>();
     }
-
-    //Displays all items in the inventory as a string
+    /**
+     * @return all the items in the inventory
+     */
     @Override
     public String getItem() {
         String output = "";
