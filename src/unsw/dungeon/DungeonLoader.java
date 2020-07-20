@@ -24,6 +24,10 @@ public abstract class DungeonLoader {
         json = new JSONObject(new JSONTokener(new FileReader("dungeons/" + filename)));
     }
 
+    public DungeonLoader(JSONObject obj){
+        json = obj;
+    }
+
     /**
      * Parses the JSON to create a dungeon.
      * @return

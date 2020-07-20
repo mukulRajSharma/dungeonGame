@@ -207,6 +207,7 @@ public class PlayerTest {
         inventory.addItem(w1);
         assertEquals(inventory.contains(k1), true);
         assertEquals(inventory.contains(w1), true);
+        assertEquals(inventory.getItem(), "\n" + k1.getItem() + "\n" + w1.getItem());
 
 
         inventory.removeItem(k1);
