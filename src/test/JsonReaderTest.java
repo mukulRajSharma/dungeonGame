@@ -41,7 +41,7 @@ public class JsonReaderTest {
         assertEquals(d.getEntities().get(11).getX(), 5);
         assertEquals(d.getEntities().get(11).getY(), 5);
 
-        assertEquals(d.getEntities().get(4).getClass(), new Weapon(0, 0).getClass());
+        assertEquals(d.getEntities().get(4).getClass(), new Weapon(0, 0, 5).getClass());
         assertEquals(d.getEntities().get(4).getX(), 0);
         assertEquals(d.getEntities().get(4).getY(), 3);
 
@@ -98,6 +98,7 @@ public class JsonReaderTest {
         entities.put(weapon);
 
         JSONObject key = new JSONObject();
+        key.put("id", 2);
         key.put("x", 0);
         key.put("y", 4);
         key.put("type", "key");
@@ -128,6 +129,7 @@ public class JsonReaderTest {
         entities.put(floorSwitch);
 
         JSONObject door = new JSONObject();
+        door.put("id", 5);
         door.put("x", 6);
         door.put("y", 6);
         door.put("type", "door");

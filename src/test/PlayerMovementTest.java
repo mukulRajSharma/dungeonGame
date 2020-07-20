@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 
+import unsw.dungeon.Door;
 import unsw.dungeon.Dungeon;
 import unsw.dungeon.Exit;
 import unsw.dungeon.Key;
@@ -40,27 +41,27 @@ public class PlayerMovementTest {
     public void testGetTouching(){
         Dungeon d = new Dungeon(10,10);
         Player p = new Player(d,0,0);
-        Key k1 = new Key(0,0);
+        Key k1 = new Key(0,0,1);
 
         d.addEntity(p);
         d.setPlayer(p);
 
-        assertEquals(p.getTouching(new Key(0,0)), null);
+        assertEquals(p.getTouching(new Key(0,0,1)), null);
 
         d.addEntity(k1);
 
-        assertEquals(p.getTouching(new Key(0,0)), k1);
+        assertEquals(p.getTouching(new Key(0,0,1)), k1);
 
         d.removeEntity(k1);
-        assertEquals(p.getTouching(new Key(0,0)), null);
+        assertEquals(p.getTouching(new Key(0,0,1)), null);
 
         Exit e1 = new Exit(0,0);
-        Weapon w1 = new Weapon(3,4);
+        Weapon w1 = new Weapon(3, 4 ,5);
         d.addEntity(w1);
         d.addExit(e1);
         d.addEntity(e1);
 
-        assertEquals(p.getTouching(new Weapon(0, 0)), null);
+        assertEquals(p.getTouching(new Weapon(0, 0 ,5)), null);
         assertEquals(p.getTouching(new Exit(0,0)), e1);
     }
 
@@ -68,7 +69,7 @@ public class PlayerMovementTest {
     public void testGetTouching_2(){
         Dungeon d = new Dungeon(10,10);
         Player p = new Player(d,0,0);
-        Key k1 = new Key(0,0);
+        Key k1 = new Key(0,0,1);
 
         d.addEntity(p);
         d.setPlayer(p);
@@ -85,7 +86,7 @@ public class PlayerMovementTest {
         d.addExit(e1);
         assertEquals(p.getTouching(), null);
 
-        Weapon w1 = new Weapon(0, 0);
+        Weapon w1 = new Weapon(0, 0 ,5);
         d.addEntity(w1);
 
         assertEquals(p.getTouching(), w1);
@@ -137,6 +138,26 @@ public class PlayerMovementTest {
         assertEquals(p.getX(), 0);
         assertEquals(p.getY(), 1);
 
+        Door door = new Door(1,1,1);
+        d.addEntity(door);
+        p.moveRight();
+        assertEquals(p.getX(), 0);
+        assertEquals(p.getY(), 1);
 
+        Key key = new Key(0,2,6);
+        d.addEntity(key);
+        p.moveDown();
+        p.moveUp();
+        p.moveRight();
+        assertEquals(p.getX(), 0);
+        assertEquals(p.getY(), 1);
+
+        Key key1 = new Key(0,2,1);
+        d.addEntity(key1);
+        p.moveDown();
+        p.moveUp();
+        p.moveRight();
+        assertEquals(p.getX(), 1);
+        assertEquals(p.getY(), 1);
     }
 }

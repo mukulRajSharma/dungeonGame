@@ -9,7 +9,7 @@ import unsw.dungeon.Weapon;
 public class WeaponTest {
     @Test
     public void testWeapon() {
-        Weapon w = new Weapon(0, 0);
+        Weapon w = new Weapon(0, 0 ,5);
         assertEquals(w.useItem(), true);
         assertEquals(w.useItem(), true);
         assertEquals(w.useItem(), true);

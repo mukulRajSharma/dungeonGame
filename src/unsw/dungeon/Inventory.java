@@ -9,8 +9,9 @@ public class Inventory implements Collection{
     public Inventory(){
         items = new ArrayList<Collection>();
     }
-
-    //Displays all items in the inventory as a string
+    /**
+     * @return all the items in the inventory
+     */
     @Override
     public String getItem() {
         String output = "";
@@ -28,7 +29,15 @@ public class Inventory implements Collection{
     public boolean contains(Entity e){
         for(Collection c: items){
             if(e.getClass().equals(c.getClass())){
-                return true;
+                if(e.getClass().equals(Key.class)){
+                    Key k = (Key) e;
+                    Key c1 = (Key)c;
+                    if(k.checkId(c1.getId())){
+                        return true;
+                    }
+                } else {
+                    return true;
+                }
             }
         }
         return false;
@@ -38,20 +47,35 @@ public class Inventory implements Collection{
         boolean flag = false;
         boolean contains = false;
         int indexRemove = 0;
-        for(Collection c: items){
-            if(c.getClass().equals(o.getClass())){
-                contains = true;
-                if(!c.useItem()){
-                    indexRemove = items.indexOf(c);
-                    flag = true;
+        if(o.getClass().equals(Key.class)){
+            for(Collection c: items){
+                if(c.getClass().equals(o.getClass())){
+                    Key k = (Key)o;
+                    Key c1 = (Key)c;
+                    if(k.checkId(c1.getId())){
+                        contains = true;
+                        indexRemove = items.indexOf(c);
+                        flag = true;
+                    }
                 }
-                break;
+            }
+        } else {
+            for(Collection c: items){
+                if(c.getClass().equals(o.getClass())){
+                    contains = true;
+                    if(!c.useItem()){
+                        indexRemove = items.indexOf(c);
+                        flag = true;
+                    }
+                    break;
+                }
             }
         }
         if(flag){
             items.remove(indexRemove);
         }
         return contains;
+        
     }
 
     public void addItem(Collection c){
