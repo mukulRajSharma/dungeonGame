@@ -46,7 +46,7 @@ public class PlayerTest {
         d1.setPlayer(p1);
         d1.addEntity(p1);
 
-        Weapon w1 = new Weapon(1,0);
+        Weapon w1 = new Weapon(1,0 ,5);
         d1.addEntity(w1);
 
         p1.moveRight();
@@ -93,7 +93,7 @@ public class PlayerTest {
         d.setPlayer(p);
         d.addEntity(p);
 
-        Key key = new Key(1,0);
+        Key key = new Key(1,0 , 1);
         d.addEntity(key);
         p.moveRight();
         assertEquals(key.getX(), -1);
@@ -107,7 +107,7 @@ public class PlayerTest {
         assertEquals(p.getInventory().contains(key), true);
 
 
-        Weapon w1 = new Weapon(0,1);
+        Weapon w1 = new Weapon(0,1 ,5);
         d.addEntity(w1);
         p.moveDown();
         assertEquals(w1.getX(), -1);
@@ -175,8 +175,8 @@ public class PlayerTest {
         JSONObject goal = new JSONObject().put("goal", "exit");
         d.setGoals(goal);
 
-        Door door = new Door(0, 1);
-        Key key = new Key(1, 0);
+        Door door = new Door(0, 1, 1);
+        Key key = new Key(1, 0, 1);
         Player p = new Player(d, 0, 0);
         d.setPlayer(p);
         d.addEntity(door);
@@ -201,8 +201,8 @@ public class PlayerTest {
     @Test
     public void testRemoveItem(){
         Inventory inventory = new Inventory();
-        Key k1 = new Key(0, 0);
-        Weapon w1 = new Weapon(0,0);
+        Key k1 = new Key(0, 0 ,3);
+        Weapon w1 = new Weapon(0,0,5);
         inventory.addItem(k1);
         inventory.addItem(w1);
         assertEquals(inventory.contains(k1), true);

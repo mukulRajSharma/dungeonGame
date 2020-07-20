@@ -1,20 +1,26 @@
 package unsw.dungeon;
 
+/**
+ * Weapon class of Entity, also a collectible
+ */
 public class Weapon extends Entity implements Collection{
 
     private int weaponUse;
 
-    public Weapon(int x, int y) {
+    public Weapon(int x, int y, int uses) {
         super(x, y);
-        weaponUse = 5;
+        weaponUse = uses;
     }
 
     @Override
     public String getItem() {
         return "Weapon";
     }
-
+    
     @Override
+    /**
+     * @return true if weapon can still be used, false otherwise
+     */
     public boolean useItem(){
         if(weaponUse == 0){
             return false;

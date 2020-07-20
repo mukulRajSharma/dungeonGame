@@ -117,7 +117,7 @@ public class DungeonTest {
         assertEquals(d.enemyEndCondition(), false);
         e1.moveRight();
 
-        Weapon w1 = new Weapon(0, 1);
+        Weapon w1 = new Weapon(0, 1, 5);
         d.addEntity(w1);
         p.moveDown();
         p.moveUp();
@@ -162,7 +162,7 @@ public class DungeonTest {
         d.addTreasure(t1);
         d.addEntity(t1);
 
-        Key k1 = new Key(0, 0);
+        Key k1 = new Key(0, 0,2);
         d.addEntity(k1);
 
         d.removeEntity(k1);

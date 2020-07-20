@@ -50,6 +50,9 @@ public class DungeonController {
         doorOpenImage = new Image((new File("images/open_door.png")).toURI().toString());
     }
 
+    /**
+     * initializes the display for the dungeon
+     */
     @FXML
     public void initialize() {
         Image ground = new Image((new File("images/dirt_0_new.png")).toURI().toString());
@@ -71,6 +74,10 @@ public class DungeonController {
         trackGoals(dungeon.getGoals());
     }
 
+    /**
+     * User input for the dungeon game
+     * @param event
+     */
     @FXML
     public void handleKeyPress(KeyEvent event) {
         switch (event.getCode()) {
@@ -94,6 +101,11 @@ public class DungeonController {
         }
     }
 
+    /**
+     * Tracks the players health through an observer Pattern
+     * If the players health reaches 0 then swich to the loosing screen
+     * @param entity the player that is to be tracked
+     */
     private void trackPlayer(Player entity){
         entity.getHealth().addListener(new ChangeListener<Number>(){
             @Override
@@ -103,7 +115,6 @@ public class DungeonController {
                 if(newValue.intValue() == 0){
                     
                     try {
-                        //Should take the user to the loosing screen
                         endLose();
                     } catch (Exception e) {
                         System.err.println("Error:" + e.toString());
@@ -114,6 +125,10 @@ public class DungeonController {
 
     }
 
+    /**
+     * Tracks the goal conditions of the game through an observer pattern
+     * @param goal the goal that is to be tracked
+     */
     private void trackGoals(Goals goal){
         goal.complete().addListener(new ChangeListener<Boolean>(){
             @Override
@@ -165,7 +180,7 @@ public class DungeonController {
                 
             }
         });
-        if(entity.getClass().equals(new Door(0, 0).getClass())){
+        if(entity.getClass().equals(new Door(0, 0 , 1).getClass())){
             Door d = (Door) entity;
             d.getOpen().addListener(new ChangeListener<Boolean>(){
                 @Override
@@ -179,6 +194,10 @@ public class DungeonController {
         }
     }
 
+    /**
+     * To the lose game end screen
+     * @throws Exception
+     */
     private void endLose() throws Exception{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("end_lose.fxml"));
         EndController end = new EndController();
@@ -189,6 +208,10 @@ public class DungeonController {
         window.setScene(scene);
     }
 
+    /**
+     * To the win game end screen
+     * @throws Exception
+     */
     private void endWin() throws Exception{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("end_win.fxml"));
         EndController end = new EndController();

@@ -26,6 +26,9 @@ public class EndController{
     public EndController(){
     }
 
+    /**
+     * initializes the end controller to display one of the end screens
+     */
     @FXML
     public void initialize(){
         //System.out.println(text);
@@ -43,6 +46,10 @@ public class EndController{
         fadeTransition.play();
     }
 
+    /**
+     * 
+     * @param event Depending on the screen, if the user has won change scene to next level, else restart the level
+     */
     @FXML
     public void handleButtonPressFirst(ActionEvent event){
         if(first.getText().equals("NEXTLEVEL")){
@@ -52,6 +59,10 @@ public class EndController{
         }
     }
 
+    /**
+     * 
+     * @param event Exit the game
+     */
     @FXML
     public void handleButtonPressExit(ActionEvent event){
         Stage currStage = (Stage) root.getScene().getWindow();

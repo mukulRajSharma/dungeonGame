@@ -1,5 +1,8 @@
 package unsw.dungeon;
 
+/**
+ * PlayerMovement class containing all the Movement realted functions for Movable objects
+ */
 public abstract class PlayerMovement extends Entity{
 
     private Dungeon dungeon;
@@ -14,7 +17,13 @@ public abstract class PlayerMovement extends Entity{
         return this.dungeon;
     }
 
-    
+    /**
+     * 
+     * @param x x coordinate to be checked
+     * @param y y coordinate to be checked
+     * @param entity type of entity to be checked for
+     * @return true if entity at given (x,y), false otherwise
+     */
     public boolean isTouching(int x, int y, Entity entity){
         //System.out.println(entity.getClass().toString());
         for(Entity e: dungeon.getEntities()){
@@ -26,7 +35,11 @@ public abstract class PlayerMovement extends Entity{
         return false;
     }
 
-        
+    /**
+     * 
+     * @param entity entity whose surroundings are to be checked
+     * @return entity encountered by the subject entity
+     */
     public Entity getTouching(Entity entity){
         for(Entity e: dungeon.getEntities()){
             if(e == null) continue;
@@ -37,6 +50,10 @@ public abstract class PlayerMovement extends Entity{
         return null;
     }
 
+    /**
+     * 
+     * @return entity in contact with this movable object
+     */
     public Entity getTouching(){
         for(Entity e: dungeon.getEntities()){
             if(e == null) continue;
@@ -46,7 +63,13 @@ public abstract class PlayerMovement extends Entity{
         }
         return null;
     }
-
+    /**
+     * 
+     * @param x x coordinate to be checked
+     * @param y y coordinate to be checked
+     * @param b boulder who's coordinates are to be compared
+     * @return true if movable entity touhces given boulder
+     */
     public boolean isTouchingBoulder(int x, int y, Boulder b){
         if (x == b.getX() && y == b.getY())
             return true;

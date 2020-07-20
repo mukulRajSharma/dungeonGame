@@ -12,6 +12,11 @@ public class DungeonApplication extends Application {
 
     Stage window;
 
+    /**
+     * 
+     * @param primaryStage the stage that will be the display window for the output
+     * Starts the JavaFX output scene
+     */
     @Override
     public void start(Stage primaryStage) throws IOException {
         window = primaryStage;
@@ -25,6 +30,12 @@ public class DungeonApplication extends Application {
         window.show();
     }
 
+    /**
+     * Depending on the input this will load the particular Fxml file and create the dungeon ready for display
+     * @param dungeonName
+     * @return
+     * @throws IOException
+     */
     private FXMLLoader levelLoader(String dungeonName) throws IOException {
         DungeonControllerLoader dungeonLoader = new DungeonControllerLoader(dungeonName);
         DungeonController controller = dungeonLoader.loadController();
