@@ -79,6 +79,33 @@ public class PortalTest {
         assertEquals(p.getY(), 8);
     }
 
-    
+    @Test
+    public void testEntityPortal(){
+        Dungeon d = new Dungeon(10, 10);
+        Player p = new Player(d, 0, 0);
+        Portal p1 = new Portal(1, 2, 0);
+        Portal p2 = new Portal(1, 5, 5);
+        Boulder b1 = new Boulder(d, 1, 0);
+
+        JSONObject goals = new JSONObject().put("goal", "exit");
+        d.setGoals(goals);
+        Exit e1 = new Exit(0,0);
+
+        d.addBoulder(b1);
+        d.addEntity(b1);
+        d.addEntity(p1);
+        d.addEntity(p2);
+        d.addPortal(p1);
+        d.addPortal(p2);
+        d.setPlayer(p);
+
+        p.moveRight();
+        assertEquals(p.getX(), 1);
+        assertEquals(p.getY(), 0);
+        assertEquals(b1.getX(), 2);
+        assertEquals(b1.getY(), 0);
+    }
+
+
 
 }
