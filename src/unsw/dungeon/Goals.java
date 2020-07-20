@@ -89,7 +89,7 @@ public class Goals {
             case "exit":
                 endCondition = dungeon.exitEndCondition();
                 break;
-            case "boulder":
+            case "boulders":
                 endCondition = dungeon.boulderEndCondition();
                 break;
             case "enemies":

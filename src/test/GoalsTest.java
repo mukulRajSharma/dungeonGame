@@ -29,6 +29,11 @@ public class GoalsTest {
         JSONObject goals2 = new JSONObject().put("goal", "enemies");
         d2.setGoals(goals2);
         assertEquals(d2.getGoals().toString(), "[enemies]");
+
+        Dungeon d6 = new Dungeon(0, 1);
+        JSONObject goal6 = new JSONObject().put("goal", "boulders");
+        d6.setGoals(goal6);
+        assertEquals(d6.getGoals().toString(), "[boulders]");
         
         Dungeon d3 = new Dungeon(4,2);
         JSONArray a1 = new JSONArray().put(goals);
