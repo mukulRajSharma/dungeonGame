@@ -92,7 +92,7 @@ public class PlayerTest {
         d.setPlayer(p);
         d.addEntity(p);
 
-        Key key = new Key(1,0);
+        Key key = new Key(1,0 , 1);
         d.addEntity(key);
         p.moveRight();
         assertEquals(key.getX(), -1);
@@ -174,8 +174,8 @@ public class PlayerTest {
         JSONObject goal = new JSONObject().put("goal", "exit");
         d.setGoals(goal);
 
-        Door door = new Door(0, 1);
-        Key key = new Key(1, 0);
+        Door door = new Door(0, 1, 1);
+        Key key = new Key(1, 0, 1);
         Player p = new Player(d, 0, 0);
         d.setPlayer(p);
         d.addEntity(door);

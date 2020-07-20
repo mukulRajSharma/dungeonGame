@@ -180,7 +180,7 @@ public class DungeonController {
                 
             }
         });
-        if(entity.getClass().equals(new Door(0, 0).getClass())){
+        if(entity.getClass().equals(new Door(0, 0 , 1).getClass())){
             Door d = (Door) entity;
             d.getOpen().addListener(new ChangeListener<Boolean>(){
                 @Override

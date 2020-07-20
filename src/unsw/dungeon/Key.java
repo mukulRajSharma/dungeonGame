@@ -4,8 +4,11 @@ package unsw.dungeon;
  */
 public class Key extends Entity implements Collection{
 
-    public Key(int x, int y) {
+    private int id;
+
+    public Key(int x, int y, int id) {
         super(x, y);
+        this.id = id;
     }
 
     @Override
@@ -16,6 +19,14 @@ public class Key extends Entity implements Collection{
     @Override
     public boolean useItem(){
         return false;
+    }
+
+    public boolean checkId(int id){
+        return this.id == id;
+    }
+
+    public int getId(){
+        return this.id;
     }
     
 }

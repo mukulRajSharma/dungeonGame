@@ -9,10 +9,12 @@ import javafx.beans.property.SimpleBooleanProperty;
 public class Door extends Entity{
     
     private SimpleBooleanProperty isOpen;
+    private int id;
 
-    public Door(int x, int y) {
+    public Door(int x, int y, int id) {
         super(x, y);
         isOpen = new SimpleBooleanProperty(false);
+        this.id = id;
     }
     /**
      * 
@@ -26,6 +28,10 @@ public class Door extends Entity{
      */
     public void openDoor(){
         this.isOpen.set(true);
+    }
+
+    public int getId(){
+        return this.id;
     }
     
 }

@@ -65,7 +65,8 @@ public abstract class DungeonLoader {
             entity = weapon;
             break;
         case "key":
-            Key key = new Key(x, y);
+            int id = json.getInt("id");
+            Key key = new Key(x, y, id);
             onLoad(key);
             entity = key;
             break;
@@ -87,8 +88,8 @@ public abstract class DungeonLoader {
             dungeon.addEnemy(enemy);
             break;
         case "portal":
-            int id = json.getInt("id");
-            Portal portal = new Portal(id,x,y);
+            int id1 = json.getInt("id");
+            Portal portal = new Portal(id1,x,y);
             onLoad(portal);
             entity = portal;
             dungeon.addPortal(portal);
@@ -100,7 +101,8 @@ public abstract class DungeonLoader {
             dungeon.addBoulder(boulder);
             break;           
         case "door":
-            Door door = new Door(x,y);
+            int id2 = json.getInt("id");
+            Door door = new Door(x,y,id2);
             onLoad(door);
             entity = door;  
             break;   

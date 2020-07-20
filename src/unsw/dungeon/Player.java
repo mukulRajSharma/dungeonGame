@@ -80,10 +80,10 @@ public class Player extends PlayerMovement {
      * @return returns true is player has met a door in its path, false otherwise
      */
     private boolean checkDoor(){
-        Door door = (Door)getTouching(new Door(0,0));
+        Door door = (Door)getTouching(new Door(0,0, 1));
         if(door != null){
-            if(items.contains(new Key(0,0))){
-                items.useItem(new Key(0,0));
+            if(items.contains(new Key(0,0, door.getId()))){
+                items.useItem(new Key(0,0, door.getId()));
                 door.openDoor();
             } else {
                 return false;
