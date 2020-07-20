@@ -1,9 +1,5 @@
 package unsw.dungeon;
 
-import java.util.ArrayList;
-
-import javax.sound.sampled.Port;
-
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
@@ -33,6 +29,10 @@ public class Player extends PlayerMovement {
         invicibilityTurns.set(0);
     }
 
+    public Inventory getInventory(){
+        return items;
+    }
+
     public IntegerProperty getInvincibility(){
         return invicibilityTurns;
     }
@@ -60,9 +60,25 @@ public class Player extends PlayerMovement {
         }
     }
 
+    private boolean checkDoor(){
+        Door door = (Door)getTouching(new Door(0,0));
+        if(door != null){
+            if(items.contains(new Key(0,0))){
+                items.useItem(new Key(0,0));
+                door.openDoor();
+            } else {
+                return false;
+            }
+        }
+        return true;
+    }
+
 
     public void moveUp() {
         super.moveUp();
+        if(!checkDoor()){
+            super.moveDown();
+        }
         for(Enemy e : this.getDungeon().getEnemies()){
             e.moveUp();
         }
@@ -72,6 +88,9 @@ public class Player extends PlayerMovement {
 
     public void moveDown() {
         super.moveDown();
+        if(!checkDoor()){
+            super.moveUp();
+        }
         for(Enemy e : this.getDungeon().getEnemies()){
             e.moveDown();
         }
@@ -80,6 +99,9 @@ public class Player extends PlayerMovement {
 
     public void moveLeft() {
         super.moveLeft();
+        if(!checkDoor()){
+            super.moveRight();
+        }
         for(Enemy e : this.getDungeon().getEnemies()){
             e.moveLeft();
         }
@@ -88,6 +110,9 @@ public class Player extends PlayerMovement {
 
     public void moveRight() {
         super.moveRight();
+        if(!checkDoor()){
+            super.moveLeft();
+        }
         for(Enemy e : this.getDungeon().getEnemies()){
             e.moveRight();
         }
@@ -129,7 +154,9 @@ public class Player extends PlayerMovement {
             Entity e = (Entity) c;
             this.getDungeon().removeEntity(e);
         }
-
+        if(invicibilityTurns.get() > 0){
+            invicibilityTurns.set(invicibilityTurns.intValue()-1);
+        }
         Portal p = (Portal)getTouching(new Portal(0,0,0));
         if (p != null){
             for (Portal other: getDungeon().getPortals()){
@@ -140,7 +167,6 @@ public class Player extends PlayerMovement {
                 }
             }
         }
-        invicibilityTurns.set(invicibilityTurns.intValue()-1);
         this.getDungeon().checkWin();
     }
 }

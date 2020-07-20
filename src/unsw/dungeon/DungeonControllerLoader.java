@@ -29,7 +29,6 @@ public class DungeonControllerLoader extends DungeonLoader {
     private Image enemyImage;
     private Image portalImage;
     private Image boulderImage;
-    private Image doorOpenImage;
     private Image doorCloseImage;
     private Image floorSwitchImage;
     private Image exitImage;
@@ -47,7 +46,6 @@ public class DungeonControllerLoader extends DungeonLoader {
         enemyImage = new Image((new File("images/gnome.png")).toURI().toString());
         portalImage = new Image((new File("images/portal.png")).toURI().toString());
         boulderImage = new Image((new File("images/boulder.png")).toURI().toString());
-        doorOpenImage = new Image((new File("images/open_door.png")).toURI().toString());
         doorCloseImage = new Image((new File("images/closed_door.png")).toURI().toString());
         floorSwitchImage = new Image((new File("images/pressure_plate.png")).toURI().toString());
         exitImage = new Image((new File("images/exit.png")).toURI().toString());

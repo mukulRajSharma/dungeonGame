@@ -4,15 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
-//import jdk.nashorn.internal.scripts.JS;
 import unsw.dungeon.Dungeon;
-import unsw.dungeon.Entity;
 import unsw.dungeon.Exit;
 import unsw.dungeon.Key;
 import unsw.dungeon.Player;
+import unsw.dungeon.Wall;
 import unsw.dungeon.Weapon;
 
 public class PlayerMovementTest {
@@ -133,6 +130,13 @@ public class PlayerMovementTest {
         p.moveUp();
         assertEquals(p.getX(), 0);
         assertEquals(p.getY(), 1);
+
+        Wall w1 = new Wall(0, 0);
+        d.addEntity(w1);
+        p.moveUp();
+        assertEquals(p.getX(), 0);
+        assertEquals(p.getY(), 1);
+
 
     }
 }
