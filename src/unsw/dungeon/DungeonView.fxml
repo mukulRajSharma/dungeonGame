@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -20,15 +21,16 @@
 
          </children>
       </GridPane>
-      <Label fx:id="health" alignment="TOP_RIGHT" layoutY="14.0" text="Health = " textFill="WHITE">
+      <Label fx:id="health" alignment="TOP_RIGHT" layoutY="14.0" text="Health = " textFill="#da2626">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label fx:id="goals" alignment="TOP_LEFT" layoutX="312.0" layoutY="14.0" text="Label" textAlignment="RIGHT" textFill="WHITE">
+      <Label fx:id="goals" alignment="TOP_LEFT" layoutX="312.0" layoutY="14.0" text="Label" textAlignment="RIGHT" textFill="#285ec3">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
+      <Button fx:id="pauseBtn" layoutX="147.0" layoutY="4.0" mnemonicParsing="false" onAction="#handlePause" text="Pause" />
    </children>
 </AnchorPane>

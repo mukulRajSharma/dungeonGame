@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -11,7 +12,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -34,6 +35,9 @@ public class DungeonController {
 
     @FXML
     private Label goals;
+
+    @FXML
+    private Button pauseBtn;
 
     private List<ImageView> initialEntities;
 
@@ -70,6 +74,7 @@ public class DungeonController {
         }
         health.setText("Health: " + player.getHealth().intValue());
         goals.setText("Goals: " + dungeon.getGoals().toString());
+        pauseBtn.setLayoutY(dungeon.getHeight());
         trackPlayer(dungeon.getPlayer());
         trackGoals(dungeon.getGoals());
     }
@@ -101,6 +106,20 @@ public class DungeonController {
         }
     }
 
+    /**
+     * To the pause screen
+     * @throws Exception
+     */
+    //@FXML
+    public void handlePause(ActionEvent event) throws Exception{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("pause.fxml"));
+        PauseController end = new PauseController();
+        loader.setController(end);
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage window = (Stage) squares.getScene().getWindow();
+        window.setScene(scene);
+    }
     /**
      * Tracks the players health through an observer Pattern
      * If the players health reaches 0 then swich to the loosing screen
@@ -225,4 +244,3 @@ public class DungeonController {
     
 
 }
-

@@ -9,21 +9,21 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-public class EndController{
+public class PauseController {
     @FXML
     private AnchorPane root;
 
     @FXML
-    private Button exit;
+    private Label displayMsg;
+    @FXML
+    private Button exitBtn;
 
     @FXML
-    private Button first;
-
-    @FXML
-    private Label output;
+    private Button restartLvlBtn;
 
 
-    public EndController(){
+
+    public PauseController(){
     }
 
     /**
@@ -33,8 +33,8 @@ public class EndController{
     public void initialize(){
         //System.out.println(text);
 
-        root.setOpacity(1);
-        fadeInTransition();
+        root.setOpacity(0.5);
+        //fadeInTransition();
     }
 
     private void fadeInTransition(){
@@ -51,12 +51,9 @@ public class EndController{
      * @param event Depending on the screen, if the user has won change scene to next level, else restart the level
      */
     @FXML
-    public void handleButtonPressFirst(ActionEvent event){
-        if(first.getText().equals("NEXTLEVEL")){
-            //TODO send the user to the next level
-        } else {
-            //TODO send restart the user on the current level
-        }
+    public void handleRestartLvlBtn(ActionEvent event){
+        Stage currStage = (Stage) root.getScene().getWindow();
+        currStage.close();
     }
 
     /**
@@ -64,7 +61,7 @@ public class EndController{
      * @param event Exit the game
      */
     @FXML
-    public void handleButtonPressExit(ActionEvent event){
+    public void handleExitBtn(ActionEvent event){
         Stage currStage = (Stage) root.getScene().getWindow();
         currStage.close();
     }
