@@ -21,16 +21,19 @@
 
          </children>
       </GridPane>
-      <Label fx:id="health" alignment="TOP_RIGHT" layoutY="14.0" text="Health = " textFill="#da2626">
+      <Label fx:id="health" alignment="TOP_RIGHT" layoutY="14.0" text="Health = " textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label fx:id="goals" alignment="TOP_LEFT" layoutX="312.0" layoutY="14.0" text="Label" textAlignment="RIGHT" textFill="#285ec3">
+      <Label fx:id="goals" alignment="TOP_LEFT" layoutX="312.0" layoutY="14.0" text="Label" textAlignment="RIGHT" textFill="WHITE">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Button fx:id="pauseBtn" layoutX="147.0" layoutY="4.0" mnemonicParsing="false" onAction="#handlePause" text="Pause" />
+      <Button fx:id="pauseBtn" layoutX="147.0" layoutY="4.0" mnemonicParsing="false" onAction="#handlePause">
+         <font>
+            <Font name="Arimo" size="13.0" />
+         </font></Button>
    </children>
 </AnchorPane>

@@ -3,7 +3,12 @@ package unsw.dungeon;
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -16,8 +21,9 @@ public class PauseController {
     @FXML
     private Label displayMsg;
     @FXML
+    private Button resumeBtn;
+    @FXML
     private Button exitBtn;
-
     @FXML
     private Button restartLvlBtn;
 
@@ -32,9 +38,10 @@ public class PauseController {
     @FXML
     public void initialize(){
         //System.out.println(text);
+        
 
-        root.setOpacity(0.5);
-        //fadeInTransition();
+        root.setOpacity(1);
+        fadeInTransition();
     }
 
     private void fadeInTransition(){
@@ -46,6 +53,10 @@ public class PauseController {
         fadeTransition.play();
     }
 
+    @FXML
+    public void handleResumeBtn(ActionEvent evene){
+        
+    }
     /**
      * 
      * @param event Depending on the screen, if the user has won change scene to next level, else restart the level

@@ -2,21 +2,36 @@ package unsw.dungeon;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Modality;
+import javafx.stage.Popup;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -47,6 +62,8 @@ public class DungeonController {
 
     private Image doorOpenImage;
 
+    
+
     public DungeonController(Dungeon dungeon, List<ImageView> initialEntities) {
         this.dungeon = dungeon;
         this.player = dungeon.getPlayer();
@@ -60,6 +77,7 @@ public class DungeonController {
     @FXML
     public void initialize() {
         Image ground = new Image((new File("images/dirt_0_new.png")).toURI().toString());
+        Image pauseImage = new Image((new File("images/pause_icon.png")).toURI().toString());
 
         // Add the ground first so it is below all other entities
         for (int x = 0; x < dungeon.getWidth(); x++) {
@@ -67,14 +85,17 @@ public class DungeonController {
                 squares.add(new ImageView(ground), x, y);
             }
         }
-
+        
         for (int i = 0; i < initialEntities.size(); i++){
             squares.getChildren().add(initialEntities.get(i));
             trackPosition(dungeon.getEntities().get(i), initialEntities.get(i));
         }
         health.setText("Health: " + player.getHealth().intValue());
         goals.setText("Goals: " + dungeon.getGoals().toString());
-        pauseBtn.setLayoutY(dungeon.getHeight());
+        pauseBtn.setLayoutY(0);
+        pauseBtn.setLayoutX(250);
+        pauseBtn.setGraphic(new ImageView(pauseImage));
+        
         trackPlayer(dungeon.getPlayer());
         trackGoals(dungeon.getGoals());
     }
@@ -112,13 +133,55 @@ public class DungeonController {
      */
     //@FXML
     public void handlePause(ActionEvent event) throws Exception{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("pause.fxml"));
-        PauseController end = new PauseController();
-        loader.setController(end);
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        Stage window = (Stage) squares.getScene().getWindow();
-        window.setScene(scene);
+
+        final Stage dialog = new Stage();
+        dialog.initModality(Modality.APPLICATION_MODAL);
+        //dialog.initOwner(primaryStage);
+        Button resume = new Button();
+        Button exit = new Button();
+        Button mainMenu = new Button();
+
+        resume.setText("resume");
+        exit.setText("exit");
+        mainMenu.setText("Main menu");
+
+        resume.setOnAction(e -> {
+            dialog.close();
+            Stage curr = (Stage)squares.getScene().getWindow();
+            Platform.runLater(() -> {
+                if (!curr.isFocused()) {
+                    curr.requestFocus();
+                    //repeatFocus(node);
+                }
+            });
+            curr.requestFocus();
+        });
+        exit.setOnAction(e -> {
+            dialog.close();
+            Stage curr = (Stage)squares.getScene().getWindow();
+            curr.close();
+        });
+        mainMenu.setOnAction(e-> {
+            dialog.close();
+            Stage curr = (Stage)squares.getScene().getWindow();
+            curr.close();
+            DungeonApplication hmm = new DungeonApplication();
+            Stage primaryStage= new Stage();
+            try {
+                hmm.start(primaryStage);
+            } catch (Exception ex) {
+                System.err.println("Error:" + ex.toString());
+            }
+        });
+
+        VBox dialogVbox = new VBox(20);
+        dialogVbox.getChildren().add(new Text("Game Paused"));
+        dialogVbox.getChildren().addAll(resume, mainMenu, exit);
+        Scene dialogScene = new Scene(dialogVbox, 300, 200);
+
+        dialog.setScene(dialogScene);
+        dialog.show();
+        
     }
     /**
      * Tracks the players health through an observer Pattern
