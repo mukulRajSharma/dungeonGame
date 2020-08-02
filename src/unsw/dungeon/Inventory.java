@@ -53,42 +53,6 @@ public class Inventory{
         return false;
     }
 
-    /*
-    public boolean useItem(Object o){
-        boolean flag = false;
-        boolean contains = false;
-        int indexRemove = 0;
-        if(o.getClass().equals(Key.class)){
-            for(Item c: items){
-                if(c.getClass().equals(o.getClass())){
-                    Key k = (Key)o;
-                    Key c1 = (Key)c;
-                    if(k.checkId(c1.getId())){
-                        contains = true;
-                        indexRemove = items.indexOf(c);
-                        flag = true;
-                    }
-                }
-            }
-        } else {
-            for(Item c: items){
-                if(c.getClass().equals(o.getClass())){
-                    contains = true;
-                    if(!c.useItem()){
-                        indexRemove = items.indexOf(c);
-                        flag = true;
-                    }
-                    break;
-                }
-            }
-        }
-        if(flag){
-            items.remove(indexRemove);
-        }
-        return contains;
-        
-    }
-    */  
     public void addItem(Item c){
         if(c == null) return;
         items.add(c);
