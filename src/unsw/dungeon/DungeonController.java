@@ -11,6 +11,8 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
+import javafx.scene.effect.Light;
+import javafx.scene.effect.Lighting;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -28,6 +30,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -144,12 +147,17 @@ public class DungeonController {
 
         resume.setText("resume");
         resume.setStyle("-fx-background-color: pink");
+        resume.setCursor(Cursor.CROSSHAIR);
+        resume.setEffect(new Lighting());
         restart.setText("restart");
         restart.setStyle("-fx-background-color: pink");
+        restart.setEffect(new Lighting());
         exit.setText("exit");
         exit.setStyle("-fx-background-color: orange");
+        exit.setEffect(new Lighting());
         mainMenu.setText("Main menu");
         mainMenu.setStyle("-fx-background-color: orange");
+        mainMenu.setEffect(new Lighting());
 
         resume.setOnAction(e -> {
             dialog.close();
@@ -186,7 +194,7 @@ public class DungeonController {
         dialogVbox.getChildren().addAll(resume, restart, mainMenu, exit);
         dialogVbox.setAlignment(Pos.CENTER);
         Scene dialogScene = new Scene(dialogVbox, 200, 220);
-
+        dialog.setTitle("Pause Menu");
         dialog.setScene(dialogScene);
         dialog.show();
 

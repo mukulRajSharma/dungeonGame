@@ -26,18 +26,9 @@ public class DungeonApplication extends Application {
 
         Parent root = loader.load();
         Scene scene = new Scene(root);
-        window.setTitle("Dungeon");
+        window.setTitle("Dungeon Escape");
         window.setScene(scene);
         window.show();
-        // window = primaryStage;
-
-        // window.setTitle("Dungeon");
-        // FXMLLoader loader = levelLoader("advanced.json");
-        // Parent root = loader.load();
-        // Scene scene = new Scene(root);
-        // root.requestFocus();
-        // window.setScene(scene);
-        // window.show();
         
     }
 
