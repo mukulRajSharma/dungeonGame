@@ -66,6 +66,7 @@ public class EndController{
             Scene scene = new Scene(root);
             Stage window = (Stage) exit.getScene().getWindow();
             window.setScene(scene);
+            window.show();
         } else {
             //TODO send restart the user on the current level
         }

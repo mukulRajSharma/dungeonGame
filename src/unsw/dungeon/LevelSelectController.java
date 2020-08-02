@@ -50,10 +50,7 @@ public class LevelSelectController {
     }
 
     @FXML
-    public void initialize() throws FileNotFoundException {
-
-        grid = new GridPane();
-        root.getChildren().add(grid);
+    public void initialize() throws Exception {
 
         grid.setHgap(10);
         grid.setVgap(10);
@@ -92,14 +89,18 @@ public class LevelSelectController {
                     Button b = (Button)event.getSource();
                     Stage window = (Stage)grid.getScene().getWindow();
                     FXMLLoader loader;
-                    try {
-                        loader = levelLoader(b.getText() + ".fxml");
+                        try {
+                        loader = levelLoader(b.getText() + ".json");
                         Parent root = loader.load();
                         Scene scene = new Scene(root);
-                    window.setScene(scene);
-                    } catch (Exception e) {
-                        System.err.println("Error in loading level");
+                        root.requestFocus();
+                        window.setScene(scene);
+                        window.show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
+                        
+                        
                 }
             });
         }
