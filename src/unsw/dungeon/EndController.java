@@ -33,7 +33,7 @@ public class EndController{
     public void initialize(){
         //System.out.println(text);
 
-        root.setOpacity(0);
+        root.setOpacity(1);
         fadeInTransition();
     }
 

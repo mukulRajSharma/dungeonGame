@@ -20,14 +20,16 @@ public class DungeonApplication extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         window = primaryStage;
+        StartMenuController controller = new StartMenuController();
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("start_menu.fxml"));
+        loader.setController(controller);
 
-        window.setTitle("Dungeon");
-        FXMLLoader loader = levelLoader("advanced.json");
         Parent root = loader.load();
         Scene scene = new Scene(root);
-        root.requestFocus();
+        window.setTitle("Dungeon Escape");
         window.setScene(scene);
         window.show();
+        
     }
 
     /**

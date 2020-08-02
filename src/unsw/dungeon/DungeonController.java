@@ -2,20 +2,40 @@ package unsw.dungeon;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
+import javafx.scene.effect.Light;
+import javafx.scene.effect.Lighting;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Modality;
+import javafx.stage.Popup;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -35,6 +55,9 @@ public class DungeonController {
     @FXML
     private Label goals;
 
+    @FXML
+    private Button pauseBtn;
+
     private List<ImageView> initialEntities;
 
     private Player player;
@@ -42,6 +65,8 @@ public class DungeonController {
     private Dungeon dungeon;
 
     private Image doorOpenImage;
+
+    
 
     public DungeonController(Dungeon dungeon, List<ImageView> initialEntities) {
         this.dungeon = dungeon;
@@ -56,20 +81,24 @@ public class DungeonController {
     @FXML
     public void initialize() {
         Image ground = new Image((new File("images/dirt_0_new.png")).toURI().toString());
-
+        Image pauseImage = new Image((new File("images/pause_icon.png")).toURI().toString());
         // Add the ground first so it is below all other entities
+        
         for (int x = 0; x < dungeon.getWidth(); x++) {
             for (int y = 0; y < dungeon.getHeight(); y++) {
                 squares.add(new ImageView(ground), x, y);
             }
         }
-
         for (int i = 0; i < initialEntities.size(); i++){
             squares.getChildren().add(initialEntities.get(i));
             trackPosition(dungeon.getEntities().get(i), initialEntities.get(i));
         }
         health.setText("Health: " + player.getHealth().intValue());
         goals.setText("Goals: " + dungeon.getGoals().toString());
+        pauseBtn.setLayoutY(0);
+        pauseBtn.setLayoutX(250);
+        pauseBtn.setGraphic(new ImageView(pauseImage));
+        
         trackPlayer(dungeon.getPlayer());
         trackGoals(dungeon.getGoals());
     }
@@ -101,6 +130,75 @@ public class DungeonController {
         }
     }
 
+    /**
+     * To the pause screen
+     * @throws Exception
+     */
+    //@FXML
+    public void handlePause(ActionEvent event) throws Exception{
+
+        final Stage dialog = new Stage();
+        dialog.initModality(Modality.APPLICATION_MODAL);
+        //dialog.initOwner(primaryStage);
+        Button resume = new Button();
+        Button restart = new Button();
+        Button exit = new Button();
+        Button mainMenu = new Button();
+
+        resume.setText("resume");
+        resume.setStyle("-fx-background-color: pink");
+        resume.setCursor(Cursor.CROSSHAIR);
+        resume.setEffect(new Lighting());
+        restart.setText("restart");
+        restart.setStyle("-fx-background-color: pink");
+        restart.setEffect(new Lighting());
+        exit.setText("exit");
+        exit.setStyle("-fx-background-color: orange");
+        exit.setEffect(new Lighting());
+        mainMenu.setText("Main menu");
+        mainMenu.setStyle("-fx-background-color: orange");
+        mainMenu.setEffect(new Lighting());
+
+        resume.setOnAction(e -> {
+            dialog.close();
+            squares.requestFocus();
+        });
+        restart.setOnAction(e -> {
+            dialog.close();
+            squares.requestFocus();
+        });
+        exit.setOnAction(e -> {
+            dialog.close();
+            Stage curr = (Stage)squares.getScene().getWindow();
+            curr.close();
+        });
+        mainMenu.setOnAction(e-> {
+            dialog.close();
+            Stage curr = (Stage)squares.getScene().getWindow();
+            curr.close();
+            DungeonApplication hmm = new DungeonApplication();
+            Stage primaryStage= new Stage();
+            try {
+                hmm.start(primaryStage);
+            } catch (Exception ex) {
+                System.err.println("Error:" + ex.toString());
+            }
+        });
+
+        VBox dialogVbox = new VBox(20);
+        dialogVbox.setStyle("-fx-background-color: grey");
+        Label heading = new Label("Game Paused");
+        heading.setStyle("-fx-font: 21 arial;"+"-fx-font-weight: bold;");
+        //heading.setStyle("-fx-font-weight: bold;");
+        dialogVbox.getChildren().add(heading);
+        dialogVbox.getChildren().addAll(resume, restart, mainMenu, exit);
+        dialogVbox.setAlignment(Pos.CENTER);
+        Scene dialogScene = new Scene(dialogVbox, 200, 220);
+        dialog.setTitle("Pause Menu");
+        dialog.setScene(dialogScene);
+        dialog.show();
+
+    }
     /**
      * Tracks the players health through an observer Pattern
      * If the players health reaches 0 then swich to the loosing screen
@@ -225,4 +323,3 @@ public class DungeonController {
     
 
 }
-
