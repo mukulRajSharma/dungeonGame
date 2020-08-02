@@ -99,8 +99,6 @@ public class LevelSelectController {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                        
-                        
                 }
             });
         }

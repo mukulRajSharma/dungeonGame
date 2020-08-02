@@ -77,9 +77,6 @@ public class DungeonController {
         goals.setText("Goals: " + dungeon.getGoals().toString());
         trackPlayer(dungeon.getPlayer());
         trackGoals(dungeon.getGoals());
-
-        //root.getScene().addEventHandler(KeyEvent.KEY_PRESSED, keyboardInput);
-
         root.addEventHandler(KeyEvent.KEY_PRESSED, keyboardInput);
     }
 
@@ -215,6 +212,7 @@ public class DungeonController {
         loader.setController(end);
         Parent root = loader.load();
         Scene scene = new Scene(root);
+        root.requestFocus();
         Stage window = (Stage) squares.getScene().getWindow();
         window.setScene(scene);
     }
@@ -230,6 +228,7 @@ public class DungeonController {
         loader.setController(end);
         Parent root = loader.load();
         Scene scene = new Scene(root);
+        root.requestFocus();
         Stage window = (Stage) squares.getScene().getWindow();
         window.setScene(scene);
     }

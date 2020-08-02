@@ -64,6 +64,7 @@ public class EndController{
             loader.setController(select);
             Parent root = loader.load();
             Scene scene = new Scene(root);
+            root.requestFocus();
             Stage window = (Stage) exit.getScene().getWindow();
             window.setScene(scene);
             window.show();
