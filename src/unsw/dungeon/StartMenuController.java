@@ -2,16 +2,21 @@ package unsw.dungeon;
 
 import java.io.IOException;
 
+import org.junit.platform.console.shadow.picocli.CommandLine.Help;
+
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import javafx.util.Duration;
@@ -76,7 +81,7 @@ public class StartMenuController {
         Stage boss = (Stage)root.getScene().getWindow();
         boss.close();
         Stage window = new Stage();
-        FXMLLoader loader = levelLoader("advanced.json");
+        FXMLLoader loader = levelLoader("boulders.json");
         Parent root = loader.load();
         Scene scene = new Scene(root);
         root.requestFocus();
@@ -89,7 +94,7 @@ public class StartMenuController {
         Stage boss = (Stage)root.getScene().getWindow();
         boss.close();
         Stage window = new Stage();
-        FXMLLoader loader = levelLoader("advanced.json");
+        FXMLLoader loader = levelLoader("portals.json");
         Parent root = loader.load();
         Scene scene = new Scene(root);
         root.requestFocus();
@@ -118,10 +123,13 @@ public class StartMenuController {
 
     @FXML
     public void handleHelpBtn(ActionEvent event) throws Exception{
-        Stage boss = (Stage)root.getScene().getWindow();
-        boss.close();
+        // Stage boss = (Stage)root.getScene().getWindow();
+        // boss.close();
         Stage window = new Stage();
-        FXMLLoader loader = levelLoader("advanced.json");
+        //FXMLLoader loader = levelLoader("advanced.json");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("help.fxml"));
+        HelpController help = new HelpController();
+        loader.setController(help);
         Parent root = loader.load();
         Scene scene = new Scene(root);
         root.requestFocus();

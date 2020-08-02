@@ -27,6 +27,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -78,14 +79,13 @@ public class DungeonController {
     public void initialize() {
         Image ground = new Image((new File("images/dirt_0_new.png")).toURI().toString());
         Image pauseImage = new Image((new File("images/pause_icon.png")).toURI().toString());
-
         // Add the ground first so it is below all other entities
+        
         for (int x = 0; x < dungeon.getWidth(); x++) {
             for (int y = 0; y < dungeon.getHeight(); y++) {
                 squares.add(new ImageView(ground), x, y);
             }
         }
-        
         for (int i = 0; i < initialEntities.size(); i++){
             squares.getChildren().add(initialEntities.get(i));
             trackPosition(dungeon.getEntities().get(i), initialEntities.get(i));
@@ -138,23 +138,26 @@ public class DungeonController {
         dialog.initModality(Modality.APPLICATION_MODAL);
         //dialog.initOwner(primaryStage);
         Button resume = new Button();
+        Button restart = new Button();
         Button exit = new Button();
         Button mainMenu = new Button();
 
         resume.setText("resume");
+        resume.setStyle("-fx-background-color: pink");
+        restart.setText("restart");
+        restart.setStyle("-fx-background-color: pink");
         exit.setText("exit");
+        exit.setStyle("-fx-background-color: orange");
         mainMenu.setText("Main menu");
+        mainMenu.setStyle("-fx-background-color: orange");
 
         resume.setOnAction(e -> {
             dialog.close();
-            Stage curr = (Stage)squares.getScene().getWindow();
-            Platform.runLater(() -> {
-                if (!curr.isFocused()) {
-                    curr.requestFocus();
-                    //repeatFocus(node);
-                }
-            });
-            curr.requestFocus();
+            squares.requestFocus();
+        });
+        restart.setOnAction(e -> {
+            dialog.close();
+            squares.requestFocus();
         });
         exit.setOnAction(e -> {
             dialog.close();
@@ -175,13 +178,18 @@ public class DungeonController {
         });
 
         VBox dialogVbox = new VBox(20);
-        dialogVbox.getChildren().add(new Text("Game Paused"));
-        dialogVbox.getChildren().addAll(resume, mainMenu, exit);
-        Scene dialogScene = new Scene(dialogVbox, 300, 200);
+        dialogVbox.setStyle("-fx-background-color: grey");
+        Label heading = new Label("Game Paused");
+        heading.setStyle("-fx-font: 21 arial;"+"-fx-font-weight: bold;");
+        //heading.setStyle("-fx-font-weight: bold;");
+        dialogVbox.getChildren().add(heading);
+        dialogVbox.getChildren().addAll(resume, restart, mainMenu, exit);
+        dialogVbox.setAlignment(Pos.CENTER);
+        Scene dialogScene = new Scene(dialogVbox, 200, 220);
 
         dialog.setScene(dialogScene);
         dialog.show();
-        
+
     }
     /**
      * Tracks the players health through an observer Pattern

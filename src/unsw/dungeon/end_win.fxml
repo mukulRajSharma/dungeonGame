@@ -5,11 +5,17 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="root" prefHeight="343.0" prefWidth="470.0" xmlns="http://javafx.com/javafx/11.0.4" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="root" prefHeight="390.0" prefWidth="529.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/11.0.4" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button fx:id="first" alignment="BOTTOM_CENTER" layoutX="187.0" layoutY="213.0" mnemonicParsing="false" onAction="#handleButtonPressFirst" text="NEXT LEVEL" textAlignment="CENTER" />
-      <Button fx:id="exit" alignment="BOTTOM_CENTER" layoutX="212.0" layoutY="252.0" mnemonicParsing="false" onAction="#handleButtonPressExit" text="EXIT" textAlignment="CENTER" />
-      <Label fx:id="output" alignment="BASELINE_CENTER" layoutX="1.0" layoutY="89.0" text="CONGRADULATIONS" textAlignment="CENTER">
+      <Button fx:id="first" alignment="CENTER" layoutX="196.0" layoutY="152.0" mnemonicParsing="false" onAction="#handleButtonPressFirst" prefHeight="50.0" prefWidth="127.0" style="-fx-background-color: pink;" text="NEXT LEVEL">
+         <font>
+            <Font size="17.0" />
+         </font></Button>
+      <Button fx:id="exit" alignment="CENTER" layoutX="222.0" layoutY="253.0" mnemonicParsing="false" onAction="#handleButtonPressExit" prefHeight="42.0" prefWidth="76.0" style="-fx-background-color: orange;" text="EXIT" textAlignment="CENTER">
+         <font>
+            <Font size="17.0" />
+         </font></Button>
+      <Label fx:id="output" alignment="BASELINE_CENTER" layoutX="101.0" layoutY="47.0" text="Level Passed!" textAlignment="CENTER">
          <font>
             <Font size="46.0" />
          </font>

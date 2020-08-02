@@ -5,13 +5,19 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.4" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/11.0.4" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button fx:id="exit" layoutX="277.0" layoutY="321.0" mnemonicParsing="false" onAction="#handleButtonPressExit" text="EXIT" />
-      <Button fx:id="first" layoutX="239.0" layoutY="260.0" mnemonicParsing="false" onAction="#handleButtonPressFirst" text="RESTART LEVEL" />
-      <Label fx:id="output" layoutX="175.0" layoutY="114.0" text="FAILED">
+      <Button fx:id="exit" alignment="CENTER" layoutX="262.0" layoutY="289.0" mnemonicParsing="false" onAction="#handleButtonPressExit" prefHeight="45.0" prefWidth="78.0" style="-fx-background-color: orange;" text="EXIT">
          <font>
-            <Font size="71.0" />
+            <Font size="17.0" />
+         </font></Button>
+      <Button fx:id="first" alignment="CENTER" layoutX="240.0" layoutY="181.0" mnemonicParsing="false" onAction="#handleButtonPressFirst" prefHeight="54.0" prefWidth="122.0" style="-fx-background-color: pink;" text="TRY AGAIN">
+         <font>
+            <Font size="17.0" />
+         </font></Button>
+      <Label fx:id="output" layoutX="132.0" layoutY="30.0" text="Level Failed :(">
+         <font>
+            <Font size="48.0" />
          </font>
       </Label>
    </children>
