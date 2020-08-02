@@ -9,7 +9,7 @@
    <children>
       <Button fx:id="first" alignment="BOTTOM_CENTER" layoutX="187.0" layoutY="213.0" mnemonicParsing="false" onAction="#handleButtonPressFirst" text="LEVEL SELECT" textAlignment="CENTER" />
       <Button fx:id="exit" alignment="BOTTOM_CENTER" layoutX="212.0" layoutY="252.0" mnemonicParsing="false" onAction="#handleButtonPressExit" text="EXIT" textAlignment="CENTER" />
-      <Label fx:id="output" alignment="BASELINE_CENTER" layoutX="1.0" layoutY="89.0" text="CONGRADULATIONS" textAlignment="CENTER">
+      <Label fx:id="output" alignment="BASELINE_CENTER" layoutX="1.0" layoutY="89.0" text="CONGRATULATIONS" textAlignment="CENTER">
          <font>
             <Font size="46.0" />
          </font>
