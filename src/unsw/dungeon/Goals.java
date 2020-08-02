@@ -12,13 +12,13 @@ import javafx.beans.property.SimpleBooleanProperty;
  */
 public class Goals {
     private SimpleBooleanProperty goalsMet;
-    private winConditions w;
+    private winConditions win;
     private Dungeon dungeon;
 
     public Goals(Dungeon d){
         goalsMet = new SimpleBooleanProperty();
         goalsMet.set(false);
-        w = null;
+        win = null;
         this.dungeon = d;
     }
     /**
@@ -41,15 +41,11 @@ public class Goals {
      * @param goals converts a json object to specific win Conditions
      */
     public void createGoals(JSONObject goals){
-        w = addGoals(goals);
-        if(w == null) System.out.println("yeet");
+        win = addGoals(goals);
+        //if(win == null) System.out.println("yeet");
     }
 
-    /**
-     * 
-     * @param goals converts JSONObject to Goal and adds all the goals to the dungeon
-     */
-    public winConditions addGoals(JSONObject goals){
+    private winConditions addGoals(JSONObject goals){
         String goal = goals.getString("goal");
         winConditions temp = winFactory.getWinCondition(goal, dungeon);
         if(goal.equals("AND")){
@@ -73,12 +69,17 @@ public class Goals {
      * @return true if player won the game.
      */
     public boolean winGame(){
-        return w.checkWin();
+        if(win.checkWin()){
+            this.setGoalsMet(true);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
     public String toString(){
-        return w.toString();
+        return win.toString();
     }
 
     

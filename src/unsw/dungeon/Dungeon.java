@@ -276,6 +276,12 @@ public class Dungeon {
         return goals.winGame();
     }
 
+    public void moveEnemies(){
+        for(Enemy e: enemies){
+            e.move();
+        }
+    }
+
     
 
     /**

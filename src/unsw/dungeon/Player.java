@@ -114,9 +114,6 @@ public class Player extends PlayerMovement {
         if(!checkDoor()){
             super.moveUp();
         }
-        for(Enemy e : this.getDungeon().getEnemies()){
-            e.moveDown();
-        }
         update();
     }
     /**
@@ -127,9 +124,6 @@ public class Player extends PlayerMovement {
         if(!checkDoor()){
             super.moveRight();
         }
-        for(Enemy e : this.getDungeon().getEnemies()){
-            e.moveLeft();
-        }
         update();
     }
     /**
@@ -139,9 +133,6 @@ public class Player extends PlayerMovement {
         super.moveRight();
         if(!checkDoor()){
             super.moveLeft();
-        }
-        for(Enemy e : this.getDungeon().getEnemies()){
-            e.moveRight();
         }
         update();
     }
@@ -162,6 +153,7 @@ public class Player extends PlayerMovement {
      * updated the players state after every move
      */
     private void update(){
+        this.getDungeon().moveEnemies();
         if(touchingEnemy()){
             if(invicibilityTurns.intValue() > 0) {
                 removeEnemy();
