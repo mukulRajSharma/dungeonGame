@@ -16,6 +16,7 @@ import javafx.scene.effect.Lighting;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
@@ -27,6 +28,7 @@ import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -45,6 +47,7 @@ import java.io.File;
  * @author Robert Clifton-Everest
  */
 public class DungeonController {
+    @FXML AnchorPane root;
 
     @FXML
     private GridPane squares;
@@ -66,13 +69,14 @@ public class DungeonController {
 
     private Image doorOpenImage;
 
-    
+    private EventHandler<KeyEvent> keyboardInput;
 
     public DungeonController(Dungeon dungeon, List<ImageView> initialEntities) {
         this.dungeon = dungeon;
         this.player = dungeon.getPlayer();
         this.initialEntities = new ArrayList<>(initialEntities);
         doorOpenImage = new Image((new File("images/open_door.png")).toURI().toString());
+        keyboardInput = keyHandler();
     }
 
     /**
@@ -101,33 +105,35 @@ public class DungeonController {
         
         trackPlayer(dungeon.getPlayer());
         trackGoals(dungeon.getGoals());
+        root.addEventHandler(KeyEvent.KEY_PRESSED, keyboardInput);
     }
 
-    /**
-     * User input for the dungeon game
-     * @param event
-     */
-    @FXML
-    public void handleKeyPress(KeyEvent event) {
-        switch (event.getCode()) {
-        case UP:
-            player.moveUp();
-            break;
-        case DOWN:
-            player.moveDown();
-            break;
-        case LEFT:
-            player.moveLeft();
-            break;
-        case RIGHT:
-            player.moveRight();
-            break;
-        case C:
-            player.usePotion();
-            break;
-        default:
-            break;
-        }
+    public EventHandler<KeyEvent> keyHandler(){
+        return new EventHandler<KeyEvent>(){
+            @Override
+            public void handle(KeyEvent event) {
+                switch (event.getCode()) {
+                    case UP:
+                        System.out.println("UP");
+                        player.moveUp();
+                        break;
+                    case DOWN:
+                        player.moveDown();
+                        break;
+                    case LEFT:
+                        player.moveLeft();
+                        break;
+                    case RIGHT:
+                        player.moveRight();
+                        break;
+                    case C:
+                        player.usePotion();
+                        break;
+                    default:
+                        break;
+                    }
+            }  
+        };
     }
 
     /**
@@ -297,11 +303,13 @@ public class DungeonController {
      * @throws Exception
      */
     private void endLose() throws Exception{
+        root.removeEventHandler(KeyEvent.KEY_PRESSED, keyboardInput);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("end_lose.fxml"));
         EndController end = new EndController();
         loader.setController(end);
         Parent root = loader.load();
         Scene scene = new Scene(root);
+        root.requestFocus();
         Stage window = (Stage) squares.getScene().getWindow();
         window.setScene(scene);
     }
@@ -311,11 +319,13 @@ public class DungeonController {
      * @throws Exception
      */
     private void endWin() throws Exception{
+        root.removeEventHandler(KeyEvent.KEY_PRESSED, keyboardInput);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("end_win.fxml"));
         EndController end = new EndController();
         loader.setController(end);
         Parent root = loader.load();
         Scene scene = new Scene(root);
+        root.requestFocus();
         Stage window = (Stage) squares.getScene().getWindow();
         window.setScene(scene);
     }

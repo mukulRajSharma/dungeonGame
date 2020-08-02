@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.4" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="146.0" layoutY="26.0" text="LEVEL SELECT" textAlignment="CENTER" underline="true">
+         <font>
+            <Font size="43.0" />
+         </font>
+      </Label>
+      <GridPane fx:id="grid" layoutX="237.0" layoutY="147.0" prefHeight="0.0" prefWidth="126.0">
+        <columnConstraints>
+        </columnConstraints>
+      </GridPane>
+   </children>
+</Pane>

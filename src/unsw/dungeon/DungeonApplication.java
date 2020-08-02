@@ -24,6 +24,8 @@ public class DungeonApplication extends Application {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("start_menu.fxml"));
         loader.setController(controller);
 
+        // window.setTitle("Dungeon");
+        // FXMLLoader loader = levelLoader("portals.json");
         Parent root = loader.load();
         Scene scene = new Scene(root);
         window.setTitle("Dungeon Escape");

@@ -11,7 +11,9 @@
 
 <AnchorPane fx:id="root" prefHeight="390.0" prefWidth="529.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/11.0.4" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button fx:id="first" alignment="CENTER" layoutX="196.0" layoutY="152.0" mnemonicParsing="false" onAction="#handleButtonPressFirst" prefHeight="50.0" prefWidth="127.0" style="-fx-background-color: pink;" text="NEXT LEVEL">
+      <Button fx:id="first" alignment="BOTTOM_CENTER" layoutX="187.0" layoutY="213.0" mnemonicParsing="false" onAction="#handleButtonPressFirst" text="LEVEL SELECT" textAlignment="CENTER" />
+      <Button fx:id="exit" alignment="BOTTOM_CENTER" layoutX="212.0" layoutY="252.0" mnemonicParsing="false" onAction="#handleButtonPressExit" text="EXIT" textAlignment="CENTER" />
+      <Label fx:id="output" alignment="BASELINE_CENTER" layoutX="1.0" layoutY="89.0" text="CONGRATULATIONS" textAlignment="CENTER">
          <font>
             <Font size="17.0" />
          </font>
