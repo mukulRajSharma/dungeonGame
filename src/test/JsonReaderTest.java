@@ -2,23 +2,16 @@ package test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.io.File;
-import java.io.FileReader;
+
 import java.io.IOException;
-import java.net.URL;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.json.JSONTokener;
 import org.junit.jupiter.api.Test;
 
 import unsw.dungeon.Dungeon;
-import unsw.dungeon.DungeonController;
-import unsw.dungeon.DungeonControllerLoader;
 import unsw.dungeon.Exit;
-import unsw.dungeon.Key;
 import unsw.dungeon.MockLoader;
-import unsw.dungeon.Player;
 import unsw.dungeon.Potion;
 import unsw.dungeon.Wall;
 import unsw.dungeon.Weapon;

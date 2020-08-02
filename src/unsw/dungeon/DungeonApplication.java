@@ -22,7 +22,11 @@ public class DungeonApplication extends Application {
         window = primaryStage;
 
         window.setTitle("Dungeon");
+<<<<<<< HEAD
         FXMLLoader loader = levelLoader("portals.json");
+=======
+        FXMLLoader loader = levelLoader("advanced.json");
+>>>>>>> master
         Parent root = loader.load();
         Scene scene = new Scene(root);
         root.requestFocus();

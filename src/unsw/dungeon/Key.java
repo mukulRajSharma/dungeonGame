@@ -2,25 +2,27 @@ package unsw.dungeon;
 /**
  * Key class of Entity, also a collectible
  */
-public class Key extends Entity implements Collection{
+public class Key extends Entity implements Item{
 
     private int id;
+    private boolean used;
 
     public Key(int x, int y, int id) {
         super(x, y);
         this.id = id;
-    }
-
-    @Override
-    public String getItem() {
-        return "Key";
+        used = false;
     }
 
     @Override
     public boolean useItem(){
-        return false;
+        if(used){
+            return false;
+        } else {
+            this.used = true;
+            return true;
+        }
+        
     }
-
     /**
      * 
      * @param id 

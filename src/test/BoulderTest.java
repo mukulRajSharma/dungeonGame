@@ -4,20 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import unsw.dungeon.Boulder;
 import unsw.dungeon.Dungeon;
-import unsw.dungeon.Enemy;
-import unsw.dungeon.FloorSwitch;
-import unsw.dungeon.Key;
 import unsw.dungeon.Player;
-import unsw.dungeon.Treasure;
 import unsw.dungeon.Wall;
-import unsw.dungeon.Weapon;
-import unsw.dungeon.Boulder;
-import unsw.dungeon.*;
+import unsw.dungeon.Exit;
 
 public class BoulderTest {
     @Test

@@ -193,7 +193,7 @@ public class PlayerTest {
         p.moveDown();
         assertEquals(p.getX(),0);
         assertEquals(p.getY(), 1);
-        assertEquals(p.getInventory().contains(key), false);
+        assertEquals(p.getInventory().useItem(key, key.getId()), false);
 
         
     }
@@ -207,8 +207,6 @@ public class PlayerTest {
         inventory.addItem(w1);
         assertEquals(inventory.contains(k1), true);
         assertEquals(inventory.contains(w1), true);
-        assertEquals(inventory.getItem(), "\n" + k1.getItem() + "\n" + w1.getItem());
-
 
         inventory.removeItem(k1);
         assertEquals(inventory.contains(k1), false);
