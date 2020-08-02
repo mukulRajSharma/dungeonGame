@@ -28,8 +28,10 @@ public class EndController{
     @FXML
     private Label output;
 
+    //private String prevDungeon;
 
     public EndController(){
+        //this.prevDungeon = prevDungeon;
     }
 
     /**
@@ -81,5 +83,14 @@ public class EndController{
     public void handleButtonPressExit(ActionEvent event){
         Stage currStage = (Stage) root.getScene().getWindow();
         currStage.close();
+    }
+
+
+    private FXMLLoader levelLoader(String dungeonName) throws IOException {
+        DungeonControllerLoader dungeonLoader = new DungeonControllerLoader(dungeonName);
+        DungeonController controller = dungeonLoader.loadController();
+        FXMLLoader load = new FXMLLoader(getClass().getResource("DungeonView.fxml"));
+        load.setController(controller);
+        return load;
     }
 }
