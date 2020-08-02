@@ -57,7 +57,7 @@ public abstract class PlayerMovement extends Entity{
     public Entity getTouching(){
         for(Entity e: dungeon.getEntities()){
             if(e == null) continue;
-            if((this.getX() == e.getX()) && (this.getY() == e.getY()) && (e instanceof Collection)){
+            if((this.getX() == e.getX()) && (this.getY() == e.getY()) && (e instanceof Item)){
                 return e;
             }
         }
