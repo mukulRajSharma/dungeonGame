@@ -2,24 +2,14 @@ package test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import javax.sound.sampled.Port;
-
 import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import unsw.dungeon.Boulder;
 import unsw.dungeon.Dungeon;
-import unsw.dungeon.Enemy;
-import unsw.dungeon.FloorSwitch;
-import unsw.dungeon.Key;
+import unsw.dungeon.Exit;
 import unsw.dungeon.Player;
-import unsw.dungeon.Treasure;
-import unsw.dungeon.Wall;
-import unsw.dungeon.Weapon;
-import unsw.dungeon.Boulder;
-import unsw.dungeon.*;
+import unsw.dungeon.Portal;
 
 
 public class PortalTest {
@@ -34,7 +24,6 @@ public class PortalTest {
         JSONObject goals = new JSONObject().put("goal", "exit");
         d.setGoals(goals);
         Exit e1 = new Exit(0,0);
-
         d.addEntity(p1);
         d.addEntity(p2);
         d.addPortal(p1);

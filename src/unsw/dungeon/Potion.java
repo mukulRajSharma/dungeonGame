@@ -3,18 +3,21 @@ package unsw.dungeon;
 /**
  * Potion class of Entity, also a collectible
  */
-public class Potion extends Entity implements Collection{
+public class Potion extends Entity implements Item{
+    private boolean used;
+
     public Potion(int x, int y){
         super(x, y);
-    }
-
-    @Override
-    public String getItem() {
-        return "Potion";
+        used = false;
     }
 
     @Override
     public boolean useItem() {
-        return false;
+        if(used){
+            return false;
+        } else {
+            used = true;
+            return true;
+        }
     }
 }

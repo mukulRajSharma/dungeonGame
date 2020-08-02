@@ -3,18 +3,13 @@ package unsw.dungeon;
 /**
  * Weapon class of Entity, also a collectible
  */
-public class Weapon extends Entity implements Collection{
+public class Weapon extends Entity implements Item{
 
     private int weaponUse;
 
     public Weapon(int x, int y, int uses) {
         super(x, y);
         weaponUse = uses;
-    }
-
-    @Override
-    public String getItem() {
-        return "Weapon";
     }
     
     @Override

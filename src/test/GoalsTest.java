@@ -18,22 +18,22 @@ public class GoalsTest {
         Dungeon d = new Dungeon(10, 10);
         JSONObject goals = new JSONObject().put("goal", "exit");
         d.setGoals(goals);
-        assertEquals(d.getGoals().toString(), "[exit]");
+        assertEquals(d.getGoals().toString(), "exit");
 
         Dungeon d1 = new Dungeon(0,0);
         JSONObject goals1 = new JSONObject().put("goal", "treasure");
         d1.setGoals(goals1);
-        assertEquals(d1.getGoals().toString(), "[treasure]");
+        assertEquals(d1.getGoals().toString(), "treasure");
 
         Dungeon d2 = new Dungeon(0,1);
         JSONObject goals2 = new JSONObject().put("goal", "enemies");
         d2.setGoals(goals2);
-        assertEquals(d2.getGoals().toString(), "[enemies]");
+        assertEquals(d2.getGoals().toString(), "enemies");
 
         Dungeon d6 = new Dungeon(0, 1);
         JSONObject goal6 = new JSONObject().put("goal", "boulders");
         d6.setGoals(goal6);
-        assertEquals(d6.getGoals().toString(), "[boulders]");
+        assertEquals(d6.getGoals().toString(), "boulders");
         
         Dungeon d3 = new Dungeon(4,2);
         JSONArray a1 = new JSONArray().put(goals);
@@ -41,7 +41,7 @@ public class GoalsTest {
         JSONObject goals3 = new JSONObject().put("goal", "AND");
         goals3.put("subgoals", a1);
         d3.setGoals(goals3);
-        assertEquals(d3.getGoals().toString(), "[AND, exit, treasure]");
+        assertEquals(d3.getGoals().toString(), "AND, exit, treasure");
 
         Dungeon d4 = new Dungeon(69,420);
         JSONArray a2 = new JSONArray().put(goals2);
@@ -49,7 +49,7 @@ public class GoalsTest {
         JSONObject goals4 = new JSONObject().put("goal", "OR");
         goals4.put("subgoals", a2);
         d4.setGoals(goals4);
-        assertEquals(d4.getGoals().toString(), "[OR, enemies, exit]");
+        assertEquals(d4.getGoals().toString(), "OR, enemies, exit");
 
         Dungeon d5 = new Dungeon(123,456);
         JSONArray a3 = new JSONArray().put(goals4);
@@ -57,7 +57,7 @@ public class GoalsTest {
         JSONObject goals5 = new JSONObject().put("goal", "AND");
         goals5.put("subgoals", a3);
         d5.setGoals(goals5);
-        assertEquals(d5.getGoals().toString(), "[AND, OR, enemies, exit, treasure]");
+        assertEquals(d5.getGoals().toString(), "AND, OR, enemies, exit, treasure");
     }
 
     @Test
@@ -83,7 +83,7 @@ public class GoalsTest {
         JSONObject goals4 = new JSONObject().put("goal", "OR");
         goals4.put("subgoals", a2);
         d4.setGoals(goals4);
-        assertEquals(d4.getGoals().toString(), "[OR, enemies, exit]");
+        assertEquals(d4.getGoals().toString(), "OR, enemies, exit");
 
         Exit e2 = new Exit(0,1);
         Player p1 = new Player(d4,0,0);
@@ -113,7 +113,7 @@ public class GoalsTest {
         JSONObject goals5 = new JSONObject().put("goal", "AND");
         goals5.put("subgoals", a3);
         d5.setGoals(goals5);
-        assertEquals(d5.getGoals().toString(), "[AND, OR, enemies, exit, treasure]");
+        assertEquals(d5.getGoals().toString(), "AND, OR, enemies, exit, treasure");
 
         Exit e3 = new Exit(0,2);
         Player p2 = new Player(d5,0,0);

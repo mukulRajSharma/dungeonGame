@@ -2,32 +2,42 @@ package unsw.dungeon;
 
 import java.util.ArrayList;
 
-public class Inventory implements Collection{
+public class Inventory{
 
-    ArrayList<Collection> items;
+    ArrayList<Item> items;
 
     public Inventory(){
-        items = new ArrayList<Collection>();
-    }
-    /**
-     * @return all the items in the inventory
-     */
-    @Override
-    public String getItem() {
-        String output = "";
-        for(Collection c : items){
-            output = output + "\n" + c.getItem();
-        }
-        return output;
+        items = new ArrayList<Item>();
     }
 
-    @Override
-    public boolean useItem(){
+    public boolean useItem(Item item){
+        for(Item i: items){
+            if(useItemstrat(ItemStrategyFactory.getStrat(i, item))){
+                return true;
+            }
+        }
         return false;
     }
 
+    public boolean useItem(Item item , int id){
+        for(Item i: items){
+            if(useItemstrat(ItemStrategyFactory.getStrat(i, i, id))){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean useItemstrat(ItemStrategy strat){
+        return strat.useItem();
+    }
+
+    /**
+     * For testing purposes
+     * @return all the items in the inventory
+     */
     public boolean contains(Entity e){
-        for(Collection c: items){
+        for(Item c: items){
             if(e.getClass().equals(c.getClass())){
                 if(e.getClass().equals(Key.class)){
                     Key k = (Key) e;
@@ -43,47 +53,12 @@ public class Inventory implements Collection{
         return false;
     }
 
-    public boolean useItem(Object o){
-        boolean flag = false;
-        boolean contains = false;
-        int indexRemove = 0;
-        if(o.getClass().equals(Key.class)){
-            for(Collection c: items){
-                if(c.getClass().equals(o.getClass())){
-                    Key k = (Key)o;
-                    Key c1 = (Key)c;
-                    if(k.checkId(c1.getId())){
-                        contains = true;
-                        indexRemove = items.indexOf(c);
-                        flag = true;
-                    }
-                }
-            }
-        } else {
-            for(Collection c: items){
-                if(c.getClass().equals(o.getClass())){
-                    contains = true;
-                    if(!c.useItem()){
-                        indexRemove = items.indexOf(c);
-                        flag = true;
-                    }
-                    break;
-                }
-            }
-        }
-        if(flag){
-            items.remove(indexRemove);
-        }
-        return contains;
-        
-    }
-
-    public void addItem(Collection c){
+    public void addItem(Item c){
         if(c == null) return;
         items.add(c);
     }
 
-    public void removeItem(Collection c){
+    public void removeItem(Item c){
         if(c == null) return;
         if(items.contains(c)){
             items.remove(c);

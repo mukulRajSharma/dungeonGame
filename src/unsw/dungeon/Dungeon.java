@@ -52,7 +52,7 @@ public class Dungeon {
      */
     public void setGoals(JSONObject o){
         //if(o == null) System.out.println("yeet");
-        goals.addGoals(o);
+        goals.createGoals(o);
     }
 
     /**
@@ -274,6 +274,12 @@ public class Dungeon {
      */
     public boolean checkWin(){
         return goals.winGame();
+    }
+
+    public void moveEnemies(){
+        for(Enemy e: enemies){
+            e.move();
+        }
     }
 
     

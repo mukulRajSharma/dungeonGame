@@ -82,8 +82,7 @@ public class Player extends PlayerMovement {
     private boolean checkDoor(){
         Door door = (Door)getTouching(new Door(0,0, 1));
         if(door != null){
-            if(items.contains(new Key(0,0, door.getId()))){
-                items.useItem(new Key(0,0, door.getId()));
+            if(items.useItem(new Key(0,0, 0), door.getId())){
                 door.openDoor();
             } else {
                 return false;
@@ -114,9 +113,6 @@ public class Player extends PlayerMovement {
         if(!checkDoor()){
             super.moveUp();
         }
-        for(Enemy e : this.getDungeon().getEnemies()){
-            e.moveDown();
-        }
         update();
     }
     /**
@@ -127,9 +123,6 @@ public class Player extends PlayerMovement {
         if(!checkDoor()){
             super.moveRight();
         }
-        for(Enemy e : this.getDungeon().getEnemies()){
-            e.moveLeft();
-        }
         update();
     }
     /**
@@ -139,9 +132,6 @@ public class Player extends PlayerMovement {
         super.moveRight();
         if(!checkDoor()){
             super.moveLeft();
-        }
-        for(Enemy e : this.getDungeon().getEnemies()){
-            e.moveRight();
         }
         update();
     }
@@ -162,6 +152,7 @@ public class Player extends PlayerMovement {
      * updated the players state after every move
      */
     private void update(){
+        this.getDungeon().moveEnemies();
         if(touchingEnemy()){
             if(invicibilityTurns.intValue() > 0) {
                 removeEnemy();
@@ -179,7 +170,7 @@ public class Player extends PlayerMovement {
                 e.setExit(false);
             }
         }
-        Collection c = (Collection)getTouching();
+        Item c = (Item)getTouching();
         if(c != null){
             items.addItem(c);
             Entity e = (Entity) c;
