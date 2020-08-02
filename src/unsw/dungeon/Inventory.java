@@ -2,7 +2,7 @@ package unsw.dungeon;
 
 import java.util.ArrayList;
 
-public class Inventory implements Collection{
+public class Inventory{
 
     ArrayList<Collection> items;
 
@@ -12,19 +12,6 @@ public class Inventory implements Collection{
     /**
      * @return all the items in the inventory
      */
-    @Override
-    public String getItem() {
-        String output = "";
-        for(Collection c : items){
-            output = output + "\n" + c.getItem();
-        }
-        return output;
-    }
-
-    @Override
-    public boolean useItem(){
-        return false;
-    }
 
     public boolean contains(Entity e){
         for(Collection c: items){
