@@ -12,12 +12,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="495.0" prefWidth="642.0" xmlns="http://javafx.com/javafx/11.0.4" xmlns:fx="http://javafx.com/fxml/1">
    <content>
-      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="736.0" prefWidth="626.0" style="-fx-background-color: grey;">
+      <AnchorPane id="bg" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="736.0" prefWidth="626.0" stylesheets="@Style.css">
          <children>
-            <Label alignment="CENTER" prefHeight="58.0" prefWidth="626.0" style="-fx-background-color: black; -fx-font: white;" text="How to play ?" textFill="WHITE">
+            <Label id="screenText" alignment="CENTER" prefHeight="58.0" prefWidth="626.0" stylesheets="@Style.css" text="How to play ?" textFill="WHITE">
                <font>
                   <Font size="22.0" />
                </font>

@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="root" xmlns="http://javafx.com/javafx/11.0.4" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="headLabel" fx:id="root" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/11.0.4" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <GridPane fx:id="squares" layoutX="-3.0" layoutY="44.0" prefHeight="20.0" prefWidth="92.0">
          <columnConstraints>
@@ -21,12 +21,12 @@
 
          </children>
       </GridPane>
-      <Label fx:id="health" alignment="TOP_RIGHT" layoutX="14.0" layoutY="14.0" text="Health = " textFill="BLACK">
+      <Label id="screenText" fx:id="health" alignment="TOP_RIGHT" layoutX="14.0" layoutY="14.0" stylesheets="@Style.css" text="Health = " textFill="BLACK">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label fx:id="goals" alignment="TOP_LEFT" layoutX="312.0" layoutY="14.0" text="Label" textAlignment="RIGHT" textFill="BLACK">
+      <Label id="screenText" fx:id="goals" alignment="TOP_LEFT" layoutX="312.0" layoutY="14.0" stylesheets="@Style.css" text="Label" textAlignment="RIGHT" textFill="BLACK">
          <font>
             <Font size="16.0" />
          </font>
