@@ -115,7 +115,7 @@ public class DungeonController {
             public void handle(KeyEvent event) {
                 switch (event.getCode()) {
                     case UP:
-                        System.out.println("UP");
+                        //System.out.println("UP");
                         player.moveUp();
                         break;
                     case DOWN:
@@ -314,7 +314,8 @@ public class DungeonController {
                 public void changed(ObservableValue<? extends Boolean> arg0, 
                         Boolean oldValue, Boolean newValue) {
                     if(newValue){
-                        GridPane.setRowIndex(new ImageView(doorOpenImage), d.getX());
+                        squares.getChildren().remove(node);
+                        squares.add(new ImageView(doorOpenImage),entity.getX(), entity.getY());
                     }
                 }
             });

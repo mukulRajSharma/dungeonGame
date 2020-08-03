@@ -12,8 +12,11 @@ public class Inventory{
 
     public boolean useItem(Item item){
         for(Item i: items){
-            if(useItemstrat(ItemStrategyFactory.getStrat(i, item))){
-                return true;
+            ItemStrategy i2 = ItemStrategyFactory.getStrat(i, item);
+            if(i2 != null){
+                if(useItemstrat(i2)){
+                    return true;
+                }
             }
         }
         return false;
@@ -21,8 +24,11 @@ public class Inventory{
 
     public boolean useItem(Item item , int id){
         for(Item i: items){
-            if(useItemstrat(ItemStrategyFactory.getStrat(i, i, id))){
-                return true;
+            ItemStrategy i2 = ItemStrategyFactory.getStrat(i, item, id);
+            if(i2 != null){
+                if(useItemstrat(i2)){
+                    return true;
+                }
             }
         }
         return false;

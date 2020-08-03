@@ -84,6 +84,8 @@ public class Player extends PlayerMovement {
         if(door != null){
             if(items.useItem(new Key(0,0, 0), door.getId())){
                 door.openDoor();
+            } else if(door.getOpen().get()){
+                return true;
             } else {
                 return false;
             }
@@ -172,6 +174,10 @@ public class Player extends PlayerMovement {
         }
         Item c = (Item)getTouching();
         if(c != null){
+            if(c.getClass().equals(Key.class)){
+                Key k = (Key)c;
+                this.getDungeon().changeGuard(k);
+            }
             items.addItem(c);
             Entity e = (Entity) c;
             this.getDungeon().removeEntity(e);

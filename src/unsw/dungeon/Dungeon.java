@@ -278,7 +278,24 @@ public class Dungeon {
 
     public void moveEnemies(){
         for(Enemy e: enemies){
-            e.move();
+            if(!e.getClass().equals(EnemyHound.class)){
+                e.move(getPlayer());
+            } else {
+                EnemyHound hound = (EnemyHound) e;
+                hound.move();
+            }
+        }
+    }
+
+    public void changeGuard(Key item){
+        for(Enemy e: enemies){
+            if(e.getClass().equals(EnemyHound.class)){
+                EnemyHound hound = (EnemyHound)e;
+                if(item.getId() == hound.getItemId()){
+                    hound.changeGuard(player);
+                    hound.setItemId(-1);
+                }
+            }
         }
     }
 
