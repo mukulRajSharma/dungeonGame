@@ -6,16 +6,13 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.4" xmlns:fx="http://javafx.com/fxml/1">
+<Pane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="640.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/11.0.4" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="146.0" layoutY="26.0" text="LEVEL SELECT" textAlignment="CENTER" underline="true">
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="76.0" prefWidth="640.0" text="LEVEL SELECT" textAlignment="CENTER" style="-fx-background-color: black;" underline="true" textFill="#f8f8f8">
          <font>
-            <Font size="43.0" />
+            <Font name="Wargames" size="43.0" />
          </font>
       </Label>
-      <GridPane fx:id="grid" layoutX="237.0" layoutY="147.0" prefHeight="0.0" prefWidth="126.0">
-        <columnConstraints>
-        </columnConstraints>
-      </GridPane>
+      <GridPane fx:id="grid" alignment="CENTER" layoutX="10" layoutY="147.0" prefHeight="0.0" prefWidth="126.0"> </GridPane>
    </children>
 </Pane>

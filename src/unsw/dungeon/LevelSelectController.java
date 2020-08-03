@@ -13,6 +13,7 @@ import javax.security.auth.login.FailedLoginException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.effect.Lighting;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -51,7 +52,6 @@ public class LevelSelectController {
 
     @FXML
     public void initialize() throws Exception {
-
         grid.setHgap(10);
         grid.setVgap(10);
 
@@ -77,7 +77,8 @@ public class LevelSelectController {
             view.setFitHeight(200);
             view.setFitWidth(200);
             initialLevels.add(view);
-            levelButtons.add(new Button(s.replace(".png","")));
+            Button b = createButton(s.replace(".png",""));
+            levelButtons.add(b);
         }
 
         for(int i = 0; i < initialLevels.size(); i++){
@@ -119,5 +120,12 @@ public class LevelSelectController {
         FXMLLoader load = new FXMLLoader(getClass().getResource("DungeonView.fxml"));
         load.setController(controller);
         return load;
+    }
+
+    private Button createButton(String s){
+        Button b = new Button(s);
+        b.setStyle("-fx-background-color: orange");
+        b.setEffect(new Lighting());
+        return b;
     }
 }
