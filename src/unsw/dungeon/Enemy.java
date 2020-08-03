@@ -12,7 +12,22 @@ public class Enemy extends PlayerMovement{
     public void move(Entity e){
         int eX = e.getX();
         int eY = e.getY();
-
+        if(e.getClass().equals(Player.class)){
+            Player p = (Player) e;
+            if(p.getInvincibility().get() > 0){
+                if(eX > this.getX()){
+                    this.moveLeft();;
+                } else if(eX < this.getX()){
+                    this.moveRight();;
+                }
+                if(eY > this.getY()){
+                    this.moveUp();;
+                } else if(eY < this.getY()){
+                    this.moveDown();;
+                }
+                return;
+            }
+        }
         if(eX > this.getX()){
             this.moveRight();
         } else if(eX < this.getX()){
