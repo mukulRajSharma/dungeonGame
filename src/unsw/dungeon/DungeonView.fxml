@@ -35,5 +35,7 @@
          <font>
             <Font name="Arimo" size="13.0" />
          </font></Button>
+      <GridPane fx:id="inventory" layoutX="128.0" layoutY="51.0">
+      </GridPane>
    </children>
 </AnchorPane>

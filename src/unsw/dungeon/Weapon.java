@@ -24,4 +24,15 @@ public class Weapon extends Entity implements Item{
         }
         return true;
     }
+
+    @Override
+    public boolean getUsed() {
+        if(weaponUse == 0){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    
 }

@@ -13,4 +13,11 @@ public class Treasure extends Entity implements Item{
     public boolean useItem() {
         return false;
     }
+
+    @Override
+    public boolean getUsed() {
+        return false;
+    }
+
+
 }

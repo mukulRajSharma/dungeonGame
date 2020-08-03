@@ -20,4 +20,9 @@ public class Potion extends Entity implements Item{
             return true;
         }
     }
+
+    @Override
+    public boolean getUsed(){
+        return used;
+    }
 }

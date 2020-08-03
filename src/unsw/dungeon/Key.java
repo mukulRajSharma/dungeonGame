@@ -39,5 +39,9 @@ public class Key extends Entity implements Item{
     public int getId(){
         return this.id;
     }
+
+    public boolean getUsed(){
+        return used;
+    }
     
 }
