@@ -12,16 +12,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="495.0" prefWidth="642.0" xmlns="http://javafx.com/javafx/11.0.4" xmlns:fx="http://javafx.com/fxml/1">
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="642.0" xmlns="http://javafx.com/javafx/11.0.4" xmlns:fx="http://javafx.com/fxml/1">
    <content>
-      <AnchorPane id="bg" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="736.0" prefWidth="626.0" stylesheets="@Style.css">
+      <AnchorPane id="bg" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="803.0" prefWidth="626.0" stylesheets="@Style.css">
          <children>
             <Label id="screenText" alignment="CENTER" prefHeight="58.0" prefWidth="626.0" stylesheets="@Style.css" text="How to play ?" textFill="WHITE">
                <font>
                   <Font size="22.0" />
                </font>
             </Label>
-            <ImageView fx:id="playerImg" fitHeight="49.0" fitWidth="54.0" layoutX="14.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="playerImg" fitHeight="49.0" fitWidth="54.0" layoutX="14.0" layoutY="118.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@human_new.png" />
                </image>
@@ -46,7 +46,7 @@
                   <Image url="@brilliant_blue_new.png" />
                </image>
             </ImageView>
-            <Label layoutX="103.0" layoutY="108.0" text="The player, he can move in all 4 directions using the arrow keys.">
+            <Label layoutX="106.0" layoutY="143.0" text="The player, he can move in all 4 directions using the arrow keys.">
                <font>
                   <Font size="15.0" />
                </font>
@@ -76,7 +76,7 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <Button fx:id="closeBtn" layoutX="286.0" layoutY="696.0" mnemonicParsing="false" onAction="#handleCloseBtn" style="-fx-background-color: pink;" text="Close">
+            <Button fx:id="closeBtn" layoutX="286.0" layoutY="763.0" mnemonicParsing="false" onAction="#handleCloseBtn" style="-fx-background-color: pink;" text="Close">
                <cursor>
                   <Cursor fx:constant="CROSSHAIR" />
                </cursor>
@@ -129,6 +129,26 @@
                </image>
             </ImageView>
             <Label layoutX="103.0" layoutY="240.0" text="The gnome, follows the player and decreses player's health if hit.">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="11.0" layoutY="69.0" prefHeight="38.0" prefWidth="577.0" text="Each level has one or more goals. The player must complete them without dying to win the game." wrapText="true">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="49.0" fitWidth="54.0" layoutX="14.0" layoutY="696.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@closed_door.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="49.0" fitWidth="54.0" layoutX="71.0" layoutY="696.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@key.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="120.0" layoutY="696.0" prefHeight="45.0" prefWidth="500.0" text="Doors and keys, every locked  door has a corresponding key." wrapText="true">
                <font>
                   <Font size="15.0" />
                </font>

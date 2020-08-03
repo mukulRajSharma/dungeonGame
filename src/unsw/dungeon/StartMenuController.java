@@ -110,7 +110,7 @@ public class StartMenuController {
         Stage boss = (Stage)root.getScene().getWindow();
         boss.close();
         Stage window = new Stage();
-        FXMLLoader loader = levelLoader("boulders.json");
+        FXMLLoader loader = levelLoader("easy_boulders.json");
         Parent root = loader.load();
         Scene scene = new Scene(root);
         root.requestFocus();
@@ -136,7 +136,7 @@ public class StartMenuController {
         Stage boss = (Stage)root.getScene().getWindow();
         boss.close();
         Stage window = new Stage();
-        FXMLLoader loader = levelLoader("advanced.json");
+        FXMLLoader loader = levelLoader("extreme.json");
         Parent root = loader.load();
         Scene scene = new Scene(root);
         root.requestFocus();
