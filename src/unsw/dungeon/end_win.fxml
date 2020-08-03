@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/11.0.4" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="bg" fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/11.0.4" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Button fx:id="exit" alignment="CENTER" layoutX="262.0" layoutY="289.0" mnemonicParsing="false" onAction="#handleButtonPressExit" prefHeight="45.0" prefWidth="78.0" style="-fx-background-color: orange;" text="EXIT">
          <font>
@@ -45,7 +45,7 @@
                </light>
             </Lighting>
          </effect></Button>
-      <Label fx:id="output" alignment="CENTER" layoutX="-2.0" prefHeight="59.0" prefWidth="607.0" style="-fx-background-color: black;" text="CONGRATULATIONS" textFill="WHITE">
+      <Label id="screenText" fx:id="output" alignment="CENTER" layoutX="-2.0" prefHeight="67.0" prefWidth="600.0" stylesheets="@Style.css" text="CONGRATULATIONS" textFill="WHITE">
          <font>
             <Font name="Wargames" size="48.0" />
          </font>

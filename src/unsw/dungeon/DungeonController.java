@@ -88,7 +88,6 @@ public class DungeonController {
         Image ground = new Image((new File("images/dirt_0_new.png")).toURI().toString());
         Image pauseImage = new Image((new File("images/pause_icon.png")).toURI().toString());
         // Add the ground first so it is below all other entities
-        
         for (int x = 0; x < dungeon.getWidth(); x++) {
             for (int y = 0; y < dungeon.getHeight(); y++) {
                 squares.add(new ImageView(ground), x, y);
@@ -158,15 +157,18 @@ public class DungeonController {
         resume.setStyle("-fx-background-color: pink");
         resume.setCursor(Cursor.CROSSHAIR);
         resume.setEffect(new Lighting());
-        restart.setText("restart");
+        restart.setText("Select Level");
         restart.setStyle("-fx-background-color: pink");
         restart.setEffect(new Lighting());
+        restart.setCursor(Cursor.CROSSHAIR);
         exit.setText("exit");
         exit.setStyle("-fx-background-color: orange");
         exit.setEffect(new Lighting());
+        exit.setCursor(Cursor.CROSSHAIR);
         mainMenu.setText("Main menu");
         mainMenu.setStyle("-fx-background-color: orange");
         mainMenu.setEffect(new Lighting());
+        mainMenu.setCursor(Cursor.CROSSHAIR);
 
         resume.setOnAction(e -> {
             dialog.close();
@@ -174,7 +176,23 @@ public class DungeonController {
         });
         restart.setOnAction(e -> {
             dialog.close();
+            //root.requestFocus();
+            Stage curr = (Stage)squares.getScene().getWindow();
+            curr.close();
+            try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Level_select.fxml"));
+            LevelSelectController select = new LevelSelectController();
+            loader.setController(select);
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
             root.requestFocus();
+            Stage window = (Stage) exit.getScene().getWindow();
+            window.setScene(scene);
+            window.show();
+            }
+            catch (Exception ex) {
+                System.err.println("Error:" + ex.toString());
+            }
         });
         exit.setOnAction(e -> {
             dialog.close();
@@ -195,7 +213,9 @@ public class DungeonController {
         });
 
         VBox dialogVbox = new VBox(20);
-        dialogVbox.setStyle("-fx-background-color: grey");
+        dialogVbox.getStylesheets().add(getClass().getResource("Style.css").toString());
+        dialogVbox.setId("bg");
+        //dialogVbox.setStyle("-fx-background-color: grey");
         Label heading = new Label("Game Paused");
         heading.setStyle("-fx-font: 21 arial;"+"-fx-font-weight: bold;");
         //heading.setStyle("-fx-font-weight: bold;");
