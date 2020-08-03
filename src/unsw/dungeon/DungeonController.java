@@ -16,6 +16,7 @@ import javafx.scene.effect.Lighting;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -102,6 +103,7 @@ public class DungeonController {
         pauseBtn.setLayoutY(0);
         pauseBtn.setLayoutX(250);
         pauseBtn.setGraphic(new ImageView(pauseImage));
+        pauseBtn.setCancelButton(true);
         
         trackPlayer(dungeon.getPlayer());
         trackGoals(dungeon.getGoals());
@@ -140,7 +142,7 @@ public class DungeonController {
      * To the pause screen
      * @throws Exception
      */
-    //@FXML
+    @FXML
     public void handlePause(ActionEvent event) throws Exception{
 
         final Stage dialog = new Stage();
@@ -151,6 +153,7 @@ public class DungeonController {
         Button exit = new Button();
         Button mainMenu = new Button();
 
+        resume.setCancelButton(true);
         resume.setText("resume");
         resume.setStyle("-fx-background-color: pink");
         resume.setCursor(Cursor.CROSSHAIR);
@@ -167,11 +170,11 @@ public class DungeonController {
 
         resume.setOnAction(e -> {
             dialog.close();
-            squares.requestFocus();
+            root.requestFocus();
         });
         restart.setOnAction(e -> {
             dialog.close();
-            squares.requestFocus();
+            root.requestFocus();
         });
         exit.setOnAction(e -> {
             dialog.close();
@@ -312,6 +315,7 @@ public class DungeonController {
         root.requestFocus();
         Stage window = (Stage) squares.getScene().getWindow();
         window.setScene(scene);
+        window.show();
     }
 
     /**
@@ -328,6 +332,7 @@ public class DungeonController {
         root.requestFocus();
         Stage window = (Stage) squares.getScene().getWindow();
         window.setScene(scene);
+        window.show();
     }
     
     

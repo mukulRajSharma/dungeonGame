@@ -21,17 +21,17 @@
 
          </children>
       </GridPane>
-      <Label fx:id="health" alignment="TOP_RIGHT" layoutX="14.0" layoutY="14.0" text="Health = " textFill="WHITE">
+      <Label fx:id="health" alignment="TOP_RIGHT" layoutX="14.0" layoutY="14.0" text="Health = " textFill="BLACK">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Label fx:id="goals" alignment="TOP_LEFT" layoutX="312.0" layoutY="14.0" text="Label" textAlignment="RIGHT" textFill="WHITE">
+      <Label fx:id="goals" alignment="TOP_LEFT" layoutX="312.0" layoutY="14.0" text="Label" textAlignment="RIGHT" textFill="BLACK">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <Button fx:id="pauseBtn" layoutX="180.0" layoutY="12.0" mnemonicParsing="false" onAction="#handlePause" style="visibility: 0;">
+      <Button fx:id="pauseBtn" layoutX="180.0" layoutY="12.0" mnemonicParsing="false" onAction="#handlePause" style="visibility: visible;">
          <font>
             <Font name="Arimo" size="13.0" />
          </font></Button>
