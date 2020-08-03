@@ -1,10 +1,14 @@
 package unsw.dungeon;
 
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import org.junit.platform.console.shadow.picocli.CommandLine.Help;
 
 import javafx.animation.FadeTransition;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,9 +17,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.Toggle;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
@@ -43,10 +51,31 @@ public class StartMenuController {
     @FXML
     private Label startLabel;
 
-
+    @FXML
+    private RadioButton darkBtn;
+    @FXML
+    private RadioButton lightBtn;
+    @FXML
+    private ToggleGroup themeGroup;
     /**
      * initializes the end controller to display one of the end screens
      */
+    public StartMenuController(){
+        themeGroup = new ToggleGroup();
+        // darkBtn.setToggleGroup(themeGroup);
+        // lightBtn.setToggleGroup(themeGroup);
+        // themeGroup.selectedToggleProperty().addListener(new ChangeListener<Toggle>(){
+        //     public void changed(ObservableValue<? extends Toggle> ov,
+        //         Toggle old_toggle, Toggle new_toggle) {
+        //             if (themeGroup.getSelectedToggle() == darkBtn) {    
+        //                 handleDarkBtn();
+        //             }                
+        //             else{
+        //                 handleLightBtn();
+        //             }
+        //         }
+        // });
+    }
     @FXML
     public void initialize() {
         // System.out.println(text);
@@ -136,4 +165,43 @@ public class StartMenuController {
         window.setScene(scene);
         window.show();
     }
+    @FXML
+    public void handleDarkBtn(){
+        lightBtn.setSelected(false);
+        startLabel.setStyle("-fx-background-color: black;-fx-text-fill: white;");
+        root.setStyle("-fx-background-color:grey;");       
+        try{
+            FileWriter fw = new FileWriter("src/unsw/dungeon/Style.css", false);
+            String headStyle = "#headLabel { background-color: black;-fx-background-color: black;}";
+            String textStyle = "#screenText {-fx-text-fill:white;background-color: black;-fx-background-color: black;}";
+            String bg = "#bg {background-color: grey;-fx-background-color:grey;}";
+            fw.write(headStyle+textStyle+bg);
+            fw.close();
+        }
+        catch(IOException e){
+            System.out.println("error opening css file");
+        }
+        
+    }
+    @FXML
+    public void handleLightBtn(){
+        darkBtn.setSelected(false);
+        startLabel.setStyle("-fx-background-color: white;-fx-text-fill: black;");
+        root.setStyle("-fx-background-color: #fcba03;");
+        try{
+            FileWriter fw = new FileWriter("src/unsw/dungeon/Style.css", false);
+            PrintWriter pw = new PrintWriter(fw);
+            String headStyle = "#headLabel { background-color: white;-fx-background-color: white; }";
+            String textStyle = "#screenText {-fx-text-fill:black;background-color: white;-fx-background-color: white;}";
+            String bg = "#bg {background-color: #fcba03;-fx-background-color:#fcba03;}";
+            pw.print(headStyle+textStyle+bg);
+            pw.close();
+            fw.close();
+        }
+        catch(IOException e){
+            System.out.println("error opening css file");
+        }
+        
+    }
+    
 }
