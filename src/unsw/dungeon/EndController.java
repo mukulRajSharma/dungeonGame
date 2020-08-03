@@ -60,7 +60,7 @@ public class EndController{
      */
     @FXML
     public void handleButtonPressFirst(ActionEvent event) throws IOException{
-        if(first.getText().equals("LEVEL SELECT")){
+        if(first.getText().equals("LEVEL SELECT")||first.getText().equals("TRY AGAIN")){
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Level_select.fxml"));
             LevelSelectController select = new LevelSelectController();
             loader.setController(select);
