@@ -124,7 +124,39 @@
             <Image url="@fire.gif" />
          </image>
       </ImageView>
-      <RadioButton fx:id="lightBtn" layoutX="379.0" layoutY="291.0" mnemonicParsing="false" onAction="#handleLightBtn" text="Light Theme" />
-      <RadioButton fx:id="darkBtn" layoutX="379.0" layoutY="259.0" mnemonicParsing="false" onAction="#handleDarkBtn" text="Dark Theme" />
+      <RadioButton fx:id="lightBtn" layoutX="378.0" layoutY="309.0" mnemonicParsing="false" onAction="#handleLightBtn" style="-fx-font-weight: bold;" text="Light Theme">
+         <font>
+            <Font size="19.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="CROSSHAIR" />
+         </cursor>
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect></RadioButton>
+      <RadioButton fx:id="darkBtn" layoutX="379.0" layoutY="259.0" mnemonicParsing="false" onAction="#handleDarkBtn" style="-fx-font-weight: bold;" text="Dark Theme">
+         <font>
+            <Font size="19.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="CROSSHAIR" />
+         </cursor>
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect></RadioButton>
    </children>
 </AnchorPane>
