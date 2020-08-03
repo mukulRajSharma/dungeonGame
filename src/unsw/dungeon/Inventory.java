@@ -2,12 +2,21 @@ package unsw.dungeon;
 
 import java.util.ArrayList;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 public class Inventory{
 
-    ArrayList<Item> items;
+    private ObservableList<Item> items;
+    private int inventoryMaxSize;
 
     public Inventory(){
-        items = new ArrayList<Item>();
+        items = FXCollections.observableArrayList();
+        inventoryMaxSize = 5;
+    }
+
+    public ObservableList<Item> getItems(){
+        return items;
     }
 
     public boolean useItem(Item item){
@@ -15,10 +24,12 @@ public class Inventory{
             ItemStrategy i2 = ItemStrategyFactory.getStrat(i, item);
             if(i2 != null){
                 if(useItemstrat(i2)){
+                    updateInventory();
                     return true;
                 }
             }
         }
+        updateInventory();
         return false;
     }
 
@@ -27,11 +38,26 @@ public class Inventory{
             ItemStrategy i2 = ItemStrategyFactory.getStrat(i, item, id);
             if(i2 != null){
                 if(useItemstrat(i2)){
+                    updateInventory();
                     return true;
                 }
             }
         }
+        updateInventory();
         return false;
+    }
+
+    public void updateInventory(){
+        ArrayList<Item> list = new ArrayList<>();
+        for(Item i : items) {
+            if(!i.getUsed()){
+                list.add(i);
+            }
+        }
+        items.clear();
+        for(Item i: list){
+            items.add(i);
+        }
     }
 
     private boolean useItemstrat(ItemStrategy strat){
@@ -69,6 +95,14 @@ public class Inventory{
         if(items.contains(c)){
             items.remove(c);
         }
+    }
+
+    public int getMaxSize(){
+        return inventoryMaxSize;
+    }
+
+    public int currSize(){
+        return items.size();
     }
     
 }

@@ -28,6 +28,7 @@ import javafx.scene.text.Text;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -52,6 +53,9 @@ public class DungeonController {
 
     @FXML
     private GridPane squares;
+
+    @FXML
+    private GridPane inventory;
 
     @FXML
     private Label health;
@@ -85,6 +89,9 @@ public class DungeonController {
      */
     @FXML
     public void initialize() {
+        inventory.setHgap(10);
+        inventory.setVgap(10);
+
         Image ground = new Image((new File("images/dirt_0_new.png")).toURI().toString());
         Image pauseImage = new Image((new File("images/pause_icon.png")).toURI().toString());
         // Add the ground first so it is below all other entities
@@ -240,7 +247,6 @@ public class DungeonController {
                     Number oldValue, Number newValue){
                 health.setText("Health: " + newValue.intValue());
                 if(newValue.intValue() == 0){
-                    
                     try {
                         endLose();
                     } catch (Exception e) {
@@ -249,7 +255,32 @@ public class DungeonController {
                 }
             }
         });
+        entity.getInventory().getItems().addListener(new ListChangeListener<Item>(){
+			@Override
+			public void onChanged(Change<? extends Item> listChange) {
+                System.out.println("Changed");
+                inventory.getChildren().clear();
+                for(int i = 0; i < entity.getInventory().getItems().size(); i++){
+                    ImageView toadd = new ImageView(getImage(entity.getInventory().getItems().get(i)));
+                    toadd.setFitHeight(25);
+                    toadd.setFitWidth(25);
+                    inventory.add(toadd, i, 0);
+                }
+			}
+        });
 
+    }
+
+    private Image getImage(Item i){
+        if(i.getClass().equals(Key.class)){
+            return new Image((new File("images/key.png")).toURI().toString());
+        } else if(i.getClass().equals(Weapon.class)){
+            return new Image((new File("images/greatsword_1_new.png")).toURI().toString());
+        } else if(i.getClass().equals(Potion.class)){
+            return new Image((new File("images/bubbly.png")).toURI().toString());
+        } else {
+            return new Image((new File("images/gold_pile.png")).toURI().toString());
+        }
     }
 
     /**
