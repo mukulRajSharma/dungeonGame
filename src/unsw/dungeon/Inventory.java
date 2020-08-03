@@ -9,9 +9,11 @@ import javafx.collections.ObservableList;
 public class Inventory{
 
     private ObservableList<Item> items;
+    private int inventoryMaxSize;
 
     public Inventory(){
         items = FXCollections.observableArrayList();
+        inventoryMaxSize = 5;
     }
 
     public ObservableList<Item> getItems(){
@@ -94,6 +96,14 @@ public class Inventory{
         if(items.contains(c)){
             items.remove(c);
         }
+    }
+
+    public int getMaxSize(){
+        return inventoryMaxSize;
+    }
+
+    public int currSize(){
+        return items.size();
     }
     
 }

@@ -174,13 +174,15 @@ public class Player extends PlayerMovement {
         }
         Item c = (Item)getTouching();
         if(c != null){
-            if(c.getClass().equals(Key.class)){
-                Key k = (Key)c;
-                this.getDungeon().changeGuard(k);
+            if(items.currSize()+1 < items.getMaxSize()){
+                if(c.getClass().equals(Key.class)){
+                    Key k = (Key)c;
+                    this.getDungeon().changeGuard(k);
+                }
+                items.addItem(c);
+                Entity e = (Entity) c;
+                this.getDungeon().removeEntity(e);
             }
-            items.addItem(c);
-            Entity e = (Entity) c;
-            this.getDungeon().removeEntity(e);
         }
         if(invicibilityTurns.get() > 0){
             invicibilityTurns.set(invicibilityTurns.intValue()-1);
