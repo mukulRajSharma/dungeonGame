@@ -287,6 +287,18 @@ public class Dungeon {
         }
     }
 
+    public void changeGuard(Key item){
+        for(Enemy e: enemies){
+            if(e.getClass().equals(EnemyHound.class)){
+                EnemyHound hound = (EnemyHound)e;
+                if(item.getId() == hound.getItemId()){
+                    hound.changeGuard(player);
+                    hound.setItemId(-1);
+                }
+            }
+        }
+    }
+
     
 
     /**

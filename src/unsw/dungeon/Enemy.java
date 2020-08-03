@@ -5,13 +5,9 @@ package unsw.dungeon;
  */
 public class Enemy extends PlayerMovement{
 
-    private Dungeon d;
-
     public Enemy(Dungeon dungeon, int x, int y){
         super(dungeon, x, y);
-        this.d = dungeon;
     }
-    //implement Enemy movement AI here! At the moment the enemy just moves in that the player in moving
 
     public void move(Entity e){
         int eX = e.getX();

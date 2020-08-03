@@ -116,7 +116,7 @@ public class DungeonController {
             public void handle(KeyEvent event) {
                 switch (event.getCode()) {
                     case UP:
-                        System.out.println("UP");
+                        //System.out.println("UP");
                         player.moveUp();
                         break;
                     case DOWN:
