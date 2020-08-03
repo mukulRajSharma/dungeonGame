@@ -1,6 +1,5 @@
 package unsw.dungeon;
 
-import java.nio.channels.NonReadableChannelException;
 import java.util.ArrayList;
 
 import javafx.collections.FXCollections;
