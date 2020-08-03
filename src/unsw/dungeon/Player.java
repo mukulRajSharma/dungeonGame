@@ -84,6 +84,8 @@ public class Player extends PlayerMovement {
         if(door != null){
             if(items.useItem(new Key(0,0, 0), door.getId())){
                 door.openDoor();
+            } else if(door.getOpen().get()){
+                return true;
             } else {
                 return false;
             }
