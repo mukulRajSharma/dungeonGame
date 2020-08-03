@@ -121,7 +121,13 @@ public abstract class DungeonLoader {
             onLoad(exit);
             entity = exit;  
             dungeon.addExit(exit);
-            break;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+            break;  
+        case "hound":
+            int id3 = json.getInt("id");
+            EnemyHound hound = new EnemyHound(dungeon, x, y, id3);
+            onLoad(hound);
+            entity = hound;
+            dungeon.addEnemy(hound);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
         }
         dungeon.addEntity(entity);
     }
@@ -149,4 +155,6 @@ public abstract class DungeonLoader {
     public abstract void onLoad(FloorSwitch floorSwitch);
 
     public abstract void onLoad(Exit exit);
+
+    public abstract void onLoad(EnemyHound enemy);
 }

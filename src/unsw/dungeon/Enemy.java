@@ -13,18 +13,18 @@ public class Enemy extends PlayerMovement{
     }
     //implement Enemy movement AI here! At the moment the enemy just moves in that the player in moving
 
-    public void move(){
-        int playerX = d.getPlayer().getX();
-        int playerY = d.getPlayer().getY();
+    public void move(Entity e){
+        int eX = e.getX();
+        int eY = e.getY();
 
-        if(playerX > this.getX()){
+        if(eX > this.getX()){
             this.moveRight();
-        } else if(playerX < this.getX()){
+        } else if(eX < this.getX()){
             this.moveLeft();
         }
-        if(playerY > this.getY()){
+        if(eY > this.getY()){
             this.moveDown();
-        } else if(playerY < this.getY()){
+        } else if(eY < this.getY()){
             this.moveUp();
         }
     }

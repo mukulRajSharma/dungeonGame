@@ -29,6 +29,7 @@ public class DungeonControllerLoader extends DungeonLoader {
     private Image potionImage;
     private Image treasureImage;
     private Image enemyImage;
+    private Image enemyHoundImage;
     private Image portalImage;
     private Image boulderImage;
     private Image doorCloseImage;
@@ -46,6 +47,7 @@ public class DungeonControllerLoader extends DungeonLoader {
         potionImage = new Image((new File("images/bubbly.png")).toURI().toString());
         treasureImage = new Image((new File("images/gold_pile.png")).toURI().toString());
         enemyImage = new Image((new File("images/gnome.png")).toURI().toString());
+        enemyHoundImage = new Image((new File("images/hound.png")).toURI().toString());
         portalImage = new Image((new File("images/portal.png")).toURI().toString());
         boulderImage = new Image((new File("images/boulder.png")).toURI().toString());
         doorCloseImage = new Image((new File("images/closed_door.png")).toURI().toString());
@@ -177,6 +179,12 @@ public class DungeonControllerLoader extends DungeonLoader {
     public void onLoad(Exit exit){
         ImageView view = new ImageView(exitImage);
         addEntity(exit, view);
+    }
+
+    @Override
+    public void onLoad(EnemyHound enemy){
+        ImageView view = new ImageView(enemyHoundImage);
+        addEntity(enemy, view);
     }
 
     private void addEntity(Entity entity, ImageView view) {
