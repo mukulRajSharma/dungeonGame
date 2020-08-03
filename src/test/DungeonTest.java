@@ -122,7 +122,7 @@ public class DungeonTest {
         p.moveDown();
         p.moveUp();
       
-        assertEquals(d.enemyEndCondition(), false);
+        assertEquals(d.enemyEndCondition(), true);
         p.moveLeft();
         assertEquals(d.enemyEndCondition(), true);
 
