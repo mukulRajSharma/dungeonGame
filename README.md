@@ -1,5 +1,5 @@
-2D Dungeon Game
 # Project
+Dungeon game in Java using JavaFx platform.
 
 ## Aims
 
